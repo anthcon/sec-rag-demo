@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+
+# Chroma DB
+chroma_db/
+
+# Mac
+.DS_Store
+
+# VSCode
+.vscode/
+
+# other
+readme_draft.txt
