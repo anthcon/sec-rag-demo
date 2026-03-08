@@ -1,24 +1,24 @@
+# reranker.py
 """
-Cross-encoder reranker with recency fusion.
+Second-stage cross-encoder reranker.
+Scores (query, chunk) pairs with a cross-encoder and returns
+the top-k results sorted by fused score (cross-encoder + recency).
 
-Scores (query, chunk) pairs with BAAI/bge-reranker-v2-m3,
-blends with filing recency via exponential decay, returns top-k.
-
-Design decisions:
-  - bge-reranker-v2-m3: lightweight, strong on financial text, CPU-friendly.
-  - Lazy singleton: model loaded once per process.
-  - Fused score = 0.7 * cross-encoder + 0.3 * recency.
-    Cross-encoder dominates; recency breaks ties toward newer filings.
+Design decisions (be ready to explain in walkthrough):
+  - Model: BAAI/bge-reranker-v2-m3 — lightweight, strong on financial text,
+    no GPU required for <60 candidates.
+  - Lazy-loaded singleton so the model is only downloaded/loaded once per
+    process, not per query.
+  - Fused score = 0.7 * normalized_ce_score + 0.3 * normalized_adj_score.
+    Keeps recency signal without letting it dominate semantic relevance.
+  - Balanced selection guarantees each target company gets fair
+    representation before filling remaining slots by fused score.
 """
 
-from datetime import datetime
 from sentence_transformers import CrossEncoder
 
 _MODEL_NAME = "BAAI/bge-reranker-v2-m3"
 _model = None
-
-HALF_LIFE_DAYS = 365
-CE_WEIGHT = 0.7
 
 
 def _get_model():
@@ -29,60 +29,95 @@ def _get_model():
     return _model
 
 
-def _normalize(values: list[float]) -> list[float]:
+def _normalize(values):
+    """Min-max normalize a list of floats to [0, 1]."""
     lo, hi = min(values), max(values)
     if hi == lo:
         return [1.0] * len(values)
     return [(v - lo) / (hi - lo) for v in values]
 
 
-def _recency_score(filing_date_str: str) -> float:
-    """Exponential decay: 1.0 for today, 0.5 at HALF_LIFE_DAYS ago."""
-    try:
-        filing_date = datetime.strptime(filing_date_str, "%Y-%m-%d")
-    except (ValueError, TypeError):
-        return 0.5
-    age_days = max((datetime.now() - filing_date).days, 0)
-    return 0.5 ** (age_days / HALF_LIFE_DAYS)
-
-
 def cross_encoder_rerank(
     query: str,
-    raw_results: list[tuple],
-    top_k: int = 40,
-    ce_weight: float = CE_WEIGHT,
-) -> list[tuple]:
+    reranked_results: list,       # list of (doc, sim_score, adj_score)
+    top_k: int = 20,
+    ce_weight: float = 0.7,
+    target_companies: list = None,
+):
     """
     Args:
-        query:       user's original question
-        raw_results: list of (Document, sim_score) from ChromaDB
-        top_k:       max results to return (set higher than final TOP_K
-                     so balanced_select has room to work)
-        ce_weight:   blend weight for cross-encoder vs recency
+        query:              the user's original question
+        reranked_results:   output of rerank_results() — tuples of
+                            (Document, similarity_score, adjusted_score)
+        top_k:              how many to return
+        ce_weight:          blend weight for cross-encoder vs recency
+        target_companies:   list of company names for balanced selection
 
     Returns:
-        list of (Document, sim_score, fused_score) sorted by fused_score desc
+        list of (doc, sim_score, adj_score, ce_score, fused_score)
+        sorted descending by fused_score, length <= top_k
     """
-    if not raw_results:
+    if not reranked_results:
         return []
 
     model = _get_model()
 
-    pairs = [(query, doc.page_content) for doc, _, _ in raw_results]
+    # ---- Build pairs — FIXED: unpack all 3 values ----
+    pairs = [(query, doc.page_content) for doc, _sim, _adj in reranked_results]
     ce_scores = model.predict(pairs).tolist()
 
-    recency_scores = [
-        _recency_score(doc.metadata.get("filing_date"))
-        for doc, _, _ in raw_results
-    ]
-
+    # ---- Normalize both signals ----
     norm_ce = _normalize(ce_scores)
-    norm_recency = _normalize(recency_scores)
+    adj_scores = [adj for _doc, _sim, adj in reranked_results]
+    norm_adj = _normalize(adj_scores)
 
-    results = []
-    for i, (doc, sim, adj) in enumerate(raw_results):
-        fused = ce_weight * norm_ce[i] + (1 - ce_weight) * norm_recency[i]
-        results.append((doc, sim, adj, ce_scores[i], fused))
+    # ---- Fuse scores ----
+    fused = []
+    for i, (doc, sim, adj) in enumerate(reranked_results):
+        fused_score = ce_weight * norm_ce[i] + (1 - ce_weight) * norm_adj[i]
+        fused.append((doc, sim, adj, ce_scores[i], fused_score))
 
-    results.sort(key=lambda x: x[2], reverse=True)
-    return results[:top_k]
+    # ---- Balanced selection across target companies ----
+    if target_companies and len(target_companies) > 1:
+        fused = _balanced_select(fused, target_companies, top_k)
+    else:
+        fused.sort(key=lambda x: x[4], reverse=True)
+        fused = fused[:top_k]
+
+    return fused
+
+
+def _balanced_select(fused, target_companies, top_k):
+    """
+    Guarantee each target company gets at least per_company slots,
+    then fill remaining by best fused score.
+    """
+    # Sort each company's pool by fused score
+    buckets = {}
+    for item in fused:
+        company = item[0].metadata.get("company", "Unknown")
+        buckets.setdefault(company, []).append(item)
+    for pool in buckets.values():
+        pool.sort(key=lambda x: x[4], reverse=True)
+
+    per_company = max(1, top_k // len(target_companies))
+    overflow = top_k - (per_company * len(target_companies))
+
+    selected = []
+    extras = []
+
+    for company in target_companies:
+        pool = buckets.get(company, [])
+        selected.extend(pool[:per_company])
+        extras.extend(pool[per_company:])
+
+    # Any non-target company chunks go into extras
+    for c, pool in buckets.items():
+        if c not in target_companies:
+            extras.extend(pool)
+
+    extras.sort(key=lambda x: x[4], reverse=True)
+    selected.extend(extras[:overflow])
+    selected.sort(key=lambda x: x[4], reverse=True)
+
+    return selected
