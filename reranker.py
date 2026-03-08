@@ -67,9 +67,9 @@ def cross_encoder_rerank(
 
     # Fuse
     fused = []
-    for i, (doc, score) in enumerate(reranked_results):
+    for i, (doc, sim_score, adj_score) in enumerate(reranked_results):
         fused_score = ce_weight * norm_ce[i] + (1 - ce_weight) * norm_adj[i]
-        fused.append((doc, score, ce_scores[i], fused_score))
+        fused.append((doc, sim_score, adj_score, ce_scores[i], fused_score))
 
     fused.sort(key=lambda x: x[4], reverse=True)
     return fused[:top_k]
