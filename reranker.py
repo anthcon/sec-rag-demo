@@ -68,21 +68,21 @@ def cross_encoder_rerank(
 
     model = _get_model()
 
-    pairs = [(query, doc.page_content) for doc, _ in raw_results]
+    pairs = [(query, doc.page_content) for doc, _, _ in raw_results]
     ce_scores = model.predict(pairs).tolist()
 
     recency_scores = [
         _recency_score(doc.metadata.get("filing_date"))
-        for doc, _ in raw_results
+        for doc, _, _ in raw_results
     ]
 
     norm_ce = _normalize(ce_scores)
     norm_recency = _normalize(recency_scores)
 
     results = []
-    for i, (doc, sim) in enumerate(raw_results):
+    for i, (doc, sim, adj) in enumerate(raw_results):
         fused = ce_weight * norm_ce[i] + (1 - ce_weight) * norm_recency[i]
-        results.append((doc, sim, fused))
+        results.append((doc, sim, adj, ce_scores[i], fused))
 
     results.sort(key=lambda x: x[2], reverse=True)
     return results[:top_k]

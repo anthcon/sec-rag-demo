@@ -65,6 +65,11 @@ def retrieve_unfiltered(db, question: str) -> list[tuple]:
     return db.similarity_search_with_relevance_scores(question, k=FALLBACK_K)
 
 
+def rerank_results(raw_results: list[tuple]) -> list[tuple]:
+    """Convert raw results to 3-tuple format for cross-encoder: (doc, sim_score, adj_score)."""
+    return [(doc, score, score) for doc, score in raw_results]
+
+
 def deduplicate(results: list[tuple]) -> list[tuple]:
     """Remove duplicate chunks by content hash."""
     seen = set()
@@ -160,15 +165,24 @@ def query(question: str):
     if best_score < MIN_SCORE_WARNING:
         print(f"  WARNING: Best similarity = {best_score:.3f} — results may be weak")
 
-    # --- Step 3: Cross-encoder rerank ---
-    print(f"  Reranking {len(raw_results)} candidates…")
-    reranked = cross_encoder_rerank(question, raw_results)
+    # --- Step 3: Recency-weighted pre-rank ---
+    reranked = rerank_results(raw_results)
 
-    # --- Step 4: Balanced selection ---
-    top_results = balanced_select(reranked, target_companies, TOP_K)
+    # --- Step 4: Cross-encoder rerank (semantic + recency fusion) ---
+    print(f"  Reranking {len(reranked)} candidates with cross-encoder…")
+    top_results = cross_encoder_rerank(question, reranked, top_k=TOP_K)
 
-    # --- Step 5: Build context + LLM call ---
-    context = build_context(top_results)
+    # --- Step 5: Build context and query LLM ---
+    context_parts = []
+    for doc, sim_score, adj_score, ce_score, fused_score in top_results:
+        meta = doc.metadata
+        header = (
+            f"[{meta.get('company', '?')} | {meta.get('filing_type', '?')} | "
+            f"{meta.get('quarter', '?')} | Filed: {meta.get('filing_date', '?')}]"
+        )
+        context_parts.append(f"{header}\n{doc.page_content}")
+
+    context = "\n\n---\n\n".join(context_parts)
     prompt = PROMPT_TEMPLATE.format(context=context, question=question)
 
     llm = ChatOpenAI(
@@ -179,12 +193,13 @@ def query(question: str):
     response = llm.invoke(prompt)
 
     print(f"\nAnswer:\n{response.content}")
-    print(f"\nSources ({len(top_results)}):")
-    for doc, sim, fused in top_results:
+    print(f"\nSources used ({len(top_results)}):")
+    for doc, sim_score, adj_score, ce_score, fused_score in top_results:
         meta = doc.metadata
         print(
             f"  - {meta.get('company')} | {meta.get('filing_type')} | "
-            f"{meta.get('filing_date')} | sim: {sim:.3f} | fused: {fused:.3f}"
+            f"{meta.get('filing_date')} | sim: {sim_score:.3f} | "
+            f"adj: {adj_score:.3f} | ce: {ce_score:.3f} | fused: {fused_score:.3f}"
         )
 
 
