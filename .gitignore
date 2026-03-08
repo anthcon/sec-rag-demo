@@ -7,7 +7,7 @@ __pycache__/
 venv/
 
 # Chroma DB
-chroma_db/
+chroma/
 
 # Mac
 .DS_Store
@@ -17,3 +17,5 @@ chroma_db/
 
 # other
 readme_draft.txt
+dry-run/
+query copy.py
