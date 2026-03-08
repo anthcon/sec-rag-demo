@@ -65,11 +65,24 @@ def retrieve_unfiltered(db, question: str) -> list[tuple]:
     return db.similarity_search_with_relevance_scores(question, k=FALLBACK_K)
 
 
+def deduplicate(results: list[tuple]) -> list[tuple]:
+    """Remove duplicate chunks by content hash."""
+    seen = set()
+    unique = []
+    for item in results:
+        content_hash = hash(item[0].page_content)
+        if content_hash not in seen:
+            seen.add(content_hash)
+            unique.append(item)
+    return unique
+
+
 def balanced_select(scored_results, companies: list[str], k: int) -> list:
     """
     Guarantee each target company gets fair representation.
-    Remaining slots filled by best fused score.
+    Dedup first, then allocate evenly, fill remainder by score.
     """
+    scored_results = deduplicate(scored_results)
     if not companies or len(companies) <= 1:
         return scored_results[:k]
 
