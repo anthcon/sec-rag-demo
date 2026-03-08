@@ -1,0 +1,453 @@
+Total documents in index: 70996
+
+Unique companies in index (54):
+  Johnson & Johnson: 5677 chunks
+  Pfizer: 5271 chunks
+  Disney: 4664 chunks
+  Coca-Cola: 4238 chunks
+  Microsoft: 4125 chunks
+  JPMorgan Chase: 3754 chunks
+  Tesla: 3419 chunks
+  Alphabet/Google: 3243 chunks
+  Bank of America: 3159 chunks
+  Amazon: 3142 chunks
+  ExxonMobil: 2986 chunks
+  NVIDIA: 2892 chunks
+  Meta: 2770 chunks
+  UnitedHealth: 2118 chunks
+  Apple: 1644 chunks
+  Goldman Sachs: 1309 chunks
+  Morgan Stanley: 934 chunks
+  Merck: 649 chunks
+  American Express: 604 chunks
+  Berkshire Hathaway: 587 chunks
+  BlackRock: 585 chunks
+  Intel: 563 chunks
+  Chevron: 559 chunks
+  PepsiCo: 552 chunks
+  RTX/Raytheon: 532 chunks
+  AbbVie: 502 chunks
+  Caterpillar: 500 chunks
+  Verizon: 494 chunks
+  John Deere: 479 chunks
+  UPS: 471 chunks
+  Oracle: 463 chunks
+  Comcast: 447 chunks
+  Boeing: 434 chunks
+  AT&T: 433 chunks
+  Mastercard: 427 chunks
+  Lockheed Martin: 426 chunks
+  Cisco: 408 chunks
+  General Electric: 407 chunks
+  McDonald's: 398 chunks
+  Visa: 393 chunks
+  Eli Lilly: 367 chunks
+  Salesforce: 364 chunks
+  Nike: 357 chunks
+  AMD: 355 chunks
+  Home Depot: 355 chunks
+  Walmart: 355 chunks
+  Starbucks: 349 chunks
+  Thermo Fisher: 323 chunks
+  Adobe: 315 chunks
+  Procter & Gamble: 308 chunks
+  Netflix: 272 chunks
+  Target: 241 chunks
+  Costco: 197 chunks
+  IBM: 180 chunks
+
+Filing types:
+  10K: 39581 chunks
+  10Q: 31415 chunks
+
+Date range: 2015-02-27 → 2026-02-19
+
+--- Per-Company Filing Inventory ---
+
+AMD (355 chunks):
+  10K | filed: 2026-02-04 | quarter: UNKNOWN
+
+AT&T (433 chunks):
+  10K | filed: 2026-02-09 | quarter: UNKNOWN
+
+AbbVie (502 chunks):
+  10K | filed: 2025-02-14 | quarter: UNKNOWN
+
+Adobe (315 chunks):
+  10K | filed: 2026-01-15 | quarter: UNKNOWN
+
+Alphabet/Google (3243 chunks):
+  10K | filed: 2023-02-03 | quarter: 2022Q4
+  10K | filed: 2024-01-31 | quarter: 2023Q4
+  10K | filed: 2025-02-05 | quarter: 2024Q4
+  10K | filed: 2026-02-05 | quarter: UNKNOWN
+  10Q | filed: 2022-10-26 | quarter: 2022Q3
+  10Q | filed: 2023-04-26 | quarter: 2023Q1
+  10Q | filed: 2023-07-26 | quarter: 2023Q2
+  10Q | filed: 2023-10-25 | quarter: 2023Q3
+  10Q | filed: 2024-04-26 | quarter: 2024Q1
+  10Q | filed: 2024-07-24 | quarter: 2024Q2
+  10Q | filed: 2024-10-30 | quarter: 2024Q3
+  10Q | filed: 2025-04-25 | quarter: 2025Q1
+  10Q | filed: 2025-07-24 | quarter: 2025Q2
+  10Q | filed: 2025-10-30 | quarter: 2025Q3
+
+Amazon (3142 chunks):
+  10K | filed: 2023-02-03 | quarter: 2022Q4
+  10K | filed: 2024-02-02 | quarter: 2023Q4
+  10K | filed: 2025-02-07 | quarter: 2024Q4
+  10K | filed: 2026-02-06 | quarter: UNKNOWN
+  10Q | filed: 2022-04-29 | quarter: 2022Q1
+  10Q | filed: 2022-07-29 | quarter: 2022Q2
+  10Q | filed: 2022-10-28 | quarter: 2022Q3
+  10Q | filed: 2023-04-28 | quarter: 2023Q1
+  10Q | filed: 2023-08-04 | quarter: 2023Q2
+  10Q | filed: 2023-10-27 | quarter: 2023Q3
+  10Q | filed: 2024-05-01 | quarter: 2024Q1
+  10Q | filed: 2024-08-02 | quarter: 2024Q2
+  10Q | filed: 2024-11-01 | quarter: 2024Q3
+  10Q | filed: 2025-05-02 | quarter: 2025Q1
+  10Q | filed: 2025-08-01 | quarter: 2025Q2
+  10Q | filed: 2025-10-31 | quarter: 2025Q3
+
+American Express (604 chunks):
+  10K | filed: 2026-02-06 | quarter: UNKNOWN
+
+Apple (1644 chunks):
+  10K | filed: 2022-10-28 | quarter: 2022Q3
+  10K | filed: 2023-11-03 | quarter: 2023Q3
+  10K | filed: 2024-11-01 | quarter: 2024Q3
+  10K | filed: 2025-10-31 | quarter: UNKNOWN
+  10Q | filed: 2022-04-29 | quarter: 2022Q1
+  10Q | filed: 2022-07-29 | quarter: 2022Q2
+  10Q | filed: 2023-02-03 | quarter: 2022Q4
+  10Q | filed: 2023-05-05 | quarter: 2023Q2
+  10Q | filed: 2023-08-04 | quarter: 2023Q3
+  10Q | filed: 2024-02-02 | quarter: 2023Q4
+  10Q | filed: 2024-05-03 | quarter: 2024Q1
+  10Q | filed: 2024-08-02 | quarter: 2024Q2
+  10Q | filed: 2025-01-31 | quarter: 2024Q4
+  10Q | filed: 2025-05-02 | quarter: 2025Q1
+  10Q | filed: 2025-08-01 | quarter: 2025Q2
+  10Q | filed: 2026-01-30 | quarter: 2025Q4
+
+Bank of America (3159 chunks):
+  10K | filed: 2025-02-25 | quarter: UNKNOWN
+  10Q | filed: 2025-04-30 | quarter: 2025Q1
+  10Q | filed: 2025-07-31 | quarter: 2025Q2
+  10Q | filed: 2025-10-31 | quarter: 2025Q3
+
+Berkshire Hathaway (587 chunks):
+  10K | filed: 2025-02-24 | quarter: UNKNOWN
+
+BlackRock (585 chunks):
+  10K | filed: 2024-02-23 | quarter: UNKNOWN
+
+Boeing (434 chunks):
+  10K | filed: 2026-01-30 | quarter: UNKNOWN
+
+Caterpillar (500 chunks):
+  10K | filed: 2026-02-13 | quarter: UNKNOWN
+
+Chevron (559 chunks):
+  10K | filed: 2025-02-21 | quarter: UNKNOWN
+
+Cisco (408 chunks):
+  10K | filed: 2025-09-03 | quarter: UNKNOWN
+
+Coca-Cola (4238 chunks):
+  10K | filed: 2023-02-21 | quarter: 2022Q4
+  10K | filed: 2024-02-20 | quarter: 2023Q4
+  10K | filed: 2025-02-20 | quarter: UNKNOWN
+  10Q | filed: 2022-04-28 | quarter: 2022Q2
+  10Q | filed: 2022-07-27 | quarter: 2022Q3
+  10Q | filed: 2022-10-26 | quarter: 2022Q3
+  10Q | filed: 2023-04-26 | quarter: 2023Q1
+  10Q | filed: 2023-07-27 | quarter: 2023Q2
+  10Q | filed: 2023-10-24 | quarter: 2023Q3
+  10Q | filed: 2024-05-02 | quarter: 2024Q1
+  10Q | filed: 2024-07-29 | quarter: 2024Q2
+  10Q | filed: 2024-10-24 | quarter: 2024Q3
+  10Q | filed: 2025-05-01 | quarter: 2025Q1
+  10Q | filed: 2025-07-24 | quarter: 2025Q2
+  10Q | filed: 2025-10-23 | quarter: 2025Q3
+
+Comcast (447 chunks):
+  10K | filed: 2026-02-03 | quarter: UNKNOWN
+
+Costco (197 chunks):
+  10K | filed: 2025-10-08 | quarter: UNKNOWN
+
+Disney (4664 chunks):
+  10K | filed: 2022-11-29 | quarter: 2022Q4
+  10K | filed: 2023-11-21 | quarter: 2023Q3
+  10K | filed: 2024-11-14 | quarter: 2024Q3
+  10K | filed: 2025-11-13 | quarter: UNKNOWN
+  10Q | filed: 2022-02-09 | quarter: 2022Q1
+  10Q | filed: 2022-05-11 | quarter: 2022Q2
+  10Q | filed: 2022-08-10 | quarter: 2022Q3
+  10Q | filed: 2023-02-08 | quarter: 2022Q4
+  10Q | filed: 2023-05-10 | quarter: 2023Q2
+  10Q | filed: 2023-08-09 | quarter: 2023Q3
+  10Q | filed: 2024-02-07 | quarter: 2023Q4
+  10Q | filed: 2024-05-07 | quarter: 2024Q1
+  10Q | filed: 2024-08-07 | quarter: 2024Q2
+  10Q | filed: 2025-02-05 | quarter: 2024Q4
+  10Q | filed: 2025-05-07 | quarter: 2025Q1
+  10Q | filed: 2025-08-06 | quarter: 2025Q2
+  10Q | filed: 2026-02-02 | quarter: 2025Q4
+
+Eli Lilly (367 chunks):
+  10K | filed: 2026-02-12 | quarter: UNKNOWN
+
+ExxonMobil (2986 chunks):
+  10K | filed: 2023-02-22 | quarter: 2022Q4
+  10K | filed: 2024-02-28 | quarter: 2023Q4
+  10K | filed: 2025-02-19 | quarter: 2024Q4
+  10K | filed: 2026-02-18 | quarter: UNKNOWN
+  10Q | filed: 2022-05-04 | quarter: 2022Q1
+  10Q | filed: 2022-08-03 | quarter: 2022Q2
+  10Q | filed: 2022-11-02 | quarter: 2022Q3
+  10Q | filed: 2023-05-02 | quarter: 2023Q1
+  10Q | filed: 2023-08-01 | quarter: 2023Q2
+  10Q | filed: 2023-10-31 | quarter: 2023Q3
+  10Q | filed: 2024-04-29 | quarter: 2024Q1
+  10Q | filed: 2024-08-05 | quarter: 2024Q2
+  10Q | filed: 2024-11-04 | quarter: 2024Q3
+  10Q | filed: 2025-05-05 | quarter: 2025Q1
+  10Q | filed: 2025-08-04 | quarter: 2025Q2
+  10Q | filed: 2025-11-03 | quarter: 2025Q3
+
+General Electric (407 chunks):
+  10K | filed: 2015-02-27 | quarter: UNKNOWN
+
+Goldman Sachs (1309 chunks):
+  10K | filed: 2025-02-27 | quarter: UNKNOWN
+
+Home Depot (355 chunks):
+  10K | filed: 2025-03-21 | quarter: UNKNOWN
+
+IBM (180 chunks):
+  10K | filed: 2025-02-25 | quarter: UNKNOWN
+
+Intel (563 chunks):
+  10K | filed: 2026-01-23 | quarter: UNKNOWN
+
+JPMorgan Chase (3754 chunks):
+  10K | filed: 2026-02-13 | quarter: UNKNOWN
+  10Q | filed: 2025-05-01 | quarter: 2025Q1
+  10Q | filed: 2025-08-05 | quarter: 2025Q2
+  10Q | filed: 2025-11-04 | quarter: 2025Q3
+
+John Deere (479 chunks):
+  10K | filed: 2025-12-18 | quarter: UNKNOWN
+
+Johnson & Johnson (5677 chunks):
+  10K | filed: 2022-02-17 | quarter: 2022Q1
+  10K | filed: 2023-02-16 | quarter: 2023Q1
+  10K | filed: 2024-02-16 | quarter: 2023Q4
+  10K | filed: 2025-02-13 | quarter: 2024Q4
+  10K | filed: 2026-02-11 | quarter: UNKNOWN
+  10Q | filed: 2022-04-29 | quarter: 2022Q2
+  10Q | filed: 2022-07-29 | quarter: 2022Q3
+  10Q | filed: 2022-10-27 | quarter: 2022Q4
+  10Q | filed: 2023-04-28 | quarter: 2023Q2
+  10Q | filed: 2023-07-31 | quarter: 2023Q3
+  10Q | filed: 2023-10-27 | quarter: 2023Q4
+  10Q | filed: 2024-05-01 | quarter: 2024Q1
+  10Q | filed: 2024-07-25 | quarter: 2024Q2
+  10Q | filed: 2024-10-23 | quarter: 2024Q3
+  10Q | filed: 2025-04-23 | quarter: 2025Q1
+  10Q | filed: 2025-07-24 | quarter: 2025Q2
+  10Q | filed: 2025-10-22 | quarter: 2025Q3
+
+Lockheed Martin (426 chunks):
+  10K | filed: 2026-01-29 | quarter: UNKNOWN
+
+Mastercard (427 chunks):
+  10K | filed: 2026-02-11 | quarter: UNKNOWN
+
+McDonald's (398 chunks):
+  10K | filed: 2025-02-25 | quarter: UNKNOWN
+  10Q | filed: 2023-05-04 | quarter: 2023Q1
+
+Merck (649 chunks):
+  10K | filed: 2025-02-25 | quarter: UNKNOWN
+
+Meta (2770 chunks):
+  10K | filed: 2025-01-30 | quarter: 2024Q4
+  10K | filed: 2026-01-29 | quarter: UNKNOWN
+  10Q | filed: 2024-04-25 | quarter: 2024Q1
+  10Q | filed: 2024-08-01 | quarter: 2024Q2
+  10Q | filed: 2024-10-31 | quarter: 2024Q3
+  10Q | filed: 2025-05-01 | quarter: 2025Q1
+  10Q | filed: 2025-07-31 | quarter: 2025Q2
+  10Q | filed: 2025-10-30 | quarter: 2025Q3
+
+Microsoft (4125 chunks):
+  10K | filed: 2022-07-28 | quarter: 2022Q2
+  10K | filed: 2023-07-27 | quarter: 2023Q2
+  10K | filed: 2024-07-30 | quarter: 2024Q2
+  10K | filed: 2025-07-30 | quarter: UNKNOWN
+  10Q | filed: 2022-04-26 | quarter: 2022Q1
+  10Q | filed: 2022-10-25 | quarter: 2022Q3
+  10Q | filed: 2023-01-24 | quarter: 2022Q4
+  10Q | filed: 2023-04-25 | quarter: 2023Q1
+  10Q | filed: 2023-10-24 | quarter: 2023Q3
+  10Q | filed: 2024-01-30 | quarter: 2023Q4
+  10Q | filed: 2024-04-25 | quarter: 2024Q1
+  10Q | filed: 2024-10-30 | quarter: 2024Q3
+  10Q | filed: 2025-01-29 | quarter: 2024Q4
+  10Q | filed: 2025-04-30 | quarter: 2025Q1
+  10Q | filed: 2025-10-29 | quarter: 2025Q3
+  10Q | filed: 2026-01-28 | quarter: 2025Q4
+
+Morgan Stanley (934 chunks):
+  10K | filed: 2026-02-19 | quarter: UNKNOWN
+
+NVIDIA (2892 chunks):
+  10K | filed: 2022-03-18 | quarter: 2022Q1
+  10K | filed: 2023-02-24 | quarter: 2023Q1
+  10K | filed: 2024-02-21 | quarter: 2024Q1
+  10K | filed: 2025-02-26 | quarter: UNKNOWN
+  10Q | filed: 2022-05-27 | quarter: 2022Q2
+  10Q | filed: 2022-08-31 | quarter: 2022Q3
+  10Q | filed: 2022-11-18 | quarter: 2022Q4
+  10Q | filed: 2023-05-26 | quarter: 2023Q2
+  10Q | filed: 2023-08-28 | quarter: 2023Q3
+  10Q | filed: 2023-11-21 | quarter: 2023Q4
+  10Q | filed: 2024-05-29 | quarter: 2024Q2
+  10Q | filed: 2024-08-28 | quarter: 2024Q3
+  10Q | filed: 2024-11-20 | quarter: 2024Q4
+  10Q | filed: 2025-05-28 | quarter: 2025Q2
+  10Q | filed: 2025-08-27 | quarter: 2025Q3
+  10Q | filed: 2025-11-19 | quarter: 2025Q4
+
+Netflix (272 chunks):
+  10K | filed: 2026-01-23 | quarter: UNKNOWN
+
+Nike (357 chunks):
+  10K | filed: 2025-07-17 | quarter: UNKNOWN
+
+Oracle (463 chunks):
+  10K | filed: 2025-06-18 | quarter: UNKNOWN
+
+PepsiCo (552 chunks):
+  10K | filed: 2026-02-03 | quarter: UNKNOWN
+  10Q | filed: 2023-04-25 | quarter: 2023Q1
+
+Pfizer (5271 chunks):
+  10K | filed: 2023-02-23 | quarter: 2022Q4
+  10K | filed: 2024-02-22 | quarter: 2023Q4
+  10K | filed: 2025-02-27 | quarter: UNKNOWN
+  10Q | filed: 2022-05-11 | quarter: 2022Q2
+  10Q | filed: 2022-08-10 | quarter: 2022Q3
+  10Q | filed: 2022-11-09 | quarter: 2022Q4
+  10Q | filed: 2023-05-10 | quarter: 2023Q2
+  10Q | filed: 2023-08-09 | quarter: 2023Q3
+  10Q | filed: 2023-11-08 | quarter: 2023Q4
+  10Q | filed: 2024-05-08 | quarter: 2024Q1
+  10Q | filed: 2024-08-05 | quarter: 2024Q2
+  10Q | filed: 2024-11-04 | quarter: 2024Q3
+  10Q | filed: 2025-05-05 | quarter: 2025Q1
+  10Q | filed: 2025-08-05 | quarter: 2025Q2
+  10Q | filed: 2025-11-04 | quarter: 2025Q3
+
+Procter & Gamble (308 chunks):
+  10K | filed: 2025-08-04 | quarter: UNKNOWN
+
+RTX/Raytheon (532 chunks):
+  10K | filed: 2026-02-06 | quarter: UNKNOWN
+
+Salesforce (364 chunks):
+  10K | filed: 2025-03-05 | quarter: UNKNOWN
+
+Starbucks (349 chunks):
+  10K | filed: 2025-11-14 | quarter: UNKNOWN
+
+Target (241 chunks):
+  10K | filed: 2025-03-12 | quarter: UNKNOWN
+
+Tesla (3419 chunks):
+  10K | filed: 2023-01-31 | quarter: 2022Q4
+  10K | filed: 2024-01-29 | quarter: 2023Q4
+  10K | filed: 2025-01-30 | quarter: 2024Q4
+  10K | filed: 2026-01-29 | quarter: UNKNOWN
+  10Q | filed: 2022-04-25 | quarter: 2022Q1
+  10Q | filed: 2022-07-25 | quarter: 2022Q2
+  10Q | filed: 2022-10-24 | quarter: 2022Q3
+  10Q | filed: 2023-04-24 | quarter: 2023Q1
+  10Q | filed: 2023-07-24 | quarter: 2023Q2
+  10Q | filed: 2023-10-23 | quarter: 2023Q3
+  10Q | filed: 2024-04-24 | quarter: 2024Q1
+  10Q | filed: 2024-07-24 | quarter: 2024Q2
+  10Q | filed: 2024-10-24 | quarter: 2024Q3
+  10Q | filed: 2025-04-23 | quarter: 2025Q1
+  10Q | filed: 2025-07-24 | quarter: 2025Q2
+  10Q | filed: 2025-10-23 | quarter: 2025Q3
+
+Thermo Fisher (323 chunks):
+  10K | filed: 2025-02-20 | quarter: UNKNOWN
+
+UPS (471 chunks):
+  10K | filed: 2026-02-17 | quarter: UNKNOWN
+
+UnitedHealth (2118 chunks):
+  10K | filed: 2023-02-24 | quarter: 2022Q4
+  10K | filed: 2024-02-28 | quarter: 2023Q4
+  10K | filed: 2025-02-27 | quarter: UNKNOWN
+  10Q | filed: 2022-05-04 | quarter: 2022Q1
+  10Q | filed: 2022-08-03 | quarter: 2022Q2
+  10Q | filed: 2022-11-02 | quarter: 2022Q3
+  10Q | filed: 2023-05-03 | quarter: 2023Q1
+  10Q | filed: 2023-08-02 | quarter: 2023Q2
+  10Q | filed: 2023-11-06 | quarter: 2023Q3
+  10Q | filed: 2024-05-09 | quarter: 2024Q1
+  10Q | filed: 2024-08-09 | quarter: 2024Q2
+  10Q | filed: 2024-11-04 | quarter: 2024Q3
+  10Q | filed: 2025-05-07 | quarter: 2025Q1
+  10Q | filed: 2025-08-11 | quarter: 2025Q2
+  10Q | filed: 2025-10-28 | quarter: 2025Q3
+
+Verizon (494 chunks):
+  10K | filed: 2026-02-17 | quarter: UNKNOWN
+
+Visa (393 chunks):
+  10K | filed: 2025-11-06 | quarter: UNKNOWN
+
+Walmart (355 chunks):
+  10K | filed: 2025-03-14 | quarter: UNKNOWN
+
+--- Retrieval Test: Amazon revenue ---
+  score=0.682 | Amazon | 10K | 2026-02-06 | | Year Ended December 31,
+| 2024 |  | 2025
+Net Sales: |  |  |
+North America | $ | 387,497 |  |  | $ ...
+  score=0.675 | Amazon | 10K | 2025-02-07 | | Year Ended December 31,
+| 2023 |  | 2024
+Net Sales: |  |  |
+North America | $ | 352,828 |  |  | $ ...
+  score=0.674 | Amazon | 10K | 2023-02-03 | | Year Ended December 31,
+| 2021 |  | 2022
+Net Sales: |  |  |
+North America | $ | 279,833 |  |  | $ ...
+  score=0.674 | Amazon | 10K | 2023-02-03 | Sales increased 9% in 2022, compared to the prior year. Changes in foreign currency exchange rates r...
+  score=0.670 | Amazon | 10K | 2024-02-02 | | Year Ended December 31,
+| 2022 |  | 2023
+Net Sales: |  |  |
+North America | $ | 315,880 |  |  | $ ...
+
+--- Retrieval Test: Alphabet revenue ---
+  score=0.799 | Alphabet/Google | 10K | 2023-02-03 | Table of Contents | Alphabet Inc.
+Financial ResultsRevenuesThe following table presents revenues by ...
+  score=0.790 | Alphabet/Google | 10K | 2025-02-05 | Table of Contents | Alphabet Inc.
+Financial ResultsRevenuesThe following table presents revenues by ...
+  score=0.778 | Alphabet/Google | 10K | 2026-02-05 | | Year Ended December 31,
+| 2024 |  | 2025
+Google Search & other | $ | 198,084 |  |  | $ | 224,532 |...
+  score=0.765 | Alphabet/Google | 10K | 2024-01-31 | | Year Ended December 31,
+| 2021 |  | 2022 |  | 2023
+Revenues: |  |  |  |  |
+Google Services | $ | 2...
+  score=0.765 | Alphabet/Google | 10Q | 2022-10-26 | Table of Contents | Alphabet Inc.
+Financial ResultsRevenuesThe following table presents revenues by ...
