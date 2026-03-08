@@ -59,12 +59,12 @@ def cross_encoder_rerank(
     model = _get_model()
 
     # Build pairs for scoring
-    pairs = [(query, doc.page_content) for doc, _, _ in reranked_results]
+    pairs = [(query, doc.page_content) for doc, _ in reranked_results]
     ce_scores = model.predict(pairs).tolist()
 
     # Normalize both signals
     norm_ce = _normalize(ce_scores)
-    adj_scores = [adj for _, _, adj in reranked_results]
+    adj_scores = [adj for _, adj in reranked_results]
     norm_adj = _normalize(adj_scores)
 
     # Fuse
