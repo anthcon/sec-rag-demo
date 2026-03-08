@@ -19,3 +19,5 @@ chroma/
 readme_draft.txt
 dry-run/
 query copy.py
+reranker copy.py
+COPIES_OF_OLDER_VERSIONS/
