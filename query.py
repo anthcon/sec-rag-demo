@@ -85,8 +85,8 @@ def retrieve_unfiltered(db, question):
 def select_top_k(reranked, target_companies, k):
     """
     Balanced selection across target companies.
-    Expects tuples of (doc, sim_score, adj_score, ce_score, fused_score).
-    Sorts by fused_score (index 4).
+    Expects tuples of (doc, score, ce_score, fused_score).
+    Sorts by fused_score (index 3).
     """
     if not target_companies or len(target_companies) <= 1:
         return reranked[:k]
@@ -203,7 +203,7 @@ def query(question: str):
 
     # Step 5: Build context
     context_parts = []
-    for doc, sim_score, adj_score, ce_score, fused_score in top_results:
+    for doc, score, ce_score, fused_score in top_results:
         meta = doc.metadata
         header = (
             f"[{meta.get('company', '?')} | {meta.get('filing_type', '?')} | "
@@ -224,12 +224,12 @@ def query(question: str):
     # Output
     print(f"\nAnswer:\n{answer}")
     print(f"\nSources used ({len(top_results)}):")
-    for doc, sim_score, adj_score, ce_score, fused_score in top_results:
+    for doc, score, ce_score, fused_score in top_results:
         meta = doc.metadata
         print(
             f"  - {meta.get('company')} | {meta.get('filing_type')} | "
-            f"{meta.get('filing_date')} | sim: {sim_score:.3f} | "
-            f"adj: {adj_score:.3f} | ce: {ce_score:.3f} | fused: {fused_score:.3f}"
+            f"{meta.get('filing_date')} | score: {score:.3f} | "
+            f"ce: {ce_score:.3f} | fused: {fused_score:.3f}"
         )
 
 

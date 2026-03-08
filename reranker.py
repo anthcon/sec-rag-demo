@@ -44,13 +44,11 @@ def cross_encoder_rerank(
     """
     Args:
         query:            the user's original question
-        reranked_results: output of rerank_results() — tuples of
-                          (Document, similarity_score, adjusted_score)
+        reranked_results: tuples of (Document, score)
         top_k:            how many to return
         ce_weight:        blend weight for cross-encoder vs recency
-
     Returns:
-        list of (doc, sim_score, adj_score, ce_score, fused_score)
+        list of (doc, score, ce_score, fused_score)
         sorted descending by fused_score, length <= top_k
     """
     if not reranked_results:
@@ -59,19 +57,19 @@ def cross_encoder_rerank(
     model = _get_model()
 
     # Build pairs for scoring
-    pairs = [(query, doc.page_content) for doc, _ in reranked_results]
+    pairs = [(query, doc.page_content) for doc, _, _ in reranked_results]
     ce_scores = model.predict(pairs).tolist()
 
     # Normalize both signals
     norm_ce = _normalize(ce_scores)
-    adj_scores = [adj for _, adj in reranked_results]
+    adj_scores = [adj for _, _, adj in reranked_results]
     norm_adj = _normalize(adj_scores)
 
     # Fuse
     fused = []
-    for i, (doc, sim, adj) in enumerate(reranked_results):
+    for i, (doc, score) in enumerate(reranked_results):
         fused_score = ce_weight * norm_ce[i] + (1 - ce_weight) * norm_adj[i]
-        fused.append((doc, sim, adj, ce_scores[i], fused_score))
+        fused.append((doc, score, ce_scores[i], fused_score))
 
     fused.sort(key=lambda x: x[4], reverse=True)
     return fused[:top_k]
