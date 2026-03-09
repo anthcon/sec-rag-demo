@@ -1,14 +1,14 @@
 # query.py
 """
-SEC Filing RAG Pipeline — Query Module
+SEC Filing RAG Pipeline — Query Module (Orchestrator)
 
 Pipeline stages:
   1. Resolve target companies from user question
   2. Expand query with financial synonyms (for embedding retrieval)
   3. Retrieve chunks per company from ChromaDB
-  4. Stage-1 rerank: recency weighting
+  4. Stage-1 rerank: recency weighting              → reranker.stage1_rerank
   5. Per-company query rewriting (for cross-encoder scoring)
-  6. Stage-2 rerank: cross-encoder with CE floor + balanced selection
+  6. Stage-2 rerank: cross-encoder + balanced select → reranker.cross_encoder_rerank*
   7. Generate answer:
        - Single company  → direct generation
        - Multi-company   → split & fuse (per-company answers → synthesis)
@@ -20,19 +20,22 @@ Design decisions (walkthrough):
     ("Compare Amazon revenue" → "What were Amazon's net sales…")
   - Split & fuse prevents one company's data from crowding out another
     in the LLM's attention window (inspired by FinanceRAG paper)
-  - CE score floor (0.05) in reranker prevents good sim-matches from
-    being zeroed out by an overly literal cross-encoder
+  - All scoring constants and reranking logic live in reranker.py
 """
 
 import sys
-from datetime import datetime
 from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain_chroma import Chroma
 from prompt_template import PROMPT_TEMPLATE, SYNTHESIS_TEMPLATE
 from company_resolver import resolve_companies
-from reranker import cross_encoder_rerank
+from reranker import (
+    stage1_rerank,
+    cross_encoder_rerank,
+    cross_encoder_rerank_per_company,
+    CE_WEIGHT,
+)
 
 load_dotenv()
 
@@ -45,9 +48,6 @@ K = 20                        # total chunks to feed into context
 CHUNKS_PER_COMPANY = 15       # how many to pull from ChromaDB per company
 MAX_TOKENS = 2000
 TEMPERATURE = 0.2
-HALF_LIFE_DAYS = 365
-RECENCY_WEIGHT = 0.4
-CE_WEIGHT = 0.7
 FALLBACK_RETRIEVAL_POOL = K * 3
 
 USE_QUERY_EXPANSION = True
@@ -110,29 +110,6 @@ def rewrite_query_for_company(question: str, company: str,
         return question
 
 
-# ─── Recency Scoring ────────────────────────────────────────────────
-def recency_weighted_score(similarity_score, filing_date_str,
-                           half_life_days=HALF_LIFE_DAYS):
-    try:
-        filing_date = datetime.strptime(filing_date_str, "%Y-%m-%d")
-    except (ValueError, TypeError):
-        return similarity_score * (1 - RECENCY_WEIGHT * 0.5)
-    age_days = max(0, (datetime.now() - filing_date).days)
-    decay = 0.5 ** (age_days / half_life_days)
-    return similarity_score * ((1 - RECENCY_WEIGHT) + RECENCY_WEIGHT * decay)
-
-
-def rerank_results(raw_results):
-    """Stage 1: apply recency weighting to similarity scores."""
-    reranked = []
-    for doc, sim_score in raw_results:
-        filing_date = doc.metadata.get("filing_date", None)
-        adjusted_score = recency_weighted_score(sim_score, filing_date)
-        reranked.append((doc, sim_score, adjusted_score))
-    reranked.sort(key=lambda x: x[2], reverse=True)
-    return reranked
-
-
 # ─── Retrieval ───────────────────────────────────────────────────────
 def retrieve_filtered(db, question, target_companies):
     """Per-company filtered retrieval."""
@@ -177,7 +154,7 @@ def build_context(results):
     return "\n\n---\n\n".join(parts)
 
 
-# ─── Split & Fuse Generation ────────────────────────────────────────
+# ─── Generation ─────────────────────────────────────────────────────
 def generate_single(question, context, llm):
     """Standard single-shot generation."""
     prompt = PROMPT_TEMPLATE.format(context=context, question=question)
@@ -195,13 +172,11 @@ def generate_split_and_fuse(question, top_results, target_companies, llm):
     on extracting numbers without cross-company confusion.
     (Inspired by FinanceRAG paper's long-context management.)
     """
-    # Bucket results by company
     by_company = {}
     for item in top_results:
         co = item[0].metadata.get("company", "Unknown")
         by_company.setdefault(co, []).append(item)
 
-    # Generate per-company answers
     per_company_answers = {}
     for company in target_companies:
         company_results = by_company.get(company, [])
@@ -212,15 +187,12 @@ def generate_split_and_fuse(question, top_results, target_companies, llm):
             continue
 
         context = build_context(company_results)
-        company_question = (
-            f"Regarding {company} only: {question}"
-        )
+        company_question = f"Regarding {company} only: {question}"
         answer = generate_single(company_question, context, llm)
         per_company_answers[company] = answer
         print(f"  ✓ Generated sub-answer for {company} "
               f"({len(company_results)} chunks)")
 
-    # Synthesize
     analyses_text = ""
     for company, answer in per_company_answers.items():
         analyses_text += f"\n### {company}:\n{answer}\n"
@@ -231,63 +203,6 @@ def generate_split_and_fuse(question, top_results, target_companies, llm):
     )
     print("  ✓ Synthesizing comparison…")
     return llm.invoke(synthesis_prompt).content
-
-
-# ─── Cross-Encoder with Per-Company Rewriting ───────────────────────
-def rerank_with_per_company_queries(question, reranked, target_companies,
-                                     llm, top_k):
-    """
-    Rewrite the query per company, then score each company's chunks
-    with its own rewritten query.  Merge and balanced-select.
-
-    This is the key fix for the vocabulary mismatch problem:
-    Amazon says "net sales", Google says "revenues".
-    """
-    from reranker import _get_model, _normalize, CE_SCORE_FLOOR, _balanced_select
-
-    # Generate per-company rewritten queries
-    rewritten = {}
-    for company in target_companies:
-        rewritten[company] = rewrite_query_for_company(question, company, llm)
-
-    # Bucket candidates by company
-    by_company = {}
-    for item in reranked:
-        co = item[0].metadata.get("company", "Unknown")
-        by_company.setdefault(co, []).append(item)
-
-    model = _get_model()
-
-    # Score each company's chunks with its rewritten query
-    all_scored = []
-    for company in target_companies:
-        items = by_company.get(company, [])
-        if not items:
-            continue
-
-        ce_query = rewritten.get(company, question)
-        pairs = [(ce_query, doc.page_content) for doc, _s, _a in items]
-        raw_ce = model.predict(pairs).tolist()
-
-        # Normalize within this company's batch
-        norm_ce = _normalize(raw_ce)
-        norm_ce_floored = [max(s, CE_SCORE_FLOOR) for s in norm_ce]
-        adj_scores = [adj for _, _, adj in items]
-        norm_adj = _normalize(adj_scores)
-
-        ce_weight = CE_WEIGHT
-        for i, (doc, sim, adj) in enumerate(items):
-            fused = ce_weight * norm_ce_floored[i] + (1 - ce_weight) * norm_adj[i]
-            all_scored.append((doc, sim, adj, raw_ce[i], fused))
-
-    # Handle any non-target company chunks (shouldn't happen with filtered
-    # retrieval, but just in case)
-    for co, items in by_company.items():
-        if co not in target_companies:
-            for doc, sim, adj in items:
-                all_scored.append((doc, sim, adj, 0.0, CE_SCORE_FLOOR))
-
-    return _balanced_select(all_scored, target_companies, top_k)
 
 
 # ─── Main Query Pipeline ────────────────────────────────────────────
@@ -301,12 +216,12 @@ def query(question: str):
         temperature=TEMPERATURE,
     )
 
-    # --- Step 1: Resolve target companies (from original question) ---
+    # --- Step 1: Resolve target companies ---
     target_companies = resolve_companies(question)
     print(f"Resolved companies: "
           f"{target_companies if target_companies else 'None (unfiltered)'}")
 
-    is_comparison = target_companies and len(target_companies) > 1
+    is_comparison = len(target_companies) > 1 if target_companies else False
 
     # --- Step 2: Query expansion (for embedding retrieval) ---
     search_query = question
@@ -329,23 +244,29 @@ def query(question: str):
         return
 
     # --- Step 4: Stage-1 rerank (recency weighting) ---
-    reranked = rerank_results(raw_results)
+    reranked = stage1_rerank(raw_results)
 
     # --- Step 5: Stage-2 rerank (cross-encoder) ---
     print(f"\n  Reranking {len(reranked)} candidates with cross-encoder…")
 
     if USE_PER_COMPANY_REWRITE and target_companies:
-        # Per-company rewritten queries → per-company CE scoring
-        top_results = rerank_with_per_company_queries(
-            question, reranked, target_companies, llm, K
+        # Build per-company rewritten queries
+        rewritten_queries = {
+            company: rewrite_query_for_company(question, company, llm)
+            for company in target_companies
+        }
+        top_results = cross_encoder_rerank_per_company(
+            question=question,
+            reranked_results=reranked,
+            target_companies=target_companies,
+            rewritten_queries=rewritten_queries,
+            top_k=K,
         )
     else:
-        # Standard: single query for all chunks
         top_results = cross_encoder_rerank(
             query=question,
             reranked_results=reranked,
             top_k=K,
-            ce_weight=CE_WEIGHT,
             target_companies=target_companies,
         )
 
