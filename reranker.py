@@ -22,6 +22,31 @@ Design decisions (walkthrough prep):
 
 from datetime import datetime
 from sentence_transformers import CrossEncoder
+import functools
+
+# --- logging decorator for function outputs ---
+LOG_FILE = "function_log.txt"
+
+def log_output(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        try:
+            with open(LOG_FILE, "a", encoding="utf-8") as f:
+                f.write(f"{func.__name__} returned {result!r}\n")
+        except Exception:
+            pass
+        return result
+    return wrapper
+
+# helper to wrap all public functions in this module
+
+def _wrap_all():
+    for name, obj in list(globals().items()):
+        if callable(obj) and getattr(obj, "__module__", None) == __name__:
+            if name not in ("log_output", "_wrap_all") and not name.startswith("_"):
+                globals()[name] = log_output(obj)
+
 
 # ─── Constants (single source of truth) ──────────────────────────────
 CE_SCORE_FLOOR = 0.05       # minimum normalized CE score for any chunk
@@ -231,3 +256,6 @@ def cross_encoder_rerank_per_company(question, reranked_results,
                 all_scored.append((doc, sim, adj, 0.0, CE_SCORE_FLOOR))
 
     return _balanced_select(all_scored, target_companies, top_k)
+
+# wrap all functions for logging
+_wrap_all()

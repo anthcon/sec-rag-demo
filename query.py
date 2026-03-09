@@ -37,6 +37,33 @@ from reranker import (
     CE_WEIGHT,
 )
 
+import functools
+
+# --- simple logging decorator ---
+LOG_FILE = "function_log.txt"
+
+def log_output(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        try:
+            with open(LOG_FILE, "a", encoding="utf-8") as f:
+                f.write(f"{func.__name__} returned {result!r}\n")
+        except Exception:
+            pass
+        return result
+    return wrapper
+
+# wrap all public functions defined in this module
+# (performed after definitions, below in _wrap_all call)
+
+def _wrap_all():
+    for name, obj in list(globals().items()):
+        if callable(obj) and getattr(obj, "__module__", None) == __name__:
+            if name not in ("log_output", "_wrap_all") and not name.startswith("_"):
+                globals()[name] = log_output(obj)
+
+
 load_dotenv()
 
 # ─── Configuration ───────────────────────────────────────────────────
@@ -204,6 +231,9 @@ def generate_split_and_fuse(question, top_results, target_companies, llm):
     print("  ✓ Synthesizing comparison…")
     return llm.invoke(synthesis_prompt).content
 
+
+# wrap all functions now that they've been defined
+_wrap_all()
 
 # ─── Main Query Pipeline ────────────────────────────────────────────
 def query(question: str):
