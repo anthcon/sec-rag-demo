@@ -23,29 +23,49 @@ Design decisions (walkthrough prep):
 from datetime import datetime
 from sentence_transformers import CrossEncoder
 import functools
+import logging
+import sys
 
-# --- logging decorator for function outputs ---
+# ─── Logging Setup ───────────────────────────────────────────────────
 LOG_FILE = "function_log.txt"
 
-def log_output(func):
+logger = logging.getLogger("sec_rag")
+if not logger.handlers:
+    logger.setLevel(logging.DEBUG)
+    file_handler = logging.FileHandler(LOG_FILE, mode="a", encoding="utf-8")
+    file_handler.setLevel(logging.DEBUG)
+    formatter = logging.Formatter(
+        fmt="%(asctime)s [%(name)s] %(levelname)s: %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S"
+    )
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+
+# Enhanced logging decorator
+def log_function(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
+        # Log entry with arguments
+        logger.debug(f"→ {func.__name__} called with args={args[:2] if args else ()} kwargs={kwargs}")
         try:
-            with open(LOG_FILE, "a", encoding="utf-8") as f:
-                f.write(f"{func.__name__} returned {result!r}\n")
-        except Exception:
-            pass
-        return result
+            result = func(*args, **kwargs)
+            # Log exit
+            result_str = repr(result)
+            if len(result_str) > 200:
+                result_str = result_str[:200] + "…"
+            logger.debug(f"← {func.__name__} returned: {result_str}")
+            return result
+        except Exception as e:
+            logger.error(f"✗ {func.__name__} raised {type(e).__name__}: {e}")
+            raise
     return wrapper
 
-# helper to wrap all public functions in this module
-
+# Auto-wrap all public functions
 def _wrap_all():
     for name, obj in list(globals().items()):
         if callable(obj) and getattr(obj, "__module__", None) == __name__:
-            if name not in ("log_output", "_wrap_all") and not name.startswith("_"):
-                globals()[name] = log_output(obj)
+            if name not in ("log_function", "_wrap_all") and not name.startswith("_"):
+                globals()[name] = log_function(obj)
 
 
 # ─── Constants (single source of truth) ──────────────────────────────
