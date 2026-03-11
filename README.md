@@ -123,7 +123,7 @@ sec-rag-demo/
 ├── README.md
 ├── requirements.txt
 ├── .env                       # API key (not committed)
-├── manifest.json              # Corpus metadata
+├── manifest.json              # Corpus metadata (inside edgar_corpus folder)
 ├── edgar_corpus/              # SEC filing .txt files
 ├── chroma/                    # Pre-built vector index
 ├── create_index.py            # Indexing pipeline (run once, already done)
