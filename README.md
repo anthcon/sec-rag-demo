@@ -60,7 +60,7 @@ A single gpt-4o-mini call (temperature 0.2) with a structured prompt that enforc
 ```bash
 git clone https://github.com/anthcon/sec-rag-demo.git
 cd sec-rag-demo
-git checkout master
+git checkout main
 python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
