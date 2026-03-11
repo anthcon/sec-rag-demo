@@ -24,6 +24,10 @@ RULES — follow these strictly:
    say so explicitly — do NOT guess or fill from general knowledge.
 6. Prefer 10-K (annual) data over 10-Q (quarterly) when both are available.
 7. Structure your answer with clear headings and bullet points for readability.
+8. Extract data even from imperfectly formatted tables. SEC excerpts may contain
+   pipe-delimited tables, irregular spacing, or split rows — parse them carefully.
+   Only state data is unavailable if you genuinely cannot find ANY relevant figures
+   in the excerpts after thorough review.
 
 --- CONTEXT ---
 {context}

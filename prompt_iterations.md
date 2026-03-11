@@ -59,3 +59,10 @@ Changed system identity line to be tighter ("answering questions about SEC filin
 Added "Do NOT use any outside knowledge" as a standalone sentence for emphasis.
 Motivation: Research (FinanceRAG paper, RAG failure-point literature) confirms that explicit, enumerated constraints reduce hallucination more reliably than prose instructions. Verbatim-quoting directives are especially effective for financial data where precision matters.
 Result: [To be evaluated during live demo]
+
+next version
+- added this: Extract data even from imperfectly formatted tables. SEC excerpts may contain
+   pipe-delimited tables, irregular spacing, or split rows — parse them carefully.
+   Only state data is unavailable if you genuinely cannot find ANY relevant figures
+   in the excerpts after thorough review.
+- why: kept saying data not available even though its in corpus. Maybe its treating tables as bad data. testing.

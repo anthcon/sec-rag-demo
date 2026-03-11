@@ -1,24 +1,6 @@
 Resolved companies: ['Amazon', 'Alphabet/Google']
 
 ========================================================================
-  LLM CALL: QUERY_EXPANSION
-========================================================================
-  PROMPT:
-You are a financial search assistant. Given the user question below, produce a SHORT comma-separated list of 5-8 alternative keywords or phrases that SEC 10-K/10-Q filings might use to discuss the same topic. Include synonyms, line-item names, and common financial terms. Return ONLY the comma-separated keywords, nothing else.
-
-Question: what is growth for amazon and google over past few years? how do they compare?
-
-  RESPONSE:
-revenue growth, sales increase, year-over-year growth, financial performance, earnings report, comparative analysis, market expansion, annual growth rate
-========================================================================
-
-  Expanded query: what is growth for amazon and google over past few years? how do they compare? revenue growth, sales increase, year-over-year growth, financ...
-  Amazon: 15 chunks (best sim: 0.626)
-  Alphabet/Google: 15 chunks (best sim: 0.660)
-
-  Reranking 30 candidates with cross-encoder...
-
-========================================================================
   LLM CALL: REWRITE_QUERY [Amazon]
 ========================================================================
   PROMPT:
@@ -36,16 +18,17 @@ RULES:
   2. Remove all references to other companies.
   3. Remove comparison language ('compare', 'vs', 'versus', 'relative to').
   4. Use Amazon's SEC filing vocabulary for financial terms.
-  5. Return ONE sentence, no explanation.
+  5. If the original question targets specific numbers: anchor the rewrite toward 'consolidated statements of operations', 'net sales', 'operating income', 'segment revenue' — NOT risk factors or general descriptions.
+  6. Return ONE sentence, no explanation.
 
-Original question: what is growth for amazon and google over past few years? how do they compare?
+Original question: how do google and amazon revenue and growth compare?
 Rewritten for Amazon:
 
   RESPONSE:
-What is the growth in net sales for Amazon over the past few years?
+What are Amazon's net sales and operating income as reported in the consolidated statements of operations?
 ========================================================================
 
-    CE query [Amazon]: What is the growth in net sales for Amazon over the past few years?...
+    CE query [Amazon]: What are Amazon's net sales and operating income as reported in the consolidated statements of operations?...
 
 ========================================================================
   LLM CALL: REWRITE_QUERY [Alphabet/Google]
@@ -65,162 +48,20 @@ RULES:
   2. Remove all references to other companies.
   3. Remove comparison language ('compare', 'vs', 'versus', 'relative to').
   4. Use Alphabet/Google's SEC filing vocabulary for financial terms.
-  5. Return ONE sentence, no explanation.
+  5. If the original question targets specific numbers: anchor the rewrite toward 'consolidated statements of operations', 'net sales', 'operating income', 'segment revenue' — NOT risk factors or general descriptions.
+  6. Return ONE sentence, no explanation.
 
-Original question: what is growth for amazon and google over past few years? how do they compare?
+Original question: how do google and amazon revenue and growth compare?
 Rewritten for Alphabet/Google:
 
   RESPONSE:
-What is the growth in revenues for Alphabet/Google over the past few years?
+What are the revenues and growth trends reported in Alphabet's consolidated statements of operations?
 ========================================================================
 
-    CE query [Alphabet/Google]: What is the growth in revenues for Alphabet/Google over the past few years?...
-  Loading cross-encoder: BAAI/bge-reranker-v2-m3 …
-
-  Comparison detected — using split & fuse generation...
-  -> Sub-question for Amazon: What is the growth in net sales for Amazon over the past few years?...
-
-========================================================================
-  LLM CALL: GENERATE_SINGLE
-========================================================================
-  PROMPT:
-You are a senior financial analyst specializing in SEC filings.
-Answer the question using ONLY the SEC filing excerpts provided below.
-
-RULES — follow these strictly:
-1. ONLY attribute information to the company named in each source header
-   (e.g., [Apple | 10-K | Q4 2024 | Filed: 2024-11-01]).
-   NEVER infer or assume data about one company from another company's filing.
-2. Cite every factual claim with (Company, Filing Type, Period).
-3. Use exact numbers, dollar amounts, percentages, and dates from the excerpts.
-   Do NOT round, estimate, or paraphrase numbers when the excerpt is specific.
-4. Calculate growth rates and year-over-year changes when raw figures are present.
-5. If data for a company, metric, or time period is missing from the excerpts,
-   say so explicitly — do NOT guess or fill from general knowledge.
-6. Prefer 10-K (annual) data over 10-Q (quarterly) when both are available.
-7. Structure your answer with clear headings and bullet points for readability.
-
---- CONTEXT ---
-[Amazon | 10K | UNKNOWN | Filed: 2026-02-06]
-___________________(1)Represents the change in reported amounts resulting from changes in foreign exchange rates from those in effect in the comparable prior year period for operating results.(2)Represents the outcome that would have resulted had foreign exchange rates in the reported period been the same as those in effect in the comparable prior year period for operating results.29Table of ContentsGuidanceWe provided guidance on February 5, 2026, in our earnings release furnished on Form 8-K as set forth below. These forward-looking statements reflect Amazon.com’s expectations as of February 5, 2026, and are subject to substantial uncertainty. Our results are inherently unpredictable and may be materially affected by many factors, such as fluctuations in foreign exchange rates and energy prices, changes in global economic and geopolitical conditions, tariff and trade policies, resource and supply volatility, including for memory chips, and customer demand and spending (including the impact of recessionary fears), inflation, interest rates, regional labor market constraints, world events, the rate of growth of the internet, online commerce, cloud services, and new and emerging technologies, as well as those outlined in Item 1A of Part I, “Risk Factors.” First Quarter 2026 Guidance•Net sales are expected to be between $173.5 billion and $178.5 billion, or to grow between 11% and 15% compared with first quarter 2025. This guidance anticipates a favorable impact of
-
----
-
-[Amazon | 10Q | 2025Q3 | Filed: 2025-10-31]
-sellers, advertising sales, and subscription services. Increased unit sales were driven largely by our continued focus on price, selection, and convenience for our customers, including from our fast shipping offers. Changes in foreign exchange rates increased International net sales by $1.5 billion for Q3 2025, and by $2.2 billion for the nine months ended September 30, 2025.AWS sales increased 20% in Q3 2025, and 18% for the nine months ended September 30, 2025 compared to the comparable prior year periods. The sales growth primarily reflects increased customer usage, partially offset by pricing changes primarily driven by long-term customer contracts.Operating ExpensesInformation about operating expenses is as follows (in millions):
-
----
-
-[Amazon | 10Q | 2025Q3 | Filed: 2025-10-31]
-expected.Our revenue growth may not be sustainable, and our percentage growth rates may decrease. Our revenue and operating profit growth depends on the continued growth of demand for the products and services offered by us or our sellers, and our business is affected by, among other things, general economic, business, and geopolitical conditions worldwide. A softening of demand, whether caused by changes in customer preferences or a weakening of the U.S. or global economies, may result in decreased revenue or growth.Our sales and operating results will also fluctuate for many other reasons, including due to factors described elsewhere in this section and the following:•our ability to retain and increase sales to existing customers, attract new customers, and satisfy our customers’ demands;•our ability to retain and expand our network of sellers;•our ability to offer products on favorable terms, manage inventory, and fulfill orders;•the introduction of competitive stores, websites, products, services, price decreases, or improvements;•changes in usage or adoption rates of the internet, e-commerce, electronic devices, web services, satellite communications services, and artificial intelligence and machine learning technologies, products, and services, including outside the U.S.;•timing, effectiveness, and costs of expansion and upgrades of our systems and infrastructure;•the success of our geographic, service, and product line expansions;38Table of Contents•the extent to
-
----
-
-[Amazon | 10Q | 2025Q1 | Filed: 2025-05-02]
-Sales increased 9% in Q1 2025 compared to the comparable prior year period. Changes in foreign exchange rates reduced net sales by $1.4 billion for Q1 2025. For a discussion of the effect of foreign exchange rates on sales growth, see “Effect of Foreign Exchange Rates” below.North America sales increased 8% in Q1 2025 compared to the comparable prior year period. The sales growth primarily reflects increased unit sales, including sales by third-party sellers, advertising sales, and subscription services. Increased unit sales were driven largely by our continued focus on price, selection, and convenience for our customers, including from our fast shipping offers. Changes in foreign exchange rates reduced North America net sales by $413 million for Q1 2025.International sales increased 5% in Q1 2025 compared to the comparable prior year period. The sales growth primarily reflects increased unit sales, including sales by third-party sellers, advertising sales, and subscription services. Increased unit sales 25Table of Contentswere driven largely by our continued focus on price, selection, and convenience for our customers, including from our fast shipping offers. Changes in foreign exchange rates reduced International net sales by $1.0 billion for Q1 2025.AWS sales increased 17% in Q1 2025 compared to the comparable prior year period. The sales growth primarily reflects increased customer usage, partially offset by pricing changes primarily driven by long-term customer
-
----
-
-[Amazon | 10Q | 2025Q2 | Filed: 2025-08-01]
-expected.Our revenue growth may not be sustainable, and our percentage growth rates may decrease. Our revenue and operating profit growth depends on the continued growth of demand for the products and services offered by us or our sellers, and our business is affected by, among other things, general economic, business, and geopolitical conditions worldwide. A softening of demand, whether caused by changes in customer preferences or a weakening of the U.S. or global economies, may result in decreased revenue or growth.Our sales and operating results will also fluctuate for many other reasons, including due to factors described elsewhere in this section and the following:•our ability to retain and increase sales to existing customers, attract new customers, and satisfy our customers’ demands;•our ability to retain and expand our network of sellers;•our ability to offer products on favorable terms, manage inventory, and fulfill orders;•the introduction of competitive stores, websites, products, services, price decreases, or improvements;•changes in usage or adoption rates of the internet, e-commerce, electronic devices, web services, satellite communications services, and artificial intelligence and machine learning technologies, products, and services, including outside the U.S.;•timing, effectiveness, and costs of expansion and upgrades of our systems and infrastructure;•the success of our geographic, service, and product line expansions;37Table of Contents•the extent to
-
----
-
-[Amazon | 10Q | 2024Q3 | Filed: 2024-11-01]
-services. Increased unit sales were driven largely by our continued focus on price, selection, and convenience for our customers, including from our fast shipping offers. Changes in foreign exchange rates did not significantly impact International net sales for Q3 2024, but reduced International net sales by $1.3 billion for the nine months ended September 30, 2024.AWS sales increased 19% in Q3 2024, and 18% for the nine months ended September 30, 2024 compared to the comparable prior year periods. The sales growth primarily reflects increased customer usage, partially offset by pricing changes primarily driven by long-term customer contracts.Operating Income (Loss)Operating income (loss) by segment is as follows (in millions):
-
----
-
-[Amazon | 10Q | 2025Q1 | Filed: 2025-05-02]
-17% in Q1 2025 compared to the comparable prior year period. The sales growth primarily reflects increased customer usage, partially offset by pricing changes primarily driven by long-term customer contracts.Operating ExpensesInformation about operating expenses is as follows (in millions):
-
----
-
-[Amazon | 10Q | 2025Q1 | Filed: 2025-05-02]
-expected.Our revenue growth may not be sustainable, and our percentage growth rates may decrease. Our revenue and operating profit growth depends on the continued growth of demand for the products and services offered by us or our sellers, and our business is affected by, among other things, general economic, business, and geopolitical conditions worldwide. A softening of demand, whether caused by changes in customer preferences or a weakening of the U.S. or global economies, may result in decreased revenue or growth.Our sales and operating results will also fluctuate for many other reasons, including due to factors described elsewhere in this section and the following:•our ability to retain and increase sales to existing customers, attract new customers, and satisfy our customers’ demands;•our ability to retain and expand our network of sellers;•our ability to offer products on favorable terms, manage inventory, and fulfill orders;•the introduction of competitive stores, websites, products, services, price decreases, or improvements;•changes in usage or adoption rates of the internet, e-commerce, electronic devices, web services, satellite communications services, and artificial intelligence and machine learning technologies, products, and services, including outside the U.S.;•timing, effectiveness, and costs of expansion and upgrades of our systems and infrastructure;•the success of our geographic, service, and product line expansions;36Table of Contents•the extent to
-
----
-
-[Amazon | 10Q | 2024Q1 | Filed: 2024-05-01]
-Sales increased 13% in Q1 2024 compared to the comparable prior year period. Changes in foreign exchange rates reduced net sales by $164 million for Q1 2024. For a discussion of the effect of foreign exchange rates on sales growth, see “Effect of Foreign Exchange Rates” below.North America sales increased 12% in Q1 2024 compared to the comparable prior year period. The sales growth primarily reflects increased unit sales, including sales by third-party sellers, advertising sales, and subscription services. Increased unit sales were driven largely by our continued focus on price, selection, and convenience for our customers, including from our fast shipping offers.International sales increased 10% in Q1 2024 compared to the comparable prior year period. The sales growth primarily reflects increased unit sales, including sales by third-party sellers, advertising sales, and subscription services. Increased unit sales 25Table of Contentswere driven largely by our continued focus on price, selection, and convenience for our customers, including from our fast shipping offers. Changes in foreign exchange rates reduced International net sales by $248 million for Q1 2024.AWS sales increased 17% in Q1 2024 compared to the comparable prior year period. The sales growth primarily reflects increased customer usage, partially offset by pricing changes primarily driven by long-term customer contracts.Operating Income (Loss)Operating income (loss) by segment is as follows (in millions):
-
----
-
-[Amazon | 10Q | 2023Q3 | Filed: 2023-10-27]
-our growth rate. We base our expense levels and investment plans on sales estimates. A significant portion of our expenses and investments is fixed, and we are not always able to adjust our spending quickly enough if our sales are less than expected.Our revenue growth may not be sustainable, and our percentage growth rates may decrease. Our revenue and operating profit growth depends on the continued growth of demand for the products and services offered by us or our sellers, and our business is affected by general economic, business, and geopolitical conditions worldwide. A softening of demand, whether caused by changes in customer preferences or a weakening of the U.S. or global economies, may result in decreased revenue or growth.Our sales and operating results will also fluctuate for many other reasons, including due to factors described elsewhere in this section and the following:•our ability to retain and increase sales to existing customers, attract new customers, and satisfy our customers’ demands;•our ability to retain and expand our network of sellers;•our ability to offer products on favorable terms, manage inventory, and fulfill orders;•the introduction of competitive stores, websites, products, services, price decreases, or improvements;•changes in usage or adoption rates of the Internet, e-commerce, electronic devices, and web services, including outside the U.S.;•timing, effectiveness, and costs of expansion and upgrades of our systems and infrastructure;•the
-
----
-
-[Amazon | 10Q | 2023Q2 | Filed: 2023-08-04]
-our growth rate. We base our expense levels and investment plans on sales estimates. A significant portion of our expenses and investments is fixed, and we are not always able to adjust our spending quickly enough if our sales are less than expected.Our revenue growth may not be sustainable, and our percentage growth rates may decrease. Our revenue and operating profit growth depends on the continued growth of demand for the products and services offered by us or our sellers, and our business is affected by general economic, business, and geopolitical conditions worldwide. A softening of demand, whether caused by changes in customer preferences or a weakening of the U.S. or global economies, may result in decreased revenue or growth.Our sales and operating results will also fluctuate for many other reasons, including due to factors described elsewhere in this section and the following:•our ability to retain and increase sales to existing customers, attract new customers, and satisfy our customers’ demands;•our ability to retain and expand our network of sellers;•our ability to offer products on favorable terms, manage inventory, and fulfill orders;•the introduction of competitive stores, websites, products, services, price decreases, or improvements;•changes in usage or adoption rates of the Internet, e-commerce, electronic devices, and web services, including outside the U.S.;•timing, effectiveness, and costs of expansion and upgrades of our systems and infrastructure;•the
-
----
-
-[Amazon | 10Q | 2023Q1 | Filed: 2023-04-28]
-our growth rate. We base our expense levels and investment plans on sales estimates. A significant portion of our expenses and investments is fixed, and we are not always able to adjust our spending quickly enough if our sales are less than expected.Our revenue growth may not be sustainable, and our percentage growth rates may decrease. Our revenue and operating profit growth depends on the continued growth of demand for the products and services offered by us or our sellers, and our business is affected by general economic, business, and geopolitical conditions worldwide. A softening of demand, whether caused by changes in customer preferences or a weakening of the U.S. or global economies, may result in decreased revenue or growth.Our sales and operating results will also fluctuate for many other reasons, including due to factors described elsewhere in this section and the following:•our ability to retain and increase sales to existing customers, attract new customers, and satisfy our customers’ demands;•our ability to retain and expand our network of sellers;•our ability to offer products on favorable terms, manage inventory, and fulfill orders;•the introduction of competitive stores, websites, products, services, price decreases, or improvements;•changes in usage or adoption rates of the Internet, e-commerce, electronic devices, and web services, including outside the U.S.;•timing, effectiveness, and costs of expansion and upgrades of our systems and infrastructure;•the
-
----
-
-[Amazon | 10Q | 2022Q1 | Filed: 2022-04-29]
-impacted International net sales by $(1.8) billion for Q1 2022.AWS sales increased 37% in Q1 2022 compared to the comparable prior year period. The sales growth primarily reflects increased customer usage, partially offset by pricing changes. Pricing changes were driven largely by our continued efforts to reduce prices for our customers.Operating Income (Loss)Operating income (loss) by segment is as follows (in millions):
-
----
-
-[Amazon | 10Q | 2023Q1 | Filed: 2023-04-28]
-Sales increased 9% in Q1 2023 compared to the comparable prior year period. Changes in foreign exchange rates reduced net sales by $2.4 billion for Q1 2023. For a discussion of the effect of foreign exchange rates on sales growth, see “Effect of Foreign Exchange Rates” below.North America sales increased 11% in Q1 2023 compared to the comparable prior year period. The sales growth primarily reflects increased unit sales, primarily by third-party sellers, advertising sales, and subscription services. Increased unit sales were driven largely by our continued focus on price, selection, and convenience for our customers, including from our shipping offers.International sales increased 1% in Q1 2023 compared to the comparable prior year period, primarily due to increased unit sales, primarily by third-party sellers, advertising sales, and subscription services, partially offset by the impact of changes in 25Table of Contentsforeign exchange rates. Increased unit sales were driven largely by our continued focus on price, selection, and convenience for our customers, including from our shipping offers. Changes in foreign exchange rates reduced International net sales by $2.3 billion for Q1 2023.AWS sales increased 16% in Q1 2023 compared to the comparable prior year period. The sales growth primarily reflects increased customer usage, partially offset by pricing changes, primarily driven by long-term customer contracts. Operating Income (Loss)Operating income (loss) by segment is
-
----
-
-[Amazon | 10Q | 2023Q1 | Filed: 2023-04-28]
-growth primarily reflects increased customer usage, partially offset by pricing changes, primarily driven by long-term customer contracts. Operating Income (Loss)Operating income (loss) by segment is as follows (in millions):
---- END CONTEXT ---
-
-QUESTION: What is the growth in net sales for Amazon over the past few years?
-
-Provide a well-structured, detailed answer with specific numbers and citations.
-
-  RESPONSE:
-### Growth in Net Sales for Amazon
-
-#### Overview of Net Sales Growth
-
-Amazon's net sales growth has varied across different quarters and years, influenced by factors such as foreign exchange rates and increased customer demand. Below is a detailed breakdown of the growth in net sales over the past few years based on the provided SEC filings.
-
-#### Year-over-Year Growth Rates
-
-1. **Q1 2023 vs. Q1 2022**
-   - **Net Sales Growth**: Increased by 9%
-   - **Impact of Foreign Exchange Rates**: Reduced net sales by $2.4 billion (Amazon, 10-Q, Q1 2023).
-
-2. **Q1 2024 vs. Q1 2023**
-   - **Net Sales Growth**: Increased by 13%
-   - **Impact of Foreign Exchange Rates**: Reduced net sales by $164 million (Amazon, 10-Q, Q1 2024).
-
-3. **Q1 2025 vs. Q1 2024**
-   - **Net Sales Growth**: Increased by 9%
-   - **Impact of Foreign Exchange Rates**: Reduced net sales by $1.4 billion (Amazon, 10-Q, Q1 2025).
-
-4. **Q3 2024 vs. Q3 2023**
-   - **Net Sales Growth**: Specific figures for Q3 2023 are not provided, but Q3 2024 saw a 19% increase in AWS sales (Amazon, 10-Q, Q3 2024).
-
-5. **Q3 2025 vs. Q3 2024**
-   - **Net Sales Growth**: AWS sales increased by 20% (Amazon, 10-Q, Q3 2025).
-
-#### Summary of Key Figures
-
-- **Q1 2023**: 9% increase in net sales compared to Q1 2022.
-- **Q1 2024**: 13% increase in net sales compared to Q1 2023.
-- **Q1 2025**: 9% increase in net sales compared to Q1 2024.
-- **Q3 2024**: AWS sales increased by 19% compared to Q3 2023.
-- **Q3 2025**: AWS sales increased by 20% compared to Q3 2024.
-
-### Conclusion
-
-Amazon has demonstrated consistent growth in net sales over the past few years, with notable increases in the first quarters of 2023, 2024, and 2025. The growth rates reflect a combination of increased customer demand and the impact of foreign exchange fluctuations. Specific figures for total net sales were not provided, but the growth percentages indicate a positive trend in sales performance.
-========================================================================
-
-  [OK] Generated sub-answer for Amazon (15 chunks)
-  -> Sub-question for Alphabet/Google: What is the growth in revenues for Alphabet/Google over the past few years?...
+    CE query [Alphabet/Google]: What are the revenues and growth trends reported in Alphabet's consolidated statements of operations?...
+Final search query for retrieval: What are Amazon's net sales and operating income as reported in the consolidated statements of operations? What are the revenues and growth trends reported in Alphabet's consolidated statements of operations?...
+  Amazon: 10 chunks (best sim: 0.681)
+  Alphabet/Google: 10 chunks (best sim: 0.707)
 
 ========================================================================
   LLM CALL: GENERATE_SINGLE
@@ -241,40 +82,97 @@ RULES — follow these strictly:
    say so explicitly — do NOT guess or fill from general knowledge.
 6. Prefer 10-K (annual) data over 10-Q (quarterly) when both are available.
 7. Structure your answer with clear headings and bullet points for readability.
+8. Extract data even from imperfectly formatted tables. SEC excerpts may contain
+   pipe-delimited tables, irregular spacing, or split rows — parse them carefully.
+   Only state data is unavailable if you genuinely cannot find ANY relevant figures
+   in the excerpts after thorough review.
 
 --- CONTEXT ---
-[Alphabet/Google | 10K | 2022Q4 | Filed: 2023-02-03]
-ITEM 7.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONSPlease read the following discussion and analysis of our financial condition and results of operations together with “Note about Forward-Looking Statements,” Part I, Item 1 "Business," Part I, Item 1A "Risk Factors," and our consolidated financial statements and related notes included under Item 8 of this Annual Report on Form 10-K. We have omitted discussion of 2020 results where it would be redundant to the discussion previously included in Item 7 of our 2021 Annual Report on Form 10-K.Understanding Alphabet’s Financial ResultsAlphabet is a collection of businesses — the largest of which is Google. We report Google in two segments, Google Services and Google Cloud; we also report all non-Google businesses collectively as Other Bets. For further details on our segments, see Part I, Item 1 “Business” and Note 15 of the Notes to Consolidated Financial Statements included in Item 8 of this Annual Report on Form 10-K.Trends in Our Business and Financial EffectThe following long-term trends have contributed to the results of our consolidated operations, and we anticipate that they will continue to affect our future results:•Users' behaviors and advertising continue to shift online as the digital economy evolves.The continuing shift from an offline to online world has contributed to the growth of our business and our revenues since inception. We expect that this shift to an online world
-
----
-
-[Alphabet/Google | 10K | UNKNOWN | Filed: 2026-02-05]
-ITEM 7.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONSPlease read the following discussion and analysis of our financial condition and results of operations together with “Note about Forward-Looking Statements,” Part I, Item 1 "Business," Part I, Item 1A "Risk Factors," and our consolidated financial statements and related notes included under Item 8 of this Annual Report on Form 10-K. The following section generally discusses 2025 results compared to 2024 results. Discussion of 2024 results compared to 2023 results to the extent not included in this report can be found in Item 7 of our 2024 Annual Report on Form 10-K.Understanding Alphabet’s Financial ResultsAlphabet is a collection of businesses — the largest of which is Google. We report Google in two segments, Google Services and Google Cloud, and all non-Google businesses collectively as Other Bets. Supporting these businesses, we have centralized certain AI-related research and development focused on advanced research in AI and developing the frontier models that serve our businesses, which is reported in Alphabet-level activities. For further details on our segments, see Part I, Item 1 Business and Note 15 of the Notes to Consolidated Financial Statements included in Item 8 of this Annual Report on Form 10-K.Trends in Our Business and Financial EffectThe following long-term trends have contributed to the results of our consolidated operations, and we anticipate that they will
-
----
-
-[Alphabet/Google | 10Q | 2025Q2 | Filed: 2025-07-24]
+[Alphabet/Google | 10Q | 2025Q3 | Filed: 2025-10-30]
 35ITEM 2.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONSPlease read the following discussion and analysis of our financial condition and results of operations together with "Note About Forward-Looking Statements" and our consolidated financial statements and related notes included under Item 1 of this Quarterly Report on Form 10-Q as well as our Annual Report on Form 10-K for the fiscal year ended December 31, 2024, including Part I, Item 1A "Risk Factors."Understanding Alphabet’s Financial ResultsAlphabet is a collection of businesses — the largest of which is Google. We report Google in two segments, Google Services and Google Cloud; we also report all non-Google businesses collectively as Other Bets. For further details on our segments, see Note 15 of the Notes to Consolidated Financial Statements included in Item 1 of this Quarterly Report on Form 10-Q.Revenues and Monetization Metrics We generate revenues by delivering relevant, cost-effective online advertising; cloud-based solutions that provide enterprise customers of all sizes with infrastructure, platform services, and applications; sales of other products and services, such as fees received for subscription-based products, apps and in-app purchases, and devices. For additional information on how we recognize revenue, see Note 1 of the Notes to Consolidated Financial Statements included in Part II, Item 8 in our Annual Report on Form 10-K for the fiscal year ended December 31,
 
 ---
 
-[Alphabet/Google | 10Q | 2024Q3 | Filed: 2024-10-30]
-32ITEM 2.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONSPlease read the following discussion and analysis of our financial condition and results of operations together with "Note About Forward-Looking Statements" and our consolidated financial statements and related notes included under Item 1 of this Quarterly Report on Form 10-Q as well as our Annual Report on Form 10-K for the fiscal year ended December 31, 2023, including Part I, Item 1A "Risk Factors," as updated in our Quarterly Report on Form 10-Q for the quarter ended June 30, 2024 and in this Quarterly Report on Form 10-Q.Understanding Alphabet’s Financial ResultsAlphabet is a collection of businesses — the largest of which is Google. We report Google in two segments, Google Services and Google Cloud; we also report all non-Google businesses collectively as Other Bets. For further details on our segments, see Note 14 of the Notes to Consolidated Financial Statements included in Item 1 of this Quarterly Report on Form 10-Q.Revenues and Monetization Metrics We generate revenues by delivering relevant, cost-effective online advertising; cloud-based solutions that provide enterprise customers of all sizes with infrastructure and platform services as well as communication and collaboration tools; sales of other products and services, such as fees received for subscription-based products, apps and in-app purchases, and devices. For additional information on how we recognize revenue,
+[Amazon | 10Q | 2025Q3 | Filed: 2025-10-31]
+___________________(1)Represents the change in reported amounts resulting from changes in foreign exchange rates from those in effect in the comparable prior year period for operating results.(2)Represents the outcome that would have resulted had foreign exchange rates in the reported period been the same as those in effect in the comparable prior year period for operating results.31Table of ContentsGuidanceWe provided guidance on October 30, 2025, in our earnings release furnished on Form 8-K as set forth below. These forward-looking statements reflect Amazon.com’s expectations as of October 30, 2025, and are subject to substantial uncertainty. Our results are inherently unpredictable and may be materially affected by many factors, such as fluctuations in foreign exchange rates, changes in global economic and geopolitical conditions, tariff and trade policies, and customer demand and spending (including the impact of recessionary fears), inflation, interest rates, regional labor market constraints, world events, the rate of growth of the internet, online commerce, cloud services, and new and emerging technologies, as well as those outlined in Item 1A of Part II, “Risk Factors.”Fourth Quarter 2025 Guidance•Net sales are expected to be between $206.0 billion and $213.0 billion, or to grow between 10% and 13% compared with fourth quarter 2024. This guidance anticipates a favorable impact of approximately 190 basis points from foreign exchange rates. •Operating income is
 
 ---
 
-[Alphabet/Google | 10Q | 2025Q1 | Filed: 2025-04-25]
-31ITEM 2.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONSPlease read the following discussion and analysis of our financial condition and results of operations together with "Note About Forward-Looking Statements" and our consolidated financial statements and related notes included under Item 1 of this Quarterly Report on Form 10-Q as well as our Annual Report on Form 10-K for the fiscal year ended December 31, 2024, including Part I, Item 1A "Risk Factors."Understanding Alphabet’s Financial ResultsAlphabet is a collection of businesses — the largest of which is Google. We report Google in two segments, Google Services and Google Cloud; we also report all non-Google businesses collectively as Other Bets. For further details on our segments, see Note 15 of the Notes to Consolidated Financial Statements included in Item 1 of this Quarterly Report on Form 10-Q.Revenues and Monetization Metrics We generate revenues by delivering relevant, cost-effective online advertising; cloud-based solutions that provide enterprise customers of all sizes with infrastructure, platform services, and applications; sales of other products and services, such as fees received for subscription-based products, apps and in-app purchases, and devices. For additional information on how we recognize revenue, see Note 1 of the Notes to Consolidated Financial Statements included in Part II, Item 8 in our Annual Report on Form 10-K for the fiscal year ended December 31,
+[Amazon | 10Q | 2025Q2 | Filed: 2025-08-01]
+Operating income increased from $14.7 billion in Q2 2024 to $19.2 billion in Q2 2025, and increased from $30.0 billion for the six months ended June 30, 2024 to $37.6 billion for the six months ended June 30, 2025. We believe that operating income is a more meaningful measure than gross profit and gross margin due to the diversity of our product categories and services. For more information on the operating expenses that impact segment operating income, see “Operating Expenses” and the descriptions of operating expense line item changes on pages 26 to 28, and “Note 8 — Segment Information” on page 18.The increase in North America operating income in Q2 2025 and for the six months ended June 30, 2025, compared to the comparable prior year periods, is primarily due to increased unit sales and increased advertising sales, partially offset by increased fulfillment, technology and infrastructure, and shipping costs.  The increase in International operating income in Q2 2025 and for the six months ended June 30, 2025, compared to the comparable prior year periods, is primarily due to increased unit sales and increased advertising sales, partially offset by increased fulfillment and shipping costs. Changes in foreign exchange rates positively impacted operating income by $338 million for Q2 2025, and by $282 million for six months ended June 30, 2025.The increase in AWS operating income in Q2 2025, compared to the comparable prior year period, is primarily due to increased sales,
 
 ---
 
-[Alphabet/Google | 10Q | 2024Q2 | Filed: 2024-07-24]
-32ITEM 2.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONSPlease read the following discussion and analysis of our financial condition and results of operations together with "Note About Forward-Looking Statements" and our consolidated financial statements and related notes included under Item 1 of this Quarterly Report on Form 10-Q as well as our Annual Report on Form 10-K for the fiscal year ended December 31, 2023, including Part I, Item 1A "Risk Factors," as updated in our Quarterly Report on Form 10-Q for the quarter ended March 31, 2024 and in this Quarterly Report on Form 10-Q.Understanding Alphabet’s Financial ResultsAlphabet is a collection of businesses — the largest of which is Google. We report Google in two segments, Google Services and Google Cloud; we also report all non-Google businesses collectively as Other Bets. For further details on our segments, see Note 13 of the Notes to Consolidated Financial Statements included in Item 1 of this Quarterly Report on Form 10-Q.Revenues and Monetization Metrics We generate revenues by delivering relevant, cost-effective online advertising; cloud-based solutions that provide enterprise customers of all sizes with infrastructure and platform services as well as communication and collaboration tools; sales of other products and services, such as fees received for subscription-based products, apps and in-app purchases, and devices. For additional information on how we recognize revenue,
+[Amazon | 10Q | 2024Q3 | Filed: 2024-11-01]
+included in consolidated operating expenses include “Cost of sales,” “Fulfillment,” “Technology and infrastructure,” “Sales and marketing,” “General and administrative,” and “Other operating expense (income), net.” Our CODM manages our business by reviewing annual forecasts and consolidated results by segment on a quarterly basis.North AmericaThe North America segment primarily consists of amounts earned from retail sales of consumer products (including from sellers) and advertising and subscription services through North America-focused online and physical stores. This segment includes export sales from these online stores.InternationalThe International segment primarily consists of amounts earned from retail sales of consumer products (including from sellers) and advertising and subscription services through internationally-focused online stores. This segment includes export sales from these internationally-focused online stores (including export sales from these online stores to customers in the U.S., Mexico, and Canada), but excludes export sales from our North America-focused online stores.19Table of ContentsAWSThe AWS segment consists of amounts earned from global sales of compute, storage, database, and other services for start-ups, enterprises, government agencies, and academic institutions.Information on reportable segments and reconciliation to consolidated net income is as follows (in millions):
+
+---
+
+[Amazon | 10Q | 2024Q3 | Filed: 2024-11-01]
+___________________(1)Represents the change in reported amounts resulting from changes in foreign exchange rates from those in effect in the comparable prior year period for operating results.(2)Represents the outcome that would have resulted had foreign exchange rates in the reported period been the same as those in effect in the comparable prior year period for operating results.31Table of ContentsGuidanceWe provided guidance on October 31, 2024, in our earnings release furnished on Form 8-K as set forth below. These forward-looking statements reflect Amazon.com’s expectations as of October 31, 2024, and are subject to substantial uncertainty. Our results are inherently unpredictable and may be materially affected by many factors, such as fluctuations in foreign exchange rates, changes in global economic and geopolitical conditions and customer demand and spending (including the impact of recessionary fears), inflation, interest rates, regional labor market constraints, world events, the rate of growth of the internet, online commerce, cloud services, and new and emerging technologies, as well as those outlined in Item 1A of Part II, “Risk Factors.”Fourth Quarter 2024 Guidance•Net sales are expected to be between $181.5 billion and $188.5 billion, or to grow between 7% and 11% compared with fourth quarter 2023. This guidance anticipates an unfavorable impact of approximately 10 basis points from foreign exchange rates. •Operating income is expected to be between $16.0
+
+---
+
+[Alphabet/Google | 10K | 2023Q4 | Filed: 2024-01-31]
+Alphabet Inc.NOTES TO CONSOLIDATED FINANCIAL STATEMENTSNote 1.    Summary of Significant Accounting PoliciesNature of OperationsGoogle was incorporated in California in September 1998 and re-incorporated in the State of Delaware in August 2003. In 2015, we implemented a holding company reorganization, and as a result, Alphabet Inc. ("Alphabet") became the successor issuer to Google.We generate revenues by delivering relevant, cost-effective online advertising; cloud-based solutions that provide enterprise customers with infrastructure and platform services as well as communication and collaboration tools; sales of other products and services, such as fees received for consumer subscription-based products, apps and in-app purchases, and devices.Basis of ConsolidationThe consolidated financial statements of Alphabet include the accounts of Alphabet and entities consolidated under the variable interest and voting models. Intercompany balances and transactions have been eliminated.Use of EstimatesPreparation of consolidated financial statements in conformity with GAAP requires us to make estimates and assumptions that affect the amounts reported and disclosed in the financial statements and the accompanying notes. Actual results could differ materially from these estimates due to uncertainties. On an ongoing basis, we evaluate our estimates, including those related to the allowance for credit losses; content licenses; contingent liabilities; fair values of financial instruments
+
+---
+
+[Alphabet/Google | 10K | 2023Q4 | Filed: 2024-01-31]
+Table of Contents | Alphabet Inc.
+Executive OverviewThe following table summarizes our consolidated financial results (in millions, except for per share information and percentages):
+|  |  | Year Ended December 31, |  |  |  |
+|  |  | 2022 |  | 2023 |  | $ Change |  | % Change
+Consolidated revenues |  |  | $ | 282,836 |  |  | $ | 307,394 |  |  | $ | 24,558 |  |  | 9 | %
+Change in consolidated constant currency revenues(1) |  |  |  |  |  |  |  |  | 10 | %
+Cost of revenues |  |  | $ | 126,203 |  |  | $ | 133,332 |  |  | $ | 7,129 |  |  | 6 | %
+Operating expenses |  |  | $ | 81,791 |  |  | $ | 89,769 |  |  | $ | 7,978 |  |  | 10 | %
+Operating income |  |  | $ | 74,842 |  |  | $ | 84,293 |  |  | $ | 9,451 |  |  | 13 | %
+Operating margin |  |  | 26 | % |  | 27 | % |  |  |  | 1 | %
+Other income (expense), net |  |  | $ | (3,514) |  |  | $ | 1,424 |  |  | $ | 4,938 |  |  | NM
+Net income |  |  | $ | 59,972 |  |  | $ | 73,795 |  |  | $ | 13,823 |  |  | 23 | %
+Diluted EPS |  |  | $ | 4.56 |  |  | $ | 5.80 |  |  | $ | 1.24 |  |  | 27 | %
+
+---
+
+[Amazon | 10Q | 2024Q2 | Filed: 2024-08-02]
+operating income (loss) by segment. Amounts included in consolidated operating expenses include “Cost of sales,” “Fulfillment,” “Technology and infrastructure,” “Sales and marketing,” “General and administrative,” and “Other operating expense (income), net.” Our CODM manages our business by reviewing annual forecasts and consolidated results by segment on a quarterly basis.18Table of ContentsNorth AmericaThe North America segment primarily consists of amounts earned from retail sales of consumer products (including from sellers) and advertising and subscription services through North America-focused online and physical stores. This segment includes export sales from these online stores.InternationalThe International segment primarily consists of amounts earned from retail sales of consumer products (including from sellers) and advertising and subscription services through internationally-focused online stores. This segment includes export sales from these internationally-focused online stores (including export sales from these online stores to customers in the U.S., Mexico, and Canada), but excludes export sales from our North America-focused online stores.AWSThe AWS segment consists of amounts earned from global sales of compute, storage, database, and other services for start-ups, enterprises, government agencies, and academic institutions.Information on reportable segments and reconciliation to consolidated net income is as follows (in millions):
 
 ---
 
 [Alphabet/Google | 10Q | 2023Q3 | Filed: 2023-10-25]
 ITEM 2.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONSPlease read the following discussion and analysis of our financial condition and results of operations together with "Note About Forward-Looking Statements" and our consolidated financial statements and related notes included under Item 1 of this Quarterly Report on Form 10-Q as well as our Annual Report on Form 10-K for the fiscal year ended December 31, 2022, including Part I, Item 1A "Risk Factors."Understanding Alphabet’s Financial ResultsAlphabet is a collection of businesses — the largest of which is Google. We report Google in two segments, Google Services and Google Cloud; we also report all non-Google businesses collectively as Other Bets. For further details on our segments, see Note 14 of the Notes to Consolidated Financial Statements included in Item 1 of this Quarterly Report on Form 10-Q.Revenues and Monetization Metrics We generate revenues by delivering relevant, cost-effective online advertising; cloud-based solutions that provide enterprise customers of all sizes with infrastructure and platform services as well as communication and collaboration tools; sales of other products and services, such as apps and in-app purchases, and hardware; and fees received for subscription-based products. For details on how we recognize revenue, see Note 1 of the Notes to Consolidated Financial Statements included in Part II, Item 8 in our Annual Report on Form 10-K for the fiscal
+
+---
+
+[Alphabet/Google | 10Q | 2023Q3 | Filed: 2023-10-25]
+Alphabet Inc.CONSOLIDATED STATEMENTS OF INCOME(in millions, except per share amounts; unaudited)
+| Three Months Ended |  | Nine Months Ended
+| September 30, |  | September 30,
+| 2022 |  | 2023 |  | 2022 |  | 2023
+Revenues | $ | 69,092 |  |  | $ | 76,693 |  |  | $ | 206,788 |  |  | $ | 221,084 |
+Costs and expenses: |  |  |  |  |  |  |
+Cost of revenues | 31,158 |  |  | 33,229 |  |  | 90,861 |  |  | 95,757 |
+Research and development | 10,273 |  |  | 11,258 |  |  | 29,233 |  |  | 33,314 |
+Sales and marketing | 6,929 |  |  | 6,884 |  |  | 19,384 |  |  | 20,198 |
+General and administrative | 3,597 |  |  | 3,979 |  |  | 10,628 |  |  | 11,219 |
+Total costs and expenses | 51,957 |  |  | 55,350 |  |  | 150,106 |  |  | 160,488 |
+Income from operations | 17,135 |  |  | 21,343 |  |  | 56,682 |  |  | 60,596 |
+Other income (expense), net | (902) |  |  | (146) |  |  | (2,501) |  |  | 709 |
+Income before income taxes | 16,233 |  |  | 21,197 |  |  | 54,181 |  |  | 61,305 |
+Provision for income taxes | 2,323 |  |  | 1,508 |  |  | 7,833 |  |  | 8,197 |
+Net income | $ | 13,910 |  |  | $ | 19,689 |  |  | $ | 46,348 |  |  | $ | 53,108 |
+Basic net income per share of Class A, Class B, and Class C stock | $ | 1.07 |  |  | $ | 1.56 |  |  | $ | 3.53 |  |  | $ | 4.19 |
+Diluted net income per share of Class A, Class B, and Class C stock | $ | 1.06 |  |  | $ | 1.55 |  |  | $ | 3.50 |  |  | $ | 4.16 |
+See accompanying notes.6
+Table of Contents | Alphabet Inc.
+
+---
+
+[Amazon | 10K | 2023Q4 | Filed: 2024-02-02]
+AWS | 22,841 |  |  | 24,631 |
+Consolidated | $ | 12,248 |  |  | $ | 36,852 |
+Operating income was $12.2 billion and $36.9 billion for 2022 and 2023. We believe that operating income is a more meaningful measure than gross profit and gross margin due to the diversity of our product categories and services.The North America operating income in 2023, as compared to the operating loss in the prior year, is primarily due to increased unit sales and increased advertising sales, partially offset by increased shipping and fulfillment costs and increased technology and infrastructure costs. The decrease in International operating loss in absolute dollars in 2023, compared to the prior year, is primarily due to increased unit sales and increased advertising sales, partially offset by increased fulfillment and shipping costs and increased technology and infrastructure costs. Changes in foreign exchange rates positively impacted operating loss by $246 million in 2023. The increase in AWS operating income in absolute dollars in 2023, compared to the prior year, is primarily due to increased sales, partially offset by increased payroll and related expenses and spending on technology infrastructure, both of which were primarily driven by additional investments to support AWS business growth. Changes in foreign exchange rates positively impacted operating income by $220 million in 2023.25Table of ContentsOperating ExpensesInformation about operating expenses is as follows (in millions):
 
 ---
 
@@ -288,254 +186,152 @@ ITEM 2.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS O
 
 ---
 
-[Alphabet/Google | 10K | 2023Q4 | Filed: 2024-01-31]
-ITEM 7.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONSPlease read the following discussion and analysis of our financial condition and results of operations together with “Note about Forward-Looking Statements,” Part I, Item 1 "Business," Part I, Item 1A "Risk Factors," and our consolidated financial statements and related notes included under Item 8 of this Annual Report on Form 10-K. The following section generally discusses 2023 results compared to 2022 results. Discussion of 2022 results compared to 2021 results to the extent not included in this report can be found in Item 7 of our 2022 Annual Report on Form 10-K.Understanding Alphabet’s Financial ResultsAlphabet is a collection of businesses — the largest of which is Google. We report Google in two segments, Google Services and Google Cloud; we also report all non-Google businesses collectively as Other Bets. For additional information on our segments, see Part I, Item 1 Business and Note 15 of the Notes to Consolidated Financial Statements included in Item 8 of this Annual Report on Form 10-K.Trends in Our Business and Financial EffectThe following long-term trends have contributed to the results of our consolidated operations, and we anticipate that they will continue to affect our future results:•Users' behaviors and advertising continue to shift online as the digital economy evolves.The continuing evolution of the online world has contributed to the growth of our business and
-
----
-
-[Alphabet/Google | 10K | 2024Q4 | Filed: 2025-02-05]
-ITEM 7.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONSPlease read the following discussion and analysis of our financial condition and results of operations together with “Note about Forward-Looking Statements,” Part I, Item 1 "Business," Part I, Item 1A "Risk Factors," and our consolidated financial statements and related notes included under Item 8 of this Annual Report on Form 10-K. The following section generally discusses 2024 results compared to 2023 results. Discussion of 2023 results compared to 2022 results to the extent not included in this report can be found in Item 7 of our 2023 Annual Report on Form 10-K.Understanding Alphabet’s Financial ResultsAlphabet is a collection of businesses — the largest of which is Google. We report Google in two segments, Google Services and Google Cloud; we also report all non-Google businesses collectively as Other Bets. For further details on our segments, see Part I, Item 1 Business and Note 15 of the Notes to Consolidated Financial Statements included in Item 8 of this Annual Report on Form 10-K.Trends in Our Business and Financial EffectThe following long-term trends have contributed to the results of our consolidated operations, and we anticipate that they will continue to affect our future results:•Users' behaviors and advertising continue to shift online as the digital economy evolves.The continuing evolution of the online world has contributed to the growth of our business and our
+[Alphabet/Google | 10K | 2022Q4 | Filed: 2023-02-03]
+Alphabet Inc.NOTES TO CONSOLIDATED FINANCIAL STATEMENTSNote 1.    Summary of Significant Accounting PoliciesNature of OperationsGoogle was incorporated in California in September 1998 and re-incorporated in the State of Delaware in August 2003. In 2015, we implemented a holding company reorganization, and as a result, Alphabet Inc. ("Alphabet") became the successor issuer to Google.We generate revenues by delivering relevant, cost-effective online advertising; cloud-based solutions that provide enterprise customers with infrastructure and platform services as well as communication and collaboration tools; sales of other products and services, such as apps and in-app purchases, and hardware; and fees received for subscription-based products.Basis of ConsolidationThe consolidated financial statements of Alphabet include the accounts of Alphabet and entities consolidated under the variable interest and voting models. Intercompany balances and transactions have been eliminated.Use of EstimatesPreparation of consolidated financial statements in conformity with GAAP requires us to make estimates and assumptions that affect the amounts reported and disclosed in the financial statements and the accompanying notes. Actual results could differ materially from these estimates due to uncertainties. On an ongoing basis, we evaluate our estimates, including those related to the allowance for credit losses; fair values of financial instruments, intangible assets, and goodwill; inventory;
 
 ---
 
 [Alphabet/Google | 10Q | 2022Q3 | Filed: 2022-10-26]
-ITEM 2.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONSPlease read the following discussion and analysis of our financial condition and results of operations together with "Note About Forward-Looking Statements" and our consolidated financial statements and related notes included under Item 1 of this Quarterly Report on Form 10-Q as well as our Annual Report on Form 10-K for the fiscal year ended December 31, 2021, including Part I, Item 1A "Risk Factors."Understanding Alphabet’s Financial ResultsAlphabet is a collection of businesses — the largest of which is Google. We report Google in two segments, Google Services and Google Cloud; we also report all non-Google businesses collectively as Other Bets. Other Bets include earlier stage technologies that are further afield from our core Google business. For further details on our segments, see Note 14 of the Notes to Consolidated Financial Statements included in Item 1 of this Quarterly Report on Form 10-Q.Seasonality and otherOur advertising revenues are affected by seasonal fluctuations in internet usage, advertising expenditures, and underlying business trends, such as traditional retail seasonality. Additionally, our non-advertising revenues, including those generated from Google Cloud, Google Play, hardware, and YouTube, may be affected by fluctuations driven by changes in pricing, digital content releases, fee structures, new product and service launches, and other market dynamics, as
+See accompanying notes.5
+Table of Contents | Alphabet Inc.
+Alphabet Inc.CONSOLIDATED STATEMENTS OF INCOME(in millions, except per share amounts; unaudited)
+| Three Months Ended |  | Nine Months Ended
+| September 30, |  | September 30,
+| 2021 |  | 2022 |  | 2021 |  | 2022
+Revenues | $ | 65,118 |  |  | $ | 69,092 |  |  | $ | 182,312 |  |  | $ | 206,788 |
+Costs and expenses: |  |  |  |  |  |  |
+Cost of revenues | 27,621 |  |  | 31,158 |  |  | 77,951 |  |  | 90,861 |
+Research and development | 7,694 |  |  | 10,273 |  |  | 22,854 |  |  | 29,233 |
+Sales and marketing | 5,516 |  |  | 6,929 |  |  | 15,308 |  |  | 19,384 |
+General and administrative | 3,256 |  |  | 3,597 |  |  | 9,370 |  |  | 10,628 |
+Total costs and expenses | 44,087 |  |  | 51,957 |  |  | 125,483 |  |  | 150,106 |
+Income from operations | 21,031 |  |  | 17,135 |  |  | 56,829 |  |  | 56,682 |
+Other income (expense), net | 2,033 |  |  | (902) |  |  | 9,503 |  |  | (2,501) |
+Income before income taxes | 23,064 |  |  | 16,233 |  |  | 66,332 |  |  | 54,181 |
+Provision for income taxes | 4,128 |  |  | 2,323 |  |  | 10,941 |  |  | 7,833 |
+Net income | $ | 18,936 |  |  | $ | 13,910 |  |  | $ | 55,391 |  |  | $ | 46,348 |
+Basic net income per share of Class A, Class B, and Class C stock | $ | 1.42 |  |  | $ | 1.07 |  |  | $ | 4.14 |  |  | $ | 3.53 |
+Diluted net income per share of Class A, Class B, and Class C stock | $ | 1.40 |  |  | $ | 1.06 |  |  | $ | 4.08 |  |  | $ | 3.50 |
+See accompanying notes.6
 
 ---
 
-[Alphabet/Google | 10Q | 2024Q1 | Filed: 2024-04-26]
-28ITEM 2.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONSPlease read the following discussion and analysis of our financial condition and results of operations together with "Note About Forward-Looking Statements" and our consolidated financial statements and related notes included under Item 1 of this Quarterly Report on Form 10-Q as well as our Annual Report on Form 10-K for the fiscal year ended December 31, 2023, including Part I, Item 1A "Risk Factors," as updated in this Quarterly Report on Form 10-Q.Understanding Alphabet’s Financial ResultsAlphabet is a collection of businesses — the largest of which is Google. We report Google in two segments, Google Services and Google Cloud; we also report all non-Google businesses collectively as Other Bets. For further details on our segments, see Note 13 of the Notes to Consolidated Financial Statements included in Item 1 of this Quarterly Report on Form 10-Q.Revenues and Monetization Metrics We generate revenues by delivering relevant, cost-effective online advertising; cloud-based solutions that provide enterprise customers of all sizes with infrastructure and platform services as well as communication and collaboration tools; sales of other products and services, such as fees received for subscription-based products, apps and in-app purchases, and devices. For additional information on how we recognize revenue, see Note 1 of the Notes to Consolidated Financial Statements included in Part
+[Alphabet/Google | 10Q | 2022Q3 | Filed: 2022-10-26]
+Table of Contents | Alphabet Inc.
+Executive OverviewThe following table summarizes consolidated financial results (in millions, except per share information,  percentages, and number of employees):
+|  | Three Months Ended |  |  |  |
+| September 30, |  |  |  |
+|  | 2021 |  | 2022 |  | $ Change |  | % Change
+Consolidated revenues |  | $ | 65,118 |  |  | $ | 69,092 |  |  | $ | 3,974 |  |  | 6 | %
+Change in consolidated constant currency revenues |  |  |  |  |  |  |  | 11 | %
+Cost of revenues |  | $ | 27,621 |  |  | $ | 31,158 |  |  | $ | 3,537 |  |  | 13 | %
+Operating expenses |  | $ | 16,466 |  |  | $ | 20,799 |  |  | $ | 4,333 |  |  | 26 | %
+Operating income |  | $ | 21,031 |  |  | $ | 17,135 |  |  | $ | (3,896) |  |  | (19) | %
+Operating margin |  | 32 | % |  | 25 | % |  |  |  | (7) | %
+Other income (expense), net |  | $ | 2,033 |  |  | $ | (902) |  |  | $ | (2,935) |  |  | (144) | %
+Net Income |  | $ | 18,936 |  |  | $ | 13,910 |  |  | $ | (5,026) |  |  | (27) | %
+Diluted EPS |  | $ | 1.40 |  |  | $ | 1.06 |  |  | $ | (0.34) |  |  | (24) | %
+Number of Employees |  | 150,028 |  |  | 186,779 |  | 36,751 |  | 24 | %
 
 ---
 
-[Alphabet/Google | 10Q | 2024Q3 | Filed: 2024-10-30]
-tools; sales of other products and services, such as fees received for subscription-based products, apps and in-app purchases, and devices. For additional information on how we recognize revenue, see Note 1 of the Notes to Consolidated Financial Statements included in Part II, Item 8 in our Annual Report on Form 10-K for the fiscal year ended December 31, 2023.In addition to the long-term trends and their financial effect on our business discussed in "Trends in Our Business and Financial Effect" in Part II, Item 7 of our Annual Report on Form 10-K for the fiscal year ended December 31, 2023, fluctuations in our revenues have been and may continue to be affected by a combination of factors, including:•changes in foreign currency exchange rates;•changes in pricing, such as those resulting from changes in fee structures, discounts, and customer incentives;•general economic conditions and various external dynamics, including geopolitical events, regulations, and other measures and their effect on advertiser, consumer, and enterprise spending; •new product and service launches; and•seasonality.Additionally, fluctuations in our revenues generated from advertising ("Google advertising"), revenues from other sources ("Google subscriptions, platforms, and devices revenues"), Google Cloud, and Other Bets revenues have been, and may continue to be, affected by other factors unique to each set of revenues, as described below.Google ServicesGoogle Services revenues consist of Google
+[Amazon | 10Q | 2023Q3 | Filed: 2023-10-27]
+II, “Financial Statements and Supplementary Data,” of our 2022 Annual Report on Form 10-K.Prior Period ReclassificationsCertain prior period amounts have been reclassified to conform to the current period presentation. “Other operating expense (income), net” was reclassified into “Depreciation and amortization of property and equipment and capitalized content costs, operating lease assets, and other” on our consolidated statements of cash flows.Principles of ConsolidationThe consolidated financial statements include the accounts of Amazon.com, Inc. and its consolidated entities (collectively, the “Company”), consisting of its wholly-owned subsidiaries and those entities in which we have a variable interest and of which we are the primary beneficiary, including certain entities in India and certain entities that support our health care services and seller lending financing activities. Intercompany balances and transactions between consolidated entities are eliminated.Use of EstimatesThe preparation of financial statements in conformity with GAAP requires estimates and assumptions that affect the reported amounts of assets and liabilities, revenues and expenses, and related disclosures of contingent liabilities in the consolidated financial statements and accompanying notes. Estimates are used for, but not limited to, income taxes, useful lives of equipment, commitments and contingencies, valuation of acquired intangibles and goodwill, stock-based compensation forfeiture
 
 ---
 
-[Alphabet/Google | 10Q | 2024Q2 | Filed: 2024-07-24]
-tools; sales of other products and services, such as fees received for subscription-based products, apps and in-app purchases, and devices. For additional information on how we recognize revenue, see Note 1 of the Notes to Consolidated Financial Statements included in Part II, Item 8 in our Annual Report on Form 10-K for the fiscal year ended December 31, 2023.In addition to the long-term trends and their financial effect on our business discussed in "Trends in Our Business and Financial Effect" in Part II, Item 7 of our Annual Report on Form 10-K for the fiscal year ended December 31, 2023, fluctuations in our revenues have been and may continue to be affected by a combination of factors, including:•changes in foreign currency exchange rates;•changes in pricing, such as those resulting from changes in fee structures, discounts, and customer incentives;•general economic conditions and various external dynamics, including geopolitical events, regulations, and other measures and their effect on advertiser, consumer, and enterprise spending; •new product and service launches; and•seasonality.Additionally, fluctuations in our revenues generated from advertising ("Google advertising"), revenues from other sources ("Google subscriptions, platforms, and devices revenues"), Google Cloud, and Other Bets revenues have been, and may continue to be, affected by other factors unique to each set of revenues, as described below.Google ServicesGoogle Services revenues consist of Google
+[Amazon | 10Q | 2023Q2 | Filed: 2023-08-04]
+II, “Financial Statements and Supplementary Data,” of our 2022 Annual Report on Form 10-K.Prior Period ReclassificationsCertain prior period amounts have been reclassified to conform to the current period presentation. “Other operating expense (income), net” was reclassified into “Depreciation and amortization of property and equipment and capitalized content costs, operating lease assets, and other” on our consolidated statements of cash flows.Principles of ConsolidationThe consolidated financial statements include the accounts of Amazon.com, Inc. and its consolidated entities (collectively, the “Company”), consisting of its wholly-owned subsidiaries and those entities in which we have a variable interest and of which we are the primary beneficiary, including certain entities in India and certain entities that support our health care services and seller lending financing activities. Intercompany balances and transactions between consolidated entities are eliminated.Use of EstimatesThe preparation of financial statements in conformity with GAAP requires estimates and assumptions that affect the reported amounts of assets and liabilities, revenues and expenses, and related disclosures of contingent liabilities in the consolidated financial statements and accompanying notes. Estimates are used for, but not limited to, income taxes, useful lives of equipment, commitments and contingencies, valuation of acquired intangibles and goodwill, stock-based compensation forfeiture
+
+---
+
+[Amazon | 10Q | 2022Q1 | Filed: 2022-04-29]
+impacted International net sales by $(1.8) billion for Q1 2022.AWS sales increased 37% in Q1 2022 compared to the comparable prior year period. The sales growth primarily reflects increased customer usage, partially offset by pricing changes. Pricing changes were driven largely by our continued efforts to reduce prices for our customers.Operating Income (Loss)Operating income (loss) by segment is as follows (in millions):
+
+---
+
+[Amazon | 10Q | 2022Q1 | Filed: 2022-04-29]
+II, “Financial Statements and Supplementary Data,” of our 2021 Annual Report on Form 10-K.Principles of ConsolidationThe consolidated financial statements include the accounts of Amazon.com, Inc. and its consolidated entities (collectively, the “Company”), consisting of its wholly-owned subsidiaries and those entities in which we have a variable interest and of which we are the primary beneficiary, including certain entities in India and certain entities that support our seller lending financing activities. Intercompany balances and transactions between consolidated entities are eliminated.Use of EstimatesThe preparation of financial statements in conformity with GAAP requires estimates and assumptions that affect the reported amounts of assets and liabilities, revenues and expenses, and related disclosures of contingent liabilities in the consolidated financial statements and accompanying notes. Estimates are used for, but not limited to, income taxes, useful lives of equipment, commitments and contingencies, valuation of acquired intangibles and goodwill, stock-based compensation forfeiture rates, vendor funding, inventory valuation, collectability of receivables, and valuation and impairment of investments. Actual results could differ materially from these estimates.We review the useful lives of equipment on an ongoing basis, and effective January 1, 2022 we changed our estimate of the useful lives for our servers from four to five years and for our networking equipment
 --- END CONTEXT ---
 
-QUESTION: What is the growth in revenues for Alphabet/Google over the past few years?
+QUESTION: how do google and amazon revenue and growth compare?
 
 Provide a well-structured, detailed answer with specific numbers and citations.
 
   RESPONSE:
-### Revenue Growth for Alphabet/Google
+### Revenue Comparison and Growth Analysis
 
-#### Overview
-Alphabet, the parent company of Google, reports its revenues through various segments, primarily Google Services and Google Cloud. The following analysis provides a detailed look at the revenue growth over the past few years based on the available SEC filings.
+#### Alphabet (Google)
+- **2023 Revenue**: $307,394 million
+- **2022 Revenue**: $282,836 million
+- **Revenue Growth**: 
+  - **Dollar Change**: $24,558 million
+  - **Percentage Change**: 9% (Alphabet, 10-K, Year Ended December 31, 2023)
 
-#### Revenue Growth Analysis
+#### Amazon
+- **2024 Revenue Guidance**: Expected to be between $181.5 billion and $188.5 billion, representing a growth of 7% to 11% compared to Q4 2023 (Amazon, 10-Q, Fourth Quarter 2024 Guidance).
+- **2023 Revenue**: Not explicitly stated in the excerpts, but the operating income was reported as $36.9 billion for the year (Amazon, 10-K, Year Ended December 31, 2023). 
 
-1. **2023 vs. 2022**
-   - The specific revenue figures for 2022 and 2023 are not provided in the excerpts. Therefore, I cannot calculate the exact growth rate or provide specific revenue numbers for this period.
+#### Year-over-Year Growth Analysis
+- **Alphabet**:
+  - The revenue growth of 9% from 2022 to 2023 indicates a steady increase in their business operations, primarily driven by their online advertising and cloud services.
 
-2. **2024 vs. 2023**
-   - Similar to the previous year, the exact revenue figures for 2023 and 2024 are not available in the excerpts. Thus, I cannot determine the growth rate or provide specific revenue numbers for this comparison.
-
-3. **2025 vs. 2024**
-   - The excerpts do not contain specific revenue figures for 2024 or 2025, preventing any calculation of growth or year-over-year changes for this period as well.
-
-#### Summary
-- **Missing Data**: The SEC filings provided do not include specific revenue figures for the years 2022, 2023, 2024, or 2025, which are necessary to calculate growth rates or year-over-year changes.
-- **Conclusion**: Without the specific revenue numbers, it is not possible to provide a detailed analysis of revenue growth for Alphabet/Google over the past few years.
-
-If you have access to the specific revenue figures for these years from other sources, I can assist in calculating the growth rates based on that data.
-========================================================================
-
-  [OK] Generated sub-answer for Alphabet/Google (15 chunks)
-  [OK] Synthesizing comparison...
-
-========================================================================
-  LLM CALL: SYNTHESIS
-========================================================================
-  PROMPT:
-You are a senior financial analyst preparing a comparative
-research briefing. Below are individual analyses for each company, produced from
-their SEC filings. Synthesize them into a single, clear comparison.
-
-RULES:
-1. Present each company's key metrics side by side.
-2. Calculate and highlight differences (absolute and percentage).
-3. Note any mismatched reporting periods between companies.
-4. Use exact numbers — do not round or estimate.
-5. If data was missing for one company, state it clearly.
-6. End with a brief summary of which company performed stronger and on what metrics.
-
-
-### Amazon:
-### Growth in Net Sales for Amazon
-
-#### Overview of Net Sales Growth
-
-Amazon's net sales growth has varied across different quarters and years, influenced by factors such as foreign exchange rates and increased customer demand. Below is a detailed breakdown of the growth in net sales over the past few years based on the provided SEC filings.
-
-#### Year-over-Year Growth Rates
-
-1. **Q1 2023 vs. Q1 2022**
-   - **Net Sales Growth**: Increased by 9%
-   - **Impact of Foreign Exchange Rates**: Reduced net sales by $2.4 billion (Amazon, 10-Q, Q1 2023).
-
-2. **Q1 2024 vs. Q1 2023**
-   - **Net Sales Growth**: Increased by 13%
-   - **Impact of Foreign Exchange Rates**: Reduced net sales by $164 million (Amazon, 10-Q, Q1 2024).
-
-3. **Q1 2025 vs. Q1 2024**
-   - **Net Sales Growth**: Increased by 9%
-   - **Impact of Foreign Exchange Rates**: Reduced net sales by $1.4 billion (Amazon, 10-Q, Q1 2025).
-
-4. **Q3 2024 vs. Q3 2023**
-   - **Net Sales Growth**: Specific figures for Q3 2023 are not provided, but Q3 2024 saw a 19% increase in AWS sales (Amazon, 10-Q, Q3 2024).
-
-5. **Q3 2025 vs. Q3 2024**
-   - **Net Sales Growth**: AWS sales increased by 20% (Amazon, 10-Q, Q3 2025).
-
-#### Summary of Key Figures
-
-- **Q1 2023**: 9% increase in net sales compared to Q1 2022.
-- **Q1 2024**: 13% increase in net sales compared to Q1 2023.
-- **Q1 2025**: 9% increase in net sales compared to Q1 2024.
-- **Q3 2024**: AWS sales increased by 19% compared to Q3 2023.
-- **Q3 2025**: AWS sales increased by 20% compared to Q3 2024.
-
-### Conclusion
-
-Amazon has demonstrated consistent growth in net sales over the past few years, with notable increases in the first quarters of 2023, 2024, and 2025. The growth rates reflect a combination of increased customer demand and the impact of foreign exchange fluctuations. Specific figures for total net sales were not provided, but the growth percentages indicate a positive trend in sales performance.
-
-### Alphabet/Google:
-### Revenue Growth for Alphabet/Google
-
-#### Overview
-Alphabet, the parent company of Google, reports its revenues through various segments, primarily Google Services and Google Cloud. The following analysis provides a detailed look at the revenue growth over the past few years based on the available SEC filings.
-
-#### Revenue Growth Analysis
-
-1. **2023 vs. 2022**
-   - The specific revenue figures for 2022 and 2023 are not provided in the excerpts. Therefore, I cannot calculate the exact growth rate or provide specific revenue numbers for this period.
-
-2. **2024 vs. 2023**
-   - Similar to the previous year, the exact revenue figures for 2023 and 2024 are not available in the excerpts. Thus, I cannot determine the growth rate or provide specific revenue numbers for this comparison.
-
-3. **2025 vs. 2024**
-   - The excerpts do not contain specific revenue figures for 2024 or 2025, preventing any calculation of growth or year-over-year changes for this period as well.
-
-#### Summary
-- **Missing Data**: The SEC filings provided do not include specific revenue figures for the years 2022, 2023, 2024, or 2025, which are necessary to calculate growth rates or year-over-year changes.
-- **Conclusion**: Without the specific revenue numbers, it is not possible to provide a detailed analysis of revenue growth for Alphabet/Google over the past few years.
-
-If you have access to the specific revenue figures for these years from other sources, I can assist in calculating the growth rates based on that data.
-
-
-ORIGINAL QUESTION: what is growth for amazon and google over past few years? how do they compare?
-
-Provide a well-structured comparative answer with specific numbers.
-
-  RESPONSE:
-### Comparative Research Briefing: Amazon vs. Alphabet/Google
-
-#### Key Metrics Overview
-
-| Metric                         | Amazon (Q1 2023 - Q1 2025) | Alphabet/Google (2023 - 2025) |
-|--------------------------------|-----------------------------|---------------------------------|
-| **Net Sales Growth (Q1)**     |                             |                                 |
-| Q1 2023 vs. Q1 2022            | 9%                          | Data Missing                    |
-| Q1 2024 vs. Q1 2023            | 13%                         | Data Missing                    |
-| Q1 2025 vs. Q1 2024            | 9%                          | Data Missing                    |
-| **AWS Sales Growth (Q3)**     |                             |                                 |
-| Q3 2024 vs. Q3 2023            | 19%                         | Data Missing                    |
-| Q3 2025 vs. Q3 2024            | 20%                         | Data Missing                    |
-
-#### Differences in Performance
-
-- **Net Sales Growth (Q1)**:
-  - **Amazon**: 
-    - Q1 2023 vs. Q1 2022: 9%
-    - Q1 2024 vs. Q1 2023: 13%
-    - Q1 2025 vs. Q1 2024: 9%
-  - **Alphabet/Google**: Data is missing for all periods, making it impossible to compare.
-
-- **AWS Sales Growth (Q3)**:
-  - **Amazon**: 
-    - Q3 2024 vs. Q3 2023: 19%
-    - Q3 2025 vs. Q3 2024: 20%
-  - **Alphabet/Google**: Data is missing for all periods, making it impossible to compare.
-
-#### Reporting Periods
-- **Amazon**: Reports quarterly data for Q1 and Q3 of 2023, 2024, and 2025.
-- **Alphabet/Google**: Specific revenue figures for 2022, 2023, 2024, and 2025 are not provided, resulting in a lack of comparative data.
+- **Amazon**:
+  - The guidance for Q4 2024 suggests a growth rate of 7% to 11% compared to Q4 2023, indicating a positive outlook for revenue growth. However, specific revenue figures for 2023 are not provided in the excerpts, making a direct year-over-year comparison challenging.
 
 ### Summary
-Amazon has shown consistent growth in net sales and AWS sales over the past few years, with specific growth rates of 9%, 13%, and 9% for Q1 periods and 19% and 20% for Q3 periods. In contrast, Alphabet/Google's revenue growth cannot be assessed due to missing data for the same periods. Therefore, based on the available information, Amazon has performed stronger in terms of measurable growth metrics, while Alphabet/Google's performance remains unclear.
+- **Alphabet (Google)** has a confirmed revenue growth of 9% from 2022 to 2023, with total revenues reaching $307,394 million.
+- **Amazon** has provided guidance indicating potential growth of 7% to 11% for Q4 2024, but lacks specific revenue figures for 2023 in the provided excerpts, making it difficult to ascertain the exact growth compared to Alphabet.
+
+In conclusion, while Alphabet shows a clear growth trajectory with specific figures, Amazon's growth potential remains more speculative based on guidance without concrete revenue data for the previous year.
 ========================================================================
 
 
 Answer:
-### Comparative Research Briefing: Amazon vs. Alphabet/Google
+### Revenue Comparison and Growth Analysis
 
-#### Key Metrics Overview
+#### Alphabet (Google)
+- **2023 Revenue**: $307,394 million
+- **2022 Revenue**: $282,836 million
+- **Revenue Growth**: 
+  - **Dollar Change**: $24,558 million
+  - **Percentage Change**: 9% (Alphabet, 10-K, Year Ended December 31, 2023)
 
-| Metric                         | Amazon (Q1 2023 - Q1 2025) | Alphabet/Google (2023 - 2025) |
-|--------------------------------|-----------------------------|---------------------------------|
-| **Net Sales Growth (Q1)**     |                             |                                 |
-| Q1 2023 vs. Q1 2022            | 9%                          | Data Missing                    |
-| Q1 2024 vs. Q1 2023            | 13%                         | Data Missing                    |
-| Q1 2025 vs. Q1 2024            | 9%                          | Data Missing                    |
-| **AWS Sales Growth (Q3)**     |                             |                                 |
-| Q3 2024 vs. Q3 2023            | 19%                         | Data Missing                    |
-| Q3 2025 vs. Q3 2024            | 20%                         | Data Missing                    |
+#### Amazon
+- **2024 Revenue Guidance**: Expected to be between $181.5 billion and $188.5 billion, representing a growth of 7% to 11% compared to Q4 2023 (Amazon, 10-Q, Fourth Quarter 2024 Guidance).
+- **2023 Revenue**: Not explicitly stated in the excerpts, but the operating income was reported as $36.9 billion for the year (Amazon, 10-K, Year Ended December 31, 2023). 
 
-#### Differences in Performance
+#### Year-over-Year Growth Analysis
+- **Alphabet**:
+  - The revenue growth of 9% from 2022 to 2023 indicates a steady increase in their business operations, primarily driven by their online advertising and cloud services.
 
-- **Net Sales Growth (Q1)**:
-  - **Amazon**: 
-    - Q1 2023 vs. Q1 2022: 9%
-    - Q1 2024 vs. Q1 2023: 13%
-    - Q1 2025 vs. Q1 2024: 9%
-  - **Alphabet/Google**: Data is missing for all periods, making it impossible to compare.
-
-- **AWS Sales Growth (Q3)**:
-  - **Amazon**: 
-    - Q3 2024 vs. Q3 2023: 19%
-    - Q3 2025 vs. Q3 2024: 20%
-  - **Alphabet/Google**: Data is missing for all periods, making it impossible to compare.
-
-#### Reporting Periods
-- **Amazon**: Reports quarterly data for Q1 and Q3 of 2023, 2024, and 2025.
-- **Alphabet/Google**: Specific revenue figures for 2022, 2023, 2024, and 2025 are not provided, resulting in a lack of comparative data.
+- **Amazon**:
+  - The guidance for Q4 2024 suggests a growth rate of 7% to 11% compared to Q4 2023, indicating a positive outlook for revenue growth. However, specific revenue figures for 2023 are not provided in the excerpts, making a direct year-over-year comparison challenging.
 
 ### Summary
-Amazon has shown consistent growth in net sales and AWS sales over the past few years, with specific growth rates of 9%, 13%, and 9% for Q1 periods and 19% and 20% for Q3 periods. In contrast, Alphabet/Google's revenue growth cannot be assessed due to missing data for the same periods. Therefore, based on the available information, Amazon has performed stronger in terms of measurable growth metrics, while Alphabet/Google's performance remains unclear.
+- **Alphabet (Google)** has a confirmed revenue growth of 9% from 2022 to 2023, with total revenues reaching $307,394 million.
+- **Amazon** has provided guidance indicating potential growth of 7% to 11% for Q4 2024, but lacks specific revenue figures for 2023 in the provided excerpts, making it difficult to ascertain the exact growth compared to Alphabet.
 
-Sources (30):
-  - Amazon | 10K | 2026-02-06 | sim: 0.602 | adj: 0.588 | ce: 0.411 | fused: 1.000
-  - Alphabet/Google | 10K | 2023-02-03 | sim: 0.647 | adj: 0.418 | ce: 0.301 | fused: 0.701
-  - Alphabet/Google | 10K | 2026-02-05 | sim: 0.640 | adj: 0.625 | ce: 0.151 | fused: 0.572
-  - Alphabet/Google | 10Q | 2025-07-24 | sim: 0.639 | adj: 0.549 | ce: 0.189 | fused: 0.571
-  - Alphabet/Google | 10Q | 2024-10-30 | sim: 0.648 | adj: 0.490 | ce: 0.214 | fused: 0.556
-  - Alphabet/Google | 10Q | 2025-04-25 | sim: 0.640 | adj: 0.524 | ce: 0.193 | fused: 0.545
-  - Alphabet/Google | 10Q | 2024-07-24 | sim: 0.647 | adj: 0.472 | ce: 0.218 | fused: 0.544
-  - Alphabet/Google | 10Q | 2023-10-25 | sim: 0.640 | adj: 0.434 | ce: 0.232 | fused: 0.526
-  - Alphabet/Google | 10Q | 2023-07-26 | sim: 0.640 | adj: 0.426 | ce: 0.232 | fused: 0.515
-  - Alphabet/Google | 10Q | 2023-04-26 | sim: 0.640 | adj: 0.419 | ce: 0.232 | fused: 0.505
-  - Alphabet/Google | 10K | 2024-01-31 | sim: 0.660 | adj: 0.457 | ce: 0.207 | fused: 0.489
-  - Alphabet/Google | 10K | 2025-02-05 | sim: 0.652 | adj: 0.514 | ce: 0.164 | fused: 0.450
-  - Alphabet/Google | 10Q | 2022-10-26 | sim: 0.654 | adj: 0.418 | ce: 0.204 | fused: 0.423
-  - Alphabet/Google | 10Q | 2024-04-26 | sim: 0.651 | adj: 0.462 | ce: 0.175 | fused: 0.406
-  - Amazon | 10Q | 2025-10-31 | sim: 0.598 | adj: 0.546 | ce: 0.030 | fused: 0.287
-  - Amazon | 10Q | 2025-10-31 | sim: 0.600 | adj: 0.548 | ce: 0.011 | fused: 0.278
-  - Amazon | 10Q | 2025-05-02 | sim: 0.602 | adj: 0.495 | ce: 0.067 | fused: 0.278
-  - Amazon | 10Q | 2025-08-01 | sim: 0.600 | adj: 0.518 | ce: 0.011 | fused: 0.236
-  - Amazon | 10Q | 2024-11-01 | sim: 0.596 | adj: 0.451 | ce: 0.062 | fused: 0.207
-  - Amazon | 10Q | 2025-05-02 | sim: 0.603 | adj: 0.495 | ce: 0.007 | fused: 0.204
-  - Amazon | 10Q | 2025-05-02 | sim: 0.602 | adj: 0.494 | ce: 0.011 | fused: 0.203
-  - Alphabet/Google | 10Q | 2024-10-30 | sim: 0.646 | adj: 0.489 | ce: 0.055 | fused: 0.138
-  - Amazon | 10Q | 2024-05-01 | sim: 0.608 | adj: 0.432 | ce: 0.027 | fused: 0.120
-  - Alphabet/Google | 10Q | 2024-07-24 | sim: 0.646 | adj: 0.472 | ce: 0.055 | fused: 0.113
-  - Amazon | 10Q | 2023-10-27 | sim: 0.626 | adj: 0.424 | ce: 0.005 | fused: 0.103
-  - Amazon | 10Q | 2023-08-04 | sim: 0.626 | adj: 0.417 | ce: 0.005 | fused: 0.093
-  - Amazon | 10Q | 2023-04-28 | sim: 0.626 | adj: 0.410 | ce: 0.005 | fused: 0.083
-  - Amazon | 10Q | 2022-04-29 | sim: 0.599 | adj: 0.376 | ce: 0.051 | fused: 0.081
-  - Amazon | 10Q | 2023-04-28 | sim: 0.601 | adj: 0.394 | ce: 0.034 | fused: 0.078
-  - Amazon | 10Q | 2023-04-28 | sim: 0.606 | adj: 0.397 | ce: 0.003 | fused: 0.065
+In conclusion, while Alphabet shows a clear growth trajectory with specific figures, Amazon's growth potential remains more speculative based on guidance without concrete revenue data for the previous year.
+
+Sources (20):
+  - Alphabet/Google | 10Q | 2025-10-30
+  - Amazon | 10Q | 2025-10-31
+  - Amazon | 10Q | 2025-08-01
+  - Amazon | 10Q | 2024-11-01
+  - Amazon | 10Q | 2024-11-01
+  - Alphabet/Google | 10K | 2024-01-31
+  - Alphabet/Google | 10K | 2024-01-31
+  - Amazon | 10Q | 2024-08-02
+  - Alphabet/Google | 10Q | 2023-10-25
+  - Alphabet/Google | 10Q | 2023-10-25
+  - Amazon | 10K | 2024-02-02
+  - Alphabet/Google | 10Q | 2023-07-26
+  - Alphabet/Google | 10Q | 2023-04-26
+  - Alphabet/Google | 10K | 2023-02-03
+  - Alphabet/Google | 10Q | 2022-10-26
+  - Alphabet/Google | 10Q | 2022-10-26
+  - Amazon | 10Q | 2023-10-27
+  - Amazon | 10Q | 2023-08-04
+  - Amazon | 10Q | 2022-04-29
+  - Amazon | 10Q | 2022-04-29
