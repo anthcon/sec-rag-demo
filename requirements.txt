@@ -27,7 +27,6 @@ distro==1.9.0
 durationpy==0.10
 emoji==2.15.0
 en_core_web_sm==3.8.0
-faiss-cpu==1.13.2
 filelock==3.25.0
 filetype==1.2.0
 flatbuffers==25.12.19

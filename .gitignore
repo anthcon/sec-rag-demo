@@ -9,6 +9,7 @@ venv/
 # Chroma DB
 chroma/
 
+
 # Mac
 .DS_Store
 

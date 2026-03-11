@@ -1,0 +1,214 @@
+
+========================================================================
+[2026-03-11T14:29:42.238891] GENERATE
+========================================================================
+PROMPT:
+You are a senior financial analyst specializing in SEC filings.
+Answer the question using ONLY the SEC filing excerpts provided below.
+
+RULES — follow these strictly:
+1. ONLY attribute information to the company named in each source header
+   (e.g., [Apple | 10-K | Q4 2024 | Filed: 2024-11-01]).
+   NEVER infer or assume data about one company from another company's filing.
+2. Cite every factual claim with (Company, Filing Type, Period).
+3. Use exact numbers, dollar amounts, percentages, and dates from the excerpts.
+   Do NOT round, estimate, or paraphrase numbers when the excerpt is specific.
+4. Calculate growth rates and year-over-year changes when raw figures are present.
+5. If data for a company, metric, or time period is missing from the excerpts,
+   say so explicitly — do NOT guess or fill from general knowledge.
+6. Prefer 10-K (annual) data over 10-Q (quarterly) when both are available.
+7. Structure your answer with clear headings and bullet points for readability.
+
+--- CONTEXT ---
+[Apple | 10Q | 2025Q4 | Filed: 2026-01-30]
+| Three Months Ended |  |
+| December 27,2025 |  | December 28,2024 |  |  |  |
+iPhone® | $ | 85,269 |  |  | $ | 69,138 |  |  |  |  |
+Mac® | 8,386 |  |  | 8,987 |  |  |  |  |
+iPad® | 8,595 |  |  | 8,088 |  |  |  |  |
+Wearables, Home and Accessories | 11,493 |  |  | 11,747 |  |  |  |  |
+Services | 30,013 |  |  | 26,340 |  |  |  |  |
+Total net sales | $ | 143,756 |  |  | $ | 124,300 |  |  |  |  |
+Portion of total net sales that was included in deferred revenue as of the beginning of the period | $ | 4,050 |  |  | $ | 3,690 |  |  |  |  |
+The Company’s proportion of net sales by disaggregated revenue source was generally consistent for each reportable segment in Note 10, “Segment Information” for the three months ended December 27, 2025 and December 28, 2024, except in Greater China, where iPhone revenue represented a moderately higher proportion of net sales.As of December 27, 2025 and September 27, 2025, the Company had total deferred revenue of $14.3 billion and $13.7 billion, respectively. As of December 27, 2025, the Company expects 66% of total deferred revenue to be realized in less than a year, 23% within one-to-two years, 9% within two-to-three years and 2% in greater than three years.Apple Inc. | Q1 2026 Form 10-Q | 6Note 3 – Earnings Per ShareThe following table shows the computation of basic and diluted earnings per share for the three months ended December 27, 2025 and December 28, 2024 (net income in millions and shares in thousands):
+| Three Months Ended |  |
+
+---
+
+[Apple | 10Q | 2025Q4 | Filed: 2026-01-30]
+| Three Months Ended |  |
+| December 27,2025 |  | December 28,2024 |  | Change |  |  |  |  |  |
+iPhone | $ | 85,269 |  |  | $ | 69,138 |  |  | 23 | % |  |  |  |  |  |
+Mac | 8,386 |  |  | 8,987 |  |  | (7) | % |  |  |  |  |  |
+iPad | 8,595 |  |  | 8,088 |  |  | 6 | % |  |  |  |  |  |
+Wearables, Home and Accessories | 11,493 |  |  | 11,747 |  |  | (2) | % |  |  |  |  |  |
+Services | 30,013 |  |  | 26,340 |  |  | 14 | % |  |  |  |  |  |
+Total net sales | $ | 143,756 |  |  | $ | 124,300 |  |  | 16 | % |  |  |  |  |  |
+
+---
+
+[Apple | 10Q | 2024Q4 | Filed: 2025-01-31]
+| Three Months Ended |  |
+| December 28,2024 |  | December 30,2023 |  | Change |  |  |  |  |  |
+iPhone | $ | 69,138 |  |  | $ | 69,702 |  |  | (1) | % |  |  |  |  |  |
+Mac | 8,987 |  |  | 7,780 |  |  | 16 | % |  |  |  |  |  |
+iPad | 8,088 |  |  | 7,023 |  |  | 15 | % |  |  |  |  |  |
+Wearables, Home and Accessories | 11,747 |  |  | 11,953 |  |  | (2) | % |  |  |  |  |  |
+Services | 26,340 |  |  | 23,117 |  |  | 14 | % |  |  |  |  |  |
+Total net sales | $ | 124,300 |  |  | $ | 119,575 |  |  | 4 | % |  |  |  |  |  |
+
+---
+
+[Apple | 10Q | 2023Q4 | Filed: 2024-02-02]
+2% or $2.4 billion during the first quarter of 2024 compared to the same quarter in 2023, driven primarily by higher net sales of iPhone and Services, partially offset by lower net sales of iPad and Wearables, Home and Accessories.During the first quarter of 2024, the Company announced an updated MacBook Pro® 14-in., MacBook Pro 16-in. and iMac®.The Company repurchased $20.5 billion of its common stock and paid dividends and dividend equivalents of $3.8 billion during the first quarter of 2024.Macroeconomic ConditionsMacroeconomic conditions, including inflation, changes in interest rates, and currency fluctuations, have directly and indirectly impacted, and could in the future materially impact, the Company’s results of operations and financial condition.Apple Inc. | Q1 2024 Form 10-Q | 13Segment Operating PerformanceThe following table shows net sales by reportable segment for the three months ended December 30, 2023 and December 31, 2022 (dollars in millions):
+
+---
+
+[Apple | 10Q | 2023Q4 | Filed: 2024-02-02]
+Europe: |  |  |  |  |  |  |
+Net sales | $ | 30,397 |  |  | $ | 27,681 |  |  |  |  |
+Operating income | $ | 12,711 |  |  | $ | 10,017 |  |  |  |  |
+Greater China: |  |  |  |  |  |  |
+Net sales | $ | 20,819 |  |  | $ | 23,905 |  |  |  |  |
+Operating income | $ | 8,622 |  |  | $ | 10,437 |  |  |  |  |
+Japan: |  |  |  |  |  |  |
+Net sales | $ | 7,767 |  |  | $ | 6,755 |  |  |  |  |
+Operating income | $ | 3,819 |  |  | $ | 3,236 |  |  |  |  |
+Rest of Asia Pacific: |  |  |  |  |  |  |
+Net sales | $ | 10,162 |  |  | $ | 9,535 |  |  |  |  |
+Operating income | $ | 4,579 |  |  | $ | 3,851 |  |  |  |  |
+Apple Inc. | Q1 2024 Form 10-Q | 11A reconciliation of the Company’s segment operating income to the Condensed Consolidated Statements of Operations for the three months ended December 30, 2023 and December 31, 2022 is as follows (in millions):
+| Three Months Ended |  |
+| December 30,2023 |  | December 31,2022 |  |  |  |
+Segment operating income | $ | 50,088 |  |  | $ | 45,405 |  |  |  |  |
+Research and development expense | (7,696) |  |  | (7,709) |  |  |  |  |
+Other corporate expenses, net | (2,019) |  |  | (1,680) |  |  |  |  |
+Total operating income | $ | 40,373 |  |  | $ | 36,016 |  |  |  |  |
+
+---
+
+[Apple | 10K | 2023Q3 | Filed: 2023-11-03]
+3% or $11.0 billion during 2023 compared to 2022. The weakness in foreign currencies relative to the U.S. dollar accounted for more than the entire year-over-year decrease in total net sales, which consisted primarily of lower net sales of Mac and iPhone, partially offset by higher net sales of Services.The Company announces new product, service and software offerings at various times during the year. Significant announcements during fiscal year 2023 included the following:First Quarter 2023:•iPad and iPad Pro;•Next-generation Apple TV 4K; and•MLS Season Pass, a Major League Soccer subscription streaming service.Second Quarter 2023:•MacBook Pro 14”, MacBook Pro 16” and Mac mini; and•Second-generation HomePod.Third Quarter 2023:•MacBook Air 15”, Mac Studio and Mac Pro;•Apple Vision Pro™, the Company’s first spatial computer featuring its new visionOS™, expected to be available in early calendar year 2024; and•iOS 17, macOS Sonoma, iPadOS 17, tvOS 17 and watchOS 10, updates to the Company’s operating systems.Fourth Quarter 2023:•iPhone 15, iPhone 15 Plus, iPhone 15 Pro and iPhone 15 Pro Max; and•Apple Watch Series 9 and Apple Watch Ultra 2.In May 2023, the Company announced a new share repurchase program of up to $90 billion and raised its quarterly dividend from $0.23 to $0.24 per share beginning in May 2023. During 2023, the Company repurchased $76.6 billion of its common stock and paid dividends and dividend equivalents of $15.0 billion.Macroeconomic ConditionsMacroeconomic
+
+---
+
+[Apple | 10Q | 2023Q3 | Filed: 2023-08-04]
+Mac® | 6,840 |  |  | 7,382 |  |  | 21,743 |  |  | 28,669 |
+iPad® | 5,791 |  |  | 7,224 |  |  | 21,857 |  |  | 22,118 |
+Wearables, Home and Accessories | 8,284 |  |  | 8,084 |  |  | 30,523 |  |  | 31,591 |
+Services | 21,213 |  |  | 19,604 |  |  | 62,886 |  |  | 58,941 |
+Total net sales | $ | 81,797 |  |  | $ | 82,959 |  |  | $ | 293,787 |  |  | $ | 304,182 |
+
+---
+
+[Apple | 10K | 2023Q3 | Filed: 2023-11-03]
+Other corporate expenses, net(1) | (6,672) |  |  | (7,207) |  |  | (6,143) |
+Total operating income | $ | 114,301 |  |  | $ | 119,437 |  |  | $ | 108,949 |
+(1)Includes corporate marketing expenses, certain share-based compensation expenses, various nonrecurring charges, and other separately managed general and administrative costs.Apple Inc. | 2023 Form 10-K | 47The U.S. and China were the only countries that accounted for more than 10% of the Company’s net sales in 2023, 2022 and 2021. Net sales for 2023, 2022 and 2021 and long-lived assets as of September 30, 2023 and September 24, 2022 were as follows (in millions):
+| 2023 |  | 2022 |  | 2021
+Net sales: |  |  |  |  |
+U.S. | $ | 138,573 |  |  | $ | 147,859 |  |  | $ | 133,803 |
+China(1) | 72,559 |  |  | 74,200 |  |  | 68,366 |
+Other countries | 172,153 |  |  | 172,269 |  |  | 163,648 |
+Total net sales | $ | 383,285 |  |  | $ | 394,328 |  |  | $ | 365,817 |
+| 2023 |  | 2022
+Long-lived assets: |  |  |
+U.S. | $ | 33,276 |  |  | $ | 31,119 |
+China(1) | 5,778 |  |  | 7,260 |
+Other countries | 4,661 |  |  | 3,738 |
+Total long-lived assets | $ | 43,715 |  |  | $ | 42,117 |
+
+---
+
+[Apple | 10Q | 2023Q2 | Filed: 2023-05-05]
+Mac® | 7,168 |  |  | 10,435 |  |  | 14,903 |  |  | 21,287 |
+iPad® | 6,670 |  |  | 7,646 |  |  | 16,066 |  |  | 14,894 |
+Wearables, Home and Accessories | 8,757 |  |  | 8,806 |  |  | 22,239 |  |  | 23,507 |
+Services | 20,907 |  |  | 19,821 |  |  | 41,673 |  |  | 39,337 |
+Total net sales | $ | 94,836 |  |  | $ | 97,278 |  |  | $ | 211,990 |  |  | $ | 221,223 |
+
+---
+
+[Apple | 10K | 2022Q3 | Filed: 2022-10-28]
+| 2022 |  | 2021 |  | 2020
+iPhone(1) | $ | 205,489 |  |  | $ | 191,973 |  |  | $ | 137,781 |
+Mac(1) | 40,177 |  |  | 35,190 |  |  | 28,622 |
+iPad(1) | 29,292 |  |  | 31,862 |  |  | 23,724 |
+Wearables, Home and Accessories(1)(2) | 41,241 |  |  | 38,367 |  |  | 30,620 |
+Services(3) | 78,129 |  |  | 68,425 |  |  | 53,768 |
+Total net sales(4) | $ | 394,328 |  |  | $ | 365,817 |  |  | $ | 274,515 |
+--- END CONTEXT ---
+
+QUESTION: whats the deal with apple? how much money they been making compared to prior years
+
+Provide a well-structured, detailed answer with specific numbers and citations.
+
+RESPONSE:
+# Apple Financial Performance Overview
+
+## Recent Quarterly Performance
+
+### Q4 2025 (Three Months Ended December 27, 2025)
+- **Total Net Sales**: $143,756 million
+  - **Year-over-Year Change**: Increased by 16% from $124,300 million in Q4 2024.
+- **iPhone Sales**: $85,269 million
+  - **Year-over-Year Change**: Increased by 23% from $69,138 million in Q4 2024.
+- **Mac Sales**: $8,386 million
+  - **Year-over-Year Change**: Decreased by 7% from $8,987 million in Q4 2024.
+- **iPad Sales**: $8,595 million
+  - **Year-over-Year Change**: Increased by 6% from $8,088 million in Q4 2024.
+- **Wearables, Home and Accessories**: $11,493 million
+  - **Year-over-Year Change**: Decreased by 2% from $11,747 million in Q4 2024.
+- **Services**: $30,013 million
+  - **Year-over-Year Change**: Increased by 14% from $26,340 million in Q4 2024.  
+  (Apple | 10-Q | Q4 2025 | Filed: 2026-01-30)
+
+### Q4 2024 (Three Months Ended December 28, 2024)
+- **Total Net Sales**: $124,300 million
+  - **Year-over-Year Change**: Increased by 4% from $119,575 million in Q4 2023.
+- **iPhone Sales**: $69,138 million
+  - **Year-over-Year Change**: Decreased by 1% from $69,702 million in Q4 2023.
+- **Mac Sales**: $8,987 million
+  - **Year-over-Year Change**: Increased by 16% from $7,780 million in Q4 2023.
+- **iPad Sales**: $8,088 million
+  - **Year-over-Year Change**: Increased by 15% from $7,023 million in Q4 2023.
+- **Wearables, Home and Accessories**: $11,747 million
+  - **Year-over-Year Change**: Decreased by 2% from $11,953 million in Q4 2023.
+- **Services**: $26,340 million
+  - **Year-over-Year Change**: Increased by 14% from $23,117 million in Q4 2023.  
+  (Apple | 10-Q | Q4 2024 | Filed: 2025-01-31)
+
+## Annual Performance Comparison
+
+### Fiscal Year 2023
+- **Total Net Sales**: $383,285 million
+  - **Year-over-Year Change**: Decreased by 3% from $394,328 million in fiscal year 2022.
+- **iPhone Sales**: $205,489 million
+  - **Year-over-Year Change**: Increased by 7% from $191,973 million in fiscal year 2022.
+- **Mac Sales**: $40,177 million
+  - **Year-over-Year Change**: Increased by 14% from $35,190 million in fiscal year 2022.
+- **iPad Sales**: $29,292 million
+  - **Year-over-Year Change**: Decreased by 8% from $31,862 million in fiscal year 2022.
+- **Wearables, Home and Accessories**: $41,241 million
+  - **Year-over-Year Change**: Increased by 7% from $38,367 million in fiscal year 2022.
+- **Services**: $78,129 million
+  - **Year-over-Year Change**: Increased by 14% from $68,425 million in fiscal year 2022.  
+  (Apple | 10-K | FY 2023 | Filed: 2023-11-03)
+
+### Fiscal Year 2022
+- **Total Net Sales**: $394,328 million
+  - **Year-over-Year Change**: Increased by 8% from $365,817 million in fiscal year 2021.
+- **iPhone Sales**: $191,973 million
+  - **Year-over-Year Change**: Increased by 39% from $137,781 million in fiscal year 2021.
+- **Mac Sales**: $35,190 million
+  - **Year-over-Year Change**: Increased by 23% from $28,622 million in fiscal year 2021.
+- **iPad Sales**: $31,862 million
+  - **Year-over-Year Change**: Increased by 34% from $23,724 million in fiscal year 2021.
+- **Wearables, Home and Accessories**: $38,367 million
+  - **Year-over-Year Change**: Increased by 25% from $30,620 million in fiscal year 2021.
+- **Services**: $68,425 million
+  - **Year-over-Year Change**: Increased by 27% from $53,768 million in fiscal year 2021.  
+  (Apple | 10-K | FY 2022 | Filed: 2022-10-28)
+
+## Summary
+Apple has shown a strong recovery in its quarterly performance for Q4 2025, particularly in iPhone and Services sales, with a notable 16% increase in total net sales compared to the previous year. However, the annual performance for fiscal year 2023 reflects a slight decline in total net sales compared to fiscal year 2022, primarily due to currency fluctuations and lower sales in certain segments like iPad. Overall, Apple continues to demonstrate resilience and growth in key areas, particularly in Services and iPhone sales.
