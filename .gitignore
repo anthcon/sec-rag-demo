@@ -15,11 +15,3 @@ chroma/
 
 # VSCode
 .vscode/
-
-# other
-readme_draft.txt
-dry-run/
-query copy.py
-reranker copy.py
-COPIES_OF_OLDER_VERSIONS/
-faiss_stuff/
