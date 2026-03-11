@@ -77,4 +77,9 @@ in the excerpts after thorough review.
 
 **Motivation:** The model was returning "data not available" for questions whose answers existed in the corpus — likely because SEC filing tables arrive as pipe-delimited or irregularly spaced text after chunking. The model appeared to skip these rather than parse them.
 
-**Result:** Pending evaluation.
+
+## Final Result
+### Issues
+- **Hallucinated duplicates**: When a single filing reports current and prior-year revenue side by side, the model sometimes assigns the same figure to two different years.
+- **Fiscal vs. calendar year confusion**: Companies with non-December fiscal year-ends get mislabeled because the prompt has no fiscal calendar context.
+- **Noisy retrieval**: Chunks from filings outside the queried date range still get retrieved, adding irrelevant context.

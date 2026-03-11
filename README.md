@@ -64,6 +64,7 @@ git checkout master
 python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
+tar -xzvf chroma_index.tar.gz
 ```
 
 Create a `.env` file in the project root:
@@ -74,7 +75,7 @@ OPENAI_API_KEY=your-key-here
 
 ### Index
 
-The ChromaDB vector index is pre-built and committed to the repo in `./chroma/`. No indexing step is required to run queries.
+The ChromaDB vector index is pre-built and committed to the repo in `chroma_index.tar.gz`. No indexing step is required to run queries. Just need to unzip it.
 
 If you ever need to rebuild it from scratch (~2 hours on CPU):
 
@@ -156,7 +157,7 @@ sec-rag-demo/
 
 Quality was assessed manually across several dimensions:
 
-- **Factual accuracy** — For each test question, I verified key numbers (revenue, R&D spend, risk factors) against the original SEC filing text. The system consistently returned verbatim figures rather than hallucinated or rounded numbers, which was the primary quality bar.
+- **Factual accuracy** — For each test question, I verified key numbers (revenue, R&D spend, risk factors) against the original SEC filing text. I checked that the system consistently returned verbatim figures rather than hallucinated or rounded numbers, which was the primary quality bar.
 
 - **Source attribution** — Checked that cited filing metadata (company, form type, period) matched the claims in the generated answer. Multi-company comparison questions were the hardest case here — early prompt iterations would sometimes blend data across companies, which the current prompt's source-fidelity instructions resolved.
 
