@@ -1,0 +1,533 @@
+
+========================================================================
+[2026-03-16T18:28:23.693287] GENERATE
+========================================================================
+PROMPT:
+You are a senior financial analyst specializing in SEC filings.
+Answer the question using ONLY the SEC filing excerpts provided below.
+
+RULES — follow these strictly:
+1. ONLY attribute information to the company named in each source header
+   (e.g., [Apple | 10-K | Q4 2024 | Filed: 2024-11-01]).
+   NEVER infer or assume data about one company from another company's filing.
+2. Cite every factual claim with (Company, Filing Type, Period).
+3. Use exact numbers, dollar amounts, percentages, and dates from the excerpts.
+   Do NOT round, estimate, or paraphrase numbers when the excerpt is specific.
+4. Calculate growth rates and year-over-year changes when raw figures are present.
+5. If data for a company, metric, or time period is missing from the excerpts,
+   say so explicitly — do NOT guess or fill from general knowledge.
+6. Prefer 10-K (annual) data over 10-Q (quarterly) when both are available.
+7. Structure your answer with clear headings and bullet points for readability.
+
+--- CONTEXT ---
+[John Deere | 10K | UNKNOWN | Filed: 2025-12-18]
+End of year balance |  | $ | 1,259 |  | $ | 1,426 | ​
+​​The costs for extended warranty programs are recognized as incurred. See Note 9 for extended warranty claim costs.In certain international markets, we provide guarantees to banks for the retail financing of John Deere equipment. At the end of 2025, the notional value of these guarantees was $135. We may repossess the equipment collateralizing the receivables. At November 2, 2025, the accrued losses under these agreements were not material. We also had guarantees to a VIE (see Note 1) totaling $157 at the end of 2025. We also had other miscellaneous contingent liabilities and guarantees totaling approximately $100 at November 2, 2025. The accrued liability for these contingencies was $25 at November 2, 2025.At November 2, 2025, we had commitments of approximately $415 for the construction and acquisition of property and equipment. Also, at November 2, 2025, we had restricted assets of $323, classified as “Other assets,” which includes restricted cash.We have commitments to extend credit to customers. The commitments are in the form of lines of credit and other pre-approved credit arrangements. We have the right to cancel or amend the terms of these commitments at any time. These commitments are not expected to be fully drawn upon; therefore, the total commitment amounts likely do not represent a future cash requirement. The commitments to extend credit at November 2, 2025, were:
+| ● | $13.3billion to John Deere dealers
+
+---
+
+[John Deere | 10K | UNKNOWN | Filed: 2025-12-18]
+​​The “Financial products” category above includes finance and interest income from retail notes related to sales of John Deere equipment to retail customers, wholesale financing to dealers of John Deere equipment, and revolving charge accounts; lease income from retail leases of John Deere equipment; and revenue from extended warranties.The ”Other” category includes sales of components to other equipment manufacturers that are included in “Net sales;” revenue earned over time from precision guidance, telematics, and other information enabled solutions; revenue from service performed at company owned dealerships and service centers; gains on disposition of property and businesses; trademark licensing revenue; and other miscellaneous revenue items that are included in “Other income.”Revenues are assigned to the geographic market based on customer location.We invoice in advance of recognizing the revenue of certain products and services. These relate to extended warranty premiums, advance payments for future equipment sales, and subscription and service revenue related to precision guidance, telematic services, and other information enabled solutions. These advanced customer payments are presented as deferred revenue, a contract liability, in “Accounts payable and accrued expenses.” The deferred revenue received but not recognized in revenue was $2,039 and $1,923 at November 2, 2025, and October 27, 2024, respectively. The contract liability is reduced as the revenue is
+
+---
+
+[John Deere | 10K | UNKNOWN | Filed: 2025-12-18]
+Joshua A. Jepsen (48) | ​ | Senior Vice President and Chief Financial Officer (2022) | ​ | -Deputy Financial Officer (2022)-Director, Investor Relations (2018) |
+Ryan D. Campbell (51) | ​ | President, Worldwide Construction & Forestry and Power Systems (2022) | ​ | -Senior Vice President and Chief Financial Officer (2019) |
+Jahmy J. Hindman (50) | ​ | Senior Vice President and Chief Technology Officer (2023) | ​ | -Chief Technology Officer (2020) |
+Rajesh Kalathur (57) | ​ | President, John Deere Financial, and Chief Information Officer (2022) | ​ | -President, John Deere Financial and Senior Vice President, Global Information Technology and Chief Financial Officer (2022)-President, John Deere Financial, and Chief Information Officer (2019) |
+Deanna M. Kovar (47) | ​ | President, Worldwide Agriculture & Turf Division, Production & Precision Ag, Sales and Marketing Regions of the Americas and Australia (2025) | ​ | -President, Worldwide Agriculture & Turf Division, Small Ag & Turf, Sales and Marketing Regions of Europe, CIS, Asia, and Africa (2023)-Vice President, Production Systems, Production & Precision Ag (2023)-Vice President, Production Systems (2020) |
+Felecia J. Pryor (51) | ​ | Senior Vice President and Chief People Officer (2022) | ​ | -Executive Vice President & Chief Human Resources Officer, BorgWarner Inc. (2022)-Global Vice President Human Resources, BorgWarner, Inc. - Morse Systems (2019) |
+
+---
+
+[John Deere | 10K | UNKNOWN | Filed: 2025-12-18]
+| ● | slower economic growth
+​
+​ | ​
+CONSOLIDATEDRESULTS | 2025comparedto2024
+Highlights
+| ● | Net income declined in 2025 compared to 2024, driven by declining market conditions.
+| ● | We continue to focus on structural profitability and strategically investing in solutions that deliver value to our customers.
+Net Sales and Revenues Net Sales (Equipment Operations)
+| ● | Net sales decreased in 2025 primarily due to lower sales volumes driven by declining market conditions (see Business Segment Results).
+Net Income (Attributable to Deere & Company) Diluted Earnings Per Share (EPS) ($ per share)
+| ● | Net income and diluted EPS decreased driven by lower sales.
+Other Significant Statement of Consolidated Income Changes An explanation of the cost of sales to net sales ratio and other significant statements of consolidated income changes follows:​​
+​ | ​ | ​ | ​ | ​ | ​ | ​ | ​ | ​ | ​
+Deere&Company | ​ | 2025 | ​ | 2024 | ​ | %Change | ​
+Cost of sales to net sales | ​ | ​ | 72.4% | ​ | ​ | 68.8% | ​ | +5 | ​
+(-) Tariffs | ​ | Unfavorable | ​
+(-) Lower volumes | ​ | Unfavorable | ​
++ Material costs | ​ | Favorable | ​
+Increased due to higher tariffs and higher overhead costs from production inefficiencies associated with lower volumes, partially offset by reduced material costs and lower employee profit-sharing incentives. | ​
+​ | ​ | ​ | ​ | ​ | ​ | ​ | ​ | ​ | ​
+Other income | ​ | ​ | 1,019 | ​ | ​ | 1,198 | ​ | -15 | ​
+
+---
+
+[John Deere | 10K | UNKNOWN | Filed: 2025-12-18]
+provision for income taxes and $47 of interest income.Financial Services Financing Incentives CorrectionIn the second quarter of 2023, we corrected the accounting treatment for financing incentives offered to John Deere dealers, which impacted the timing of expense recognition and the presentation of incentive costs in the consolidated financial statements. The cumulative effect of this correction, $173 pretax ($135 after-tax), was recorded in “Selling, administrative and general expenses” in the second quarter of 2023. Prior period results for Deere & Company were not restated, as the adjustment was considered immaterial to our financial statements.​58
+
+---
+
+[John Deere | 10K | UNKNOWN | Filed: 2025-12-18]
+10.23† | ​ | John Deere Defined Contribution Restoration Plan, as amended October31, 2024* | ​ | Exhibit 10.21 to Form 10-K of registrant for the year ended October 27, 2024
+10.24† | ​ | John Deere Supplemental Pension Benefit Plan, as amended December31, 2020* | ​ | Exhibit 10.15 to Form 10-K of registrant for the year ended October 31, 2021
+10.25† | ​ | John Deere Senior Supplementary Pension Benefit Plan, as amended October 31, 2022* | ​ | Exhibit 10.23 to Form 10-K of registrant for the year ended October 27, 2024
+10.26† | ​ | John Deere ERISA Supplementary Pension Benefit Plan, as amended October 31, 2022* | ​ | Exhibit 10.1 to Form 10-Q of registrant for the quarter ended January 29, 2023
+10.27† | ​ | Deere & Company Nonemployee Director Stock Ownership Plan, as amended February 29, 2012* | ​ | Appendix A to Proxy Statement of registrant filed on January 13, 2012
+10.28† | ​ | Deere & Company Nonemployee Director Stock Ownership Plan, as amended February 23, 2022* | ​ | Appendix C to Proxy Statement of registrant filed on January 7, 2022
+10.29† | ​ | Deere & Company Nonemployee Director Deferred Compensation Plan, as amended October 31, 2024 | ​ | Filed herewith
+10.30† | ​ | Amended and Restated Change in Control Severance Program of Deere & Company, effective August 29, 2023* | ​ | Exhibit 10.1 to Form 10-Q of registrant for the quarter ended July 30, 2023
+
+---
+
+[John Deere | 10K | UNKNOWN | Filed: 2025-12-18]
+Table of Contents​Company Outlook for 2026
+| ● | Large agriculture sales in North America are expected to remain subdued.
+| ● | Small agriculture & turf and construction & forestry sales are expected to improve in 2026.
+Agriculture and Turf Outlook for 2026
+| ● | Demand in the U.S. and Canada for large agriculture equipment is expected to decrease further amidst challenging farm fundamentals for row crop farmers, which pressures short-term liquidity. Although the used equipment market is improving, it continues to constrain investments in new machines. These factors are partially offset by strong crop yields and consumption, recent U.S. trade agreements, growing demand for biofuels, and supportive government subsidies.
+| ● | We expect small agricultural and turf equipment sales to be flat to up slightly from 2025 levels in the U.S. and Canada. The dairy and livestock segment continues to generate profits driven by solid beef prices. A modest recovery is anticipated in the turf sector following an inflection in the housing market and growth in the overall economy.
+| ● | In Europe, the industry is forecasted to be flat to up slightly supported by strong dairy margins, a stabilizing interest rate environment, and improving crop yields.
+
+---
+
+[John Deere | 10K | UNKNOWN | Filed: 2025-12-18]
+​ | ​
+TRENDS&ECONOMICCONDITIONS | ​
+Industry Sales Outlook for Fiscal 2026Agriculture and Turf ​Construction and Forestry Company TrendsIn 2022, we introduced our Leap Ambitions, a set of focused goals designed to guide the implementation of our Smart Industrial Operating Model. These Ambitions are built upon a foundation of product quality and manufacturing excellence, supported by a best-in-class dealer channel, and enabled by employees dedicated to solving some of the world’s most important problems. To build on our accomplishments and lay the foundation for sustained growth as we move toward 2030, in December 2025 we refined our Ambitions. Our refined Ambitions feature multi-year financial and operational goals, emphasizing the use of our differentiated equipment and service solutions, including automation, autonomy, digitalization, lifecycle solutions, and Solutions as a Service (SaaS).Deeper integration of technology into equipment to enable customers to do more with less remains a persistent market trend. Customers seek to improve profitability, productivity, and sustainability by selecting our equipment and technology solutions. These technologies are incorporated into customer operations across the varied production systems in which we serve. While we continue to benefit from the adoption of these technologies, revenue from SaaS products did not represent a significant percentage of our revenues in 2025.32
+Table of Contents​Company Outlook for 2026
+
+---
+
+[John Deere | 10K | UNKNOWN | Filed: 2025-12-18]
+​​​​ITEM 16.FORM 10-K SUMMARY.None.​​​​31
+Table of ContentsMANAGEMENT’S DISCUSSION AND ANALYSISManagement’s Discussion and Analysis of Financial Condition and Results of Operations (MD&A) is intended to promote understanding of our financial condition and results of operations. The MD&A is provided as a supplement to, and should be read in conjunction with, the consolidated financial statements and the accompanying Notes to Consolidated Financial Statements. All amounts are presented in millions of U.S. dollars, unless otherwise specified. For comparison of 2024 to 2023 results, refer to the “Management’s Discussion and Analysis” section of our 2024 Form 10-K, which is hereby incorporated by reference.
+​ | ​
+OVERVIEW | ​
+Deere & Company is a global leader in the production of agricultural, turf, construction, and forestry equipment and solutions. John Deere Financial provides financing for John Deere equipment, parts, services, and other inputs customers need to run their operations. Our operations are managed through the Production & Precision Agriculture (PPA), Small Agriculture & Turf (SAT), Construction & Forestry (CF), and Financial Services (FS) operating segments. References to “equipment operations” include PPA, SAT, and CF, while references to “agriculture and turf” include both PPA and SAT.Net Sales and Revenues by Segment in 2025​
+​ | ​
+TRENDS&ECONOMICCONDITIONS | ​
+
+---
+
+[John Deere | 10K | UNKNOWN | Filed: 2025-12-18]
+Table of ContentsPART I ITEM 1. BUSINESS. This Annual Report on Form 10-K contains forward-looking statements that are subject to risks and uncertainties. All statements other than statements of historical fact included in this Annual Report on Form 10-K are forward-looking statements. Forward-looking statements provide our current expectations and projections relating to our financial condition, results of operations, plans, objectives, future performance, and business. You can identify forward-looking statements as they do not relate to historical or current facts and by words such as “believe,” “expect,” “estimate,” “anticipate,” “will,” “aim,” “should,” “plan,” “forecast,” “target,” “guide,” “project,” “intend,” “could,” and similar words or expressions. All forward-looking statements are subject to risks and uncertainties that may cause actual results to differ materially from those that we expected. Important factors that could cause actual results to differ materially from our expectations, or cautionary statements, and other important information about forward-looking statements are disclosed under Item 1A, “Risk Factors,” and Item 7, “Management’s Discussion and Analysis of Financial Condition and Results of Operations–Forward-Looking Statements,” in this Annual Report on Form 10-K. As used herein, the terms “John Deere,” “we,” “us,” “our,” or “the Company” refer collectively to Deere & Company and its subsidiaries, unless designated or identified otherwise. All
+--- END CONTEXT ---
+
+QUESTION: how is john deere planning on making more money next year
+
+Provide a well-structured, detailed answer with specific numbers and citations.
+
+RESPONSE:
+### John Deere's Financial Outlook for 2026
+
+John Deere has outlined several strategies and expectations for improving its financial performance in 2026, particularly in the context of its agricultural and turf equipment segments. Here are the key points from their outlook:
+
+#### 1. **Sales Expectations**
+- **Large Agriculture Equipment**: Sales in North America are expected to remain subdued due to challenging farm fundamentals, which pressure short-term liquidity. However, the company anticipates that the used equipment market is improving, which may help offset some of the declines in new machine investments.
+- **Small Agriculture & Turf Equipment**: Sales are expected to be flat to slightly up from 2025 levels in the U.S. and Canada. This segment is supported by:
+  - Strong profits in the dairy and livestock segment driven by solid beef prices.
+  - A modest recovery anticipated in the turf sector, influenced by improvements in the housing market and overall economic growth (John Deere | 10-K | UNKNOWN | Filed: 2025-12-18).
+
+#### 2. **Market Trends and Strategic Focus**
+- **Technological Integration**: John Deere is focusing on deeper integration of technology into its equipment. This includes automation, autonomy, digitalization, and lifecycle solutions, which are expected to enhance customer profitability and productivity.
+- **SaaS Revenue**: Although revenue from Solutions as a Service (SaaS) products did not represent a significant percentage of total revenues in 2025, the company is emphasizing these technologies to drive future growth (John Deere | 10-K | UNKNOWN | Filed: 2025-12-18).
+
+#### 3. **Financial Management**
+- **Commitments to Extend Credit**: At November 2, 2025, John Deere had commitments to extend credit to customers amounting to approximately $13.3 billion. This financial support could facilitate sales by making it easier for customers to finance their purchases (John Deere | 10-K | UNKNOWN | Filed: 2025-12-18).
+
+#### 4. **Cost Management**
+- **Focus on Structural Profitability**: The company is concentrating on structural profitability and strategically investing in solutions that deliver value to customers, which may help mitigate the impact of declining sales volumes (John Deere | 10-K | UNKNOWN | Filed: 2025-12-18).
+
+### Conclusion
+John Deere's strategy for enhancing profitability in 2026 revolves around improving sales in specific segments, leveraging technology, and managing financial commitments effectively. While challenges remain, particularly in the large agriculture equipment market, the company is positioning itself to capitalize on emerging opportunities and trends.
+
+========================================================================
+[2026-03-17T13:24:16.948636] GENERATE
+========================================================================
+PROMPT:
+You are a senior financial analyst specializing in SEC filings.
+Answer the question using ONLY the SEC filing excerpts provided below.
+
+RULES — follow these strictly:
+1. ONLY attribute information to the company named in each source header
+   (e.g., [Apple | 10-K | Q4 2024 | Filed: 2024-11-01]).
+   NEVER infer or assume data about one company from another company's filing.
+2. Cite every factual claim with (Company, Filing Type, Period).
+3. Use exact numbers, dollar amounts, percentages, and dates from the excerpts.
+   Do NOT round, estimate, or paraphrase numbers when the excerpt is specific.
+4. Calculate growth rates and year-over-year changes when raw figures are present.
+5. If data for a company, metric, or time period is missing from the excerpts,
+   say so explicitly — do NOT guess or fill from general knowledge.
+6. Prefer 10-K (annual) data over 10-Q (quarterly) when both are available.
+7. Structure your answer with clear headings and bullet points for readability.
+
+--- CONTEXT ---
+[NVIDIA | 10K | UNKNOWN | Filed: 2025-02-26]
+Compute & Networking revenue – The year over year increase was due to strong demand for our accelerated computing and AI solutions. Revenue from Data Center computing grew 162% driven primarily by demand for our Hopper computing platform used for large language models, recommendation engines, and generative AI applications. Revenue from Data Center networking grew 51% driven by Ethernet for AI revenue, which includes Spectrum-X end-to-end ethernet platform.Graphics revenue – The year over year increase was driven by sales of our GeForce RTX 40 Series GPUs.Reportable segment operating income – The year over year increase in Compute & Networking segment operating income was driven by growth in revenue. The year over year decrease in Graphics segment operating income was driven by an increase of 44% in segment operating expenses, partially offset by growth in revenue.All Other operating loss – The year over year increase was due to an increase in stock-based compensation expense reflecting employee growth and compensation increases.Concentration of RevenueWe refer to customers who purchase products directly from NVIDIA as direct customers, such as AIBs, distributors, ODMs, OEMs, and system integrators. We have certain customers that may purchase products directly from NVIDIA and may use either internal resources or third-party system integrators to complete their build. We also have indirect customers, who purchase products through our direct customers; indirect customers
+
+---
+
+[NVIDIA | 10Q | 2024Q3 | Filed: 2024-08-28]
+margin increased from a year ago on strong Data Center revenue growth primarily driven by our Hopper GPU computing platform. Sequentially, gross margin decreased primarily driven by inventory provisions for low-yielding Blackwell material and a higher mix of new products within Data Center.Operating expenses were up 48% from a year ago and up 12% sequentially, largely driven by compensation and benefits, reflecting growth in employees and compensation.Market Platform HighlightsData Center revenue for the second quarter of fiscal year 2025 was $26.3 billion, up 16% from the previous quarter and up 154% from a year ago. We unveiled an array of NVIDIA Blackwell-powered systems featuring NVIDIA Grace CPUs, networking and infrastructure from top manufacturers. We announced broad adoption of the NVIDIA Spectrum-X Ethernet networking platform by cloud service providers, GPU cloud providers and enterprises, as well as partners incorporating it into their offerings. We released NVIDIA Inference Microservices, or NIM, for broad availability to developers globally and unveiled that more than 150 companies are integrating NIM into their platforms to speed generative AI application development. We introduced an NVIDIA AI Foundry service and NIM inference microservices to accelerate generative AI for the world’s enterprises with the Llama 3.1 collection of models. We announced that the combination of NVIDIA H200 and NVIDIA Blackwell architecture B200 processors swept the latest
+
+---
+
+[NVIDIA | 10Q | 2024Q2 | Filed: 2024-05-29]
+Compute & Networking revenue – The year-on-year increase was due to higher Data Center revenue. Compute GPU grew 497%, due to higher shipments of the NVIDIA Hopper GPU computing platform used for training and inferencing with large language models, recommendation engines, and generative AI applications. Networking was up 242% on strong growth of InfiniBand end-to-end solutions.Graphics revenue – The year-on-year increase of 18% was led by higher demand for Gaming.Reportable segment operating income – The year-on-year increase in Compute & Networking and Graphics operating income was driven by higher revenue.All Other operating loss – The year-on-year increase was due to an increase in stock-based compensation expense.Concentration of RevenueRevenue by geographic region is designated based on the billing location even if the revenue may be attributable to end customers, such as enterprises and gamers in a different location. Revenue from sales to customers outside of the United States accounted for 48% and 67% of total revenue for the first quarter of fiscal years 2025 and 2024, respectively.We refer to customers who purchase products directly from NVIDIA as direct customers, such as original equipment manufacturers, or OEMs, original device manufacturers, or ODMs, system integrators, add-in board manufacturers, and distributors. We also have indirect customers, who purchase products through our direct customers; indirect customers include public cloud providers, consumer
+
+---
+
+[NVIDIA | 10Q | 2024Q2 | Filed: 2024-05-29]
+a year ago and down 8% sequentially. The year-on-year increase primarily reflects higher demand. The sequential decrease reflects seasonally lower GPU sales for laptops. Professional Visualization revenue was up 45% from a year ago and down 8% sequentially. The year-on-year increase primarily reflects higher sell-in to partners following the normalization of channel inventory levels. The sequential decrease was primarily due to desktop workstation GPUs.Automotive revenue was up 11% from a year ago and up 17% sequentially. The year-on-year increase was driven primarily by self-driving platforms. The sequential increase was driven by AI Cockpit solutions and self-driving platforms. Gross margin for the first quarter increased significantly from a year ago on strong Data Center revenue growth primarily driven by our Hopper GPU computing platform. Sequentially, gross margin benefited from lower inventory charges.Operating expenses were up 39% from a year ago and up 10% sequentially. The increases were primarily driven by compensation and benefits, reflecting growth in employees and compensation.Market Platform HighlightsData Center revenue for the first quarter of fiscal year 2025 was $22.6 billion, up 427% from a year ago and up 23% from the previous quarter. In our trailing 4 quarters, we estimate that inference drove about 40% of our Data Center revenue. We unveiled the NVIDIA Blackwell platform, our next-generation GPU architecture for the new era of AI computing at
+
+---
+
+[NVIDIA | 10Q | 2023Q3 | Filed: 2023-08-28]
+and high performance computing.Gaming revenue was up 22% from a year ago and up 11% sequentially, primarily reflecting demand for our GeForce RTX 40 Series GPUs based on the NVIDIA Ada Lovelace architecture following normalization of channel inventory levels.Professional Visualization revenue was down 24% from a year ago and up 28% sequentially. The year-on-year decrease primarily reflects lower sell-in to partners following normalization of channel inventory levels. The sequential increase was primarily due to stronger enterprise workstation demand and the ramp of NVIDIA RTX products based on the Ada Lovelace Architecture.Automotive revenue was up 15% from a year ago and down 15% sequentially. The year-on-year increase was primarily driven by sales of self-driving platforms. The sequential decrease primarily reflects lower overall auto demand, particularly in China.Gross margin increased from a year ago and sequentially, primarily reflecting growth in Data Center sales. The year-on-year increase also reflects the impact on the year-ago gross margin from $1.34 billion in inventory provisions and related charges.Operating expenses were up 10% from a year ago and up 6% sequentially, primarily driven by compensation and benefits, including stock-based compensation, reflecting growth in employees and compensation increases. Market Platform HighlightsData Center revenue for the second quarter of fiscal year 2024 was $10.32 billion, up 171% from a year ago. We announced that the
+
+---
+
+[NVIDIA | 10Q | 2023Q4 | Filed: 2023-11-21]
+Compute & Networking - The increase in the third quarter and first nine months of fiscal year 2024 compared to the third quarter and first nine months of fiscal year 2023 was due to higher Data Center revenue. Compute GPUs grew 369% year-on-year and 193% compared to the first nine months of fiscal year 2023 led by strong demand for the NVIDIA HGX platform driven by global demand for the training and inferencing of large language models, recommendation engines and inferencing of generative AI applications. Networking was up 155% year-on-year and 99% compared to the first nine months of last year, almost entirely due to strong growth in InfiniBand infrastructure to support our HGX platform.Graphics - The increase in the third quarter of fiscal year 2024 compared to the third quarter of fiscal year 2023 reflects growth in Gaming GPUs reflecting higher sell-in to partners following normalization of channel inventory levels earlier this year. The decrease in the first nine months of fiscal year 2024 compared to the first nine months of fiscal year 2023 primarily reflects 57% lower enterprise graphics and 14% lower Professional Visualization GPUs, partially offset by 7% growth in Gaming GPUs, following normalization of channel inventory levels earlier this year. Concentration of Revenue Revenue by geographic region is designated based on the billing location even if the revenue may be attributable to end customers, or End Customers, such as CSPs, enterprises, and gamers in a
+
+---
+
+[NVIDIA | 10Q | 2023Q3 | Filed: 2023-08-28]
+Compute & Networking - The increase in the second quarter and first half of fiscal year 2024 compared to the second quarter and first half of fiscal year 2023 was primarily due to higher Data Center revenue. Compute GPUs grew 208% year-on-year and 112% compared to the first half of fiscal year 2023 led by demand for NVIDIA HGX platform based on our Hopper and Ampere GPU architecture for large language models and generative AI. Networking was up 94% year-on-year and 63% compared to the first half of last year driven primarily by strong growth in InfiniBand infrastructure to support our HGX platform. Graphics - The increase in the second quarter of fiscal year 2024 compared to the second quarter of fiscal year 2023 primarily reflects growth in Gaming GPUs related to the demand for our GeForce RTX 40 Series GPUs based on the NVIDIA Ada Lovelace architecture following normalization of channel inventory levels. The decrease in the first half of fiscal year 2024 compared to the first half of fiscal year 2023 primarily reflects 16% lower Gaming GPU sales and 36% lower Professional Visualization GPU sales, due to lower sell-in to partners following normalization of channel inventory levels.Concentration of Revenue Revenue by geographic region is allocated to countries based on the billed location even if the revenue may be attributable to end customers in a different location. Revenue from sales to customers outside of the United States accounted for 55% and 59% of total revenue for
+
+---
+
+[NVIDIA | 10Q | 2023Q3 | Filed: 2023-08-28]
+in employees and compensation increases. Market Platform HighlightsData Center revenue for the second quarter of fiscal year 2024 was $10.32 billion, up 171% from a year ago. We announced that the NVIDIA GH200 Grace Hopper Superchip is available in the third quarter of fiscal year 2024; announced the NVIDIA L40S GPU - a universal data center processor for compute-intensive applications, including AI training and inference, is available now; unveiled the NVIDIA MGX server reference design; announced NVIDIA Spectrum-X, an accelerated networking platform for AI; and partnered with a 27range of companies on AI initiatives, including ServiceNow, Accenture, VMware, Snowflake, WPP, SoftBank, and Hugging Face. Gaming revenue for the second quarter of fiscal year 2024 was $2.49 billion, up 22% from a year ago. We began shipping the GeForce RTX 4060 family of GPUs; and announced NVIDIA Avatar Cloud Engine for Games, a custom AI model foundry service using AI-powered natural language interactions to transform games.Professional Visualization revenue for the second quarter of fiscal year 2024 was $379 million, down 24% from a year ago. We announced new NVIDIA RTX GPUs for desktop workstations based on the Ada Lovelace architecture; and a major release of the NVIDIA Omniverse platform.Automotive revenue for the second quarter of fiscal year 2024 was $253 million, up 15% from a year ago. We announced that NVIDIA DRIVE Orin is powering the new XPENG G6 Coupe SUVs; and announced a
+
+---
+
+[NVIDIA | 10Q | 2022Q3 | Filed: 2022-08-31]
+Graphics - The year over year decrease was primarily attributable to lower sell-in of desktop Gaming and Professional Visualization products in the second quarter of fiscal year 2023 reflecting reduced channel partner sales due to macroeconomic headwinds. In addition to reducing sell-in, we implemented pricing programs in Gaming with channel partners to address challenging market conditions that are expected to persist into the third quarter of fiscal year 2023. Revenue on a year-to-date basis was essentially flat as the declines in sales of GeForce GPUs for desktops and SOCs for game consoles were offset by increases in sales of GeForce GPUs for laptops and Professional Visualization products.Compute & Networking - The year-on-year increases were primarily driven by hyperscale customer revenue, which nearly doubled. Vertical industries grew year-on-year. Key workloads driving growth included natural language processing, deep recommenders, autonomous vehicle fleet data processing and training, and cloud graphics. CMP contributed an insignificant amount in the second quarter and first half of fiscal year 2023 compared to $266 million in second quarter and $421 million in the first half of fiscal year 2022.28Concentration of Revenue Revenue from sales to customers outside of the United States accounted for 70% and 74% of total revenue for the second quarter and first half of fiscal year 2023, respectively, and 85% and 86% of total revenue for the second quarter and first half
+
+---
+
+[NVIDIA | 10Q | 2022Q2 | Filed: 2022-05-27]
+was up 83% from a year ago and up 15% sequentially. These increases were primarily driven by sales of NVIDIA Ampere architecture GPUs and DGX systems used across both training and inference. Growth was led by cloud computing and hyperscale customers for workloads such as natural language processing and deep recommenders.Professional Visualization revenue was up 67% from a year ago and down 3% sequentially. The year-on-year increase was driven by sales of NVIDIA Ampere architecture products with growth in workstations as enterprises supported hybrid work environments. The sequential decrease was due to lower sales of desktop workstation GPUs, partially offset by higher sales of notebook workstations GPUs. Automotive revenue was down 10% from a year ago and up 10% sequentially. The year-on-year decrease was due to automakers’ supply constraints and the decline of legacy cockpit revenue. The sequential increase was driven by AI cockpit revenue.23OEM and Other revenue was down 52% from a year ago and down 18% sequentially. The year-on-year decrease was due to a decline in CMP revenue, which was nominal in the quarter compared with $155 million from a year ago. The sequential decrease was driven by lower entry level notebook GPU sales.GAAP gross margin was up 140 basis points from a year ago, primarily due to a higher-end mix of GeForce GPUs within Gaming and the reduced impact of acquisition-related costs. Sequentially, GAAP gross margin was up 10 basis points due to increased
+--- END CONTEXT ---
+
+QUESTION: How has NVIDIA's revenue and growth outlook changed over the last two years?
+
+Provide a well-structured, detailed answer with specific numbers and citations.
+
+RESPONSE:
+# NVIDIA's Revenue and Growth Outlook Over the Last Two Years
+
+## Overview of Revenue Growth
+
+NVIDIA has experienced significant revenue growth over the past two years, particularly in its Data Center segment, driven by strong demand for its AI and computing solutions.
+
+### Fiscal Year 2024 Highlights
+- **Data Center Revenue**:
+  - Q1 FY2025: $22.6 billion, up **427%** from the same quarter a year ago (NVIDIA, 10-Q, 2024Q2).
+  - Q2 FY2025: $26.3 billion, up **154%** from the same quarter a year ago (NVIDIA, 10-Q, 2024Q3).
+  - Q3 FY2024: $10.32 billion, up **171%** from the same quarter a year ago (NVIDIA, 10-Q, 2023Q3).
+  
+- **Compute & Networking Revenue**:
+  - Q2 FY2024: Increased **208%** year-on-year, primarily due to demand for the NVIDIA HGX platform (NVIDIA, 10-Q, 2023Q3).
+  - Q3 FY2024: Grew **369%** year-on-year, driven by strong demand for the NVIDIA HGX platform (NVIDIA, 10-Q, 2023Q4).
+
+### Fiscal Year 2023 Highlights
+- **Data Center Revenue**:
+  - Q2 FY2023: $10.32 billion, reflecting a year-on-year increase of **171%** (NVIDIA, 10-Q, 2023Q3).
+  
+- **Graphics Revenue**:
+  - Q3 FY2023: Gaming revenue increased **22%** year-on-year, driven by demand for GeForce RTX 40 Series GPUs (NVIDIA, 10-Q, 2023Q3).
+
+## Year-Over-Year Changes
+
+### Significant Increases
+- **Compute GPU Revenue**:
+  - Q2 FY2024: Grew **497%** year-on-year due to higher shipments of the NVIDIA Hopper GPU computing platform (NVIDIA, 10-Q, 2024Q2).
+  
+- **Networking Revenue**:
+  - Q2 FY2024: Increased **242%** year-on-year, driven by strong growth in InfiniBand solutions (NVIDIA, 10-Q, 2024Q2).
+
+### Operating Income and Expenses
+- **Operating Expenses**:
+  - Increased **48%** year-on-year in Q3 FY2024, largely due to compensation and benefits (NVIDIA, 10-Q, 2024Q3).
+  
+- **Operating Income**:
+  - The year-over-year increase in Compute & Networking segment operating income was driven by revenue growth, despite a decrease in Graphics segment operating income due to a **44%** increase in operating expenses (NVIDIA, 10-K, UNKNOWN).
+
+## Future Outlook
+NVIDIA's growth outlook remains robust, driven by the increasing adoption of AI technologies and the expansion of its Data Center offerings. The company has positioned itself strongly in the market with its Hopper and Blackwell architectures, which are expected to continue driving revenue growth in the coming quarters.
+
+### Key Drivers for Future Growth
+- **AI and Accelerated Computing Solutions**: Strong demand for AI applications is expected to sustain revenue growth.
+- **New Product Releases**: Introduction of new products like the NVIDIA Blackwell-powered systems and the NVIDIA Spectrum-X Ethernet networking platform will likely enhance revenue streams (NVIDIA, 10-Q, 2024Q3).
+
+In summary, NVIDIA has shown remarkable revenue growth over the past two years, particularly in its Data Center segment, and is well-positioned for continued expansion in the AI and computing markets.
+
+========================================================================
+[2026-03-17T13:31:51.095657] GENERATE
+========================================================================
+PROMPT:
+You are a senior financial analyst specializing in SEC filings.
+Answer the question using ONLY the SEC filing excerpts provided below.
+
+RULES — follow these strictly:
+1. ONLY attribute information to the company named in each source header
+   (e.g., [Apple | 10-K | Q4 2024 | Filed: 2024-11-01]).
+   NEVER infer or assume data about one company from another company's filing.
+2. Cite every factual claim with (Company, Filing Type, Period).
+3. Use exact numbers, dollar amounts, percentages, and dates from the excerpts.
+   Do NOT round, estimate, or paraphrase numbers when the excerpt is specific.
+4. Calculate growth rates and year-over-year changes when raw figures are present.
+5. If data for a company, metric, or time period is missing from the excerpts,
+   say so explicitly — do NOT guess or fill from general knowledge.
+6. Prefer 10-K (annual) data over 10-Q (quarterly) when both are available.
+7. Structure your answer with clear headings and bullet points for readability.
+
+--- CONTEXT ---
+[AMD | 10K | UNKNOWN | Filed: 2026-02-04]
+| Base Period | Years Ended
+Company / Index | 12/26/2020 | 12/25/2021 | 12/31/2022 | 12/30/2023 | 12/28/2024 | 12/27/2025
+Advanced Micro Devices, Inc. | $100 | $ | 159 |  | $ | 71 |  | $ | 161 |  | $ | 136 |  | $ | 234 |
+S&P 500 Index | $100 | $ | 129 |  | $ | 107 |  | $ | 135 |  | $ | 171 |  | $ | 201 |
+S&P 500 Semiconductors Index | $100 | $ | 153 |  | $ | 96 |  | $ | 201 |  | $ | 383 |  | $ | 547 |
+
+---
+
+[JPMorgan Chase | 10K | UNKNOWN | Filed: 2026-02-13]
+Purchases |  |  | $ | 756 |  | (b)(c) |  | $ | — |  |  |  | $ | 1,696 |  |  |  | $ | 2,452 |
+Sales |  |  | 3,006 |  |  |  | — |  |  |  | 52,577 |  |  |  | 55,583 |
+Retained loans reclassified to held-for-sale(a) |  |  | 332 |  |  |  | — |  |  |  | 1,220 |  |  |  | 1,552 |
+Year ended December 31, 2024(in millions) |  | Consumer, excludingcredit card | Credit card | Wholesale | Total
+Purchases |  |  | $ | 647 |  | (b)(c) |  | $ | — |  |  |  | $ | 1,432 |  |  |  | $ | 2,079 |
+Sales |  |  | 10,440 |  |  |  | — |  |  |  | 45,147 |  |  |  | 55,587 |
+Retained loans reclassified to held-for-sale(a) |  |  | 1,656 |  |  |  | — |  |  |  | 749 |  |  |  | 2,405 |
+JPMorgan Chase & Co./2025 Form 10-K |  | 239
+Notes to consolidated financial statements
+Year ended December 31, 2023(in millions) |  | Consumer, excludingcredit card | Credit card | Wholesale | Total
+Purchases |  |  | $ | 92,205 |  | (b)(c)(d) |  | $ | — |  |  |  | $ | 60,300 |  | (d) |  | $ | 152,505 |
+Sales |  |  | 2,202 |  |  |  | — |  |  |  | 43,949 |  |  |  | 46,151 |
+Retained loans reclassified to held-for-sale(a) |  |  | 274 |  |  |  | — |  |  |  | 1,486 |  |  |  | 1,760 |
+
+---
+
+[JPMorgan Chase | 10K | UNKNOWN | Filed: 2026-02-13]
+As of or for the year ended December 31, |  |  |  | Average |  |  |  |  |  |  |
+(in millions) | 2025 |  | 2024 | 2025 | 2024 |  |  |  |  |  |  |
+Commercial paper | $ | 12,111 |  |  | $ | 14,932 |  | $ | 12,274 |  | $ | 11,398 |  |  |  |  |  |  |  |
+Other borrowed funds | 15,031 |  |  | 13,018 |  | 14,981 |  | 12,040 |  |  |  |  |  |  |  |
+Federal funds purchased | 199 |  |  | 567 |  | 1,413 |  | 1,547 |  |  |  |  |  |  |  |
+Total short-term unsecured funding | $ | 27,341 |  |  | $ | 28,517 |  | $ | 28,668 |  | $ | 24,985 |  |  |  |  |  |  |  |
+Securities sold under agreements to repurchase(a) | $ | 433,161 |  |  | $ | 291,500 |  | $ | 516,262 |  | $ | 357,144 |  |  |  |  |  |  |  |
+Securities loaned(a) | 9,036 |  |  | 4,768 |  | 9,834 |  | 5,129 |  |  |  |  |  |  |  |
+Other borrowed funds | 37,634 |  |  | 24,943 |  | 38,638 |  | 25,504 |  |  |  |  |  |  |  |
+Obligations of Firm-administered multi-seller conduits(b) | 18,174 |  |  | 18,228 |  | 17,764 |  | 18,620 |  |  |  |  |  |  |  |
+Total short-term secured funding | $ | 498,005 |  |  | $ | 339,439 |  | $ | 582,498 |  | $ | 406,397 |  |  |  |  |  |  |  |
+Senior notes | $ | 210,571 |  |  | $ | 203,639 |  | $ | 209,346 |  | $ | 199,908 |  |  |  |  |  |  |  |
+Subordinated debt | 20,101 |  |  | 16,060 |  | 17,943 |  | 18,614 |  |  |  |  |  |  |  |
+Structured notes(c) | 130,621 |  |  | 98,792 |  | 113,362 |  | 93,483 |  |  |  |  |  |  |  |
+
+---
+
+[Goldman Sachs | 10K | UNKNOWN | Filed: 2025-02-27]
+| Year Ended December |
+$ in millions | 2024 | 2023 |  | 2022 |
+Compensation and benefits | $ | 16,706 |  | $ | 15,499 |  |  | $ | 15,148 |  |
+Transaction based | 6,724 |  | 5,698 |  |  | 5,312 |  |
+Market development | 646 |  | 629 |  |  | 812 |  |
+Communications and technology | 1,991 |  | 1,919 |  |  | 1,808 |  |
+Depreciation and amortization | 2,392 |  | 4,856 |  |  | 2,455 |  |
+Occupancy | 973 |  | 1,053 |  |  | 1,026 |  |
+Professional fees | 1,652 |  | 1,623 |  |  | 1,887 |  |
+Other expenses | 2,683 |  | 3,210 |  |  | 2,716 |  |
+Total operating expenses | $ | 33,767 |  | $ | 34,487 |  |  | $ | 31,164 |  |
+Headcount at period-end | 46,500 | 45,300 |  | 48,500 |
+
+---
+
+[Goldman Sachs | 10K | UNKNOWN | Filed: 2025-02-27]
+| Year Ended December |  |
+$ in millions | 2024 |  | 2023 |  | 2022 |  |
+Interest rates | $ | 715 |  |  | $ | 4,437 |  |  | $ | (4,890) |  |  |
+Credit | 2,467 |  |  | 1,141 |  |  | 1,095 |  |  |
+Currencies | 6,292 |  |  | 2,827 |  |  | 11,662 |  |  |
+Equities | 7,632 |  |  | 7,938 |  |  | 7,734 |  |  |
+Commodities | 1,284 |  |  | 1,895 |  |  | 3,033 |  |  |
+Total | $ | 18,390 |  |  | $ | 18,238 |  |  | $ | 18,634 |  |  |
+
+---
+
+[Salesforce | 10K | UNKNOWN | Filed: 2025-03-05]
+| 1/31/2020 |  | 1/31/2021 |  | 1/31/2022 |  | 1/31/2023 |  | 1/31/2024 |  | 1/31/2025
+Salesforce | $ | 100 |  |  | $ | 124 |  |  | $ | 128 |  |  | $ | 92 |  |  | $ | 154 |  |  | $ | 187 |
+S&P 500 Index | 100 |  |  | 115 |  |  | 140 |  |  | 126 |  |  | 150 |  |  | 187 |
+Nasdaq Computer | 100 |  |  | 146 |  |  | 183 |  |  | 142 |  |  | 220 |  |  | 289 |
+Nasdaq 100 Index | 100 |  |  | 144 |  |  | 166 |  |  | 135 |  |  | 191 |  |  | 239 |
+Dow Jones Industrial Average | 100 |  |  | 106 |  |  | 124 |  |  | 121 |  |  | 135 |  |  | 158 |
+
+---
+
+[NVIDIA | 10K | UNKNOWN | Filed: 2025-02-26]
+| Year Ended
+| Jan 26, 2025 |  | Jan 28, 2024 |  | Change
+| ($ in millions, except per share data)
+Revenue | $ | 130,497 |  |  | $ | 60,922 |  |  | Up 114%
+Gross margin | 75.0 | % |  | 72.7 | % |  | Up 2.3 pts
+Operating expenses | $ | 16,405 |  |  | $ | 11,329 |  |  | Up 45%
+Operating income | $ | 81,453 |  |  | $ | 32,972 |  |  | Up 147%
+Net income | $ | 72,880 |  |  | $ | 29,760 |  |  | Up 145%
+Net income per diluted share | $ | 2.94 |  |  | $ | 1.19 |  |  | Up 147%
+
+---
+
+[Amazon | 10K | 2024Q4 | Filed: 2025-02-07]
+| Year Ended December 31, 2023 |  | Year Ended December 31, 2024
+| AsReported |  | ExchangeRateEffect (1) |  | At PriorYearRates (2) |  | AsReported |  | ExchangeRateEffect (1) |  | At PriorYearRates (2)
+Net sales | $ | 574,785 |  |  | $ | 71 |  |  | $ | 574,856 |  |  | $ | 637,959 |  |  | $ | 2,335 |  |  | $ | 640,294 |
+Operating expenses | 537,933 |  |  | 531 |  |  | 538,464 |  |  | 569,366 |  |  | 2,466 |  |  | 571,832 |
+Operating income | 36,852 |  |  | (460) |  |  | 36,392 |  |  | 68,593 |  |  | (131) |  |  | 68,462 |
+
+---
+
+[Amazon | 10K | 2023Q4 | Filed: 2024-02-02]
+resulting in a discount for lack of marketability of approximately $800 million as of December 31, 2021, which expired in Q1 2022.Required summarized financial information of Rivian as disclosed in its most recent SEC filings is as follows (in millions):
+
+---
+
+[BlackRock | 10K | UNKNOWN | Filed: 2024-02-23]
+Outstanding loan balances ended the year at approximately $359 billion, up from $355 billion at year-end 2022. More demand for general collateral securities resulted in slightly higher balances year over year. Intrinsic lending spreads increased and cash reinvestment spreads remained flat as cash yields were stable year over year.
+
+---
+
+[Amazon | 10K | 2023Q4 | Filed: 2024-02-02]
+| Year Ended December 31, 2022 |  | Year Ended December 31, 2023
+| AsReported |  | ExchangeRateEffect (1) |  | At PriorYearRates (2) |  | AsReported |  | ExchangeRateEffect (1) |  | At PriorYearRates (2)
+Net sales | $ | 513,983 |  |  | $ | 15,495 |  |  | $ | 529,478 |  |  | $ | 574,785 |  |  | $ | 71 |  |  | $ | 574,856 |
+Operating expenses | 501,735 |  |  | 16,356 |  |  | 518,091 |  |  | 537,933 |  |  | 531 |  |  | 538,464 |
+Operating income | 12,248 |  |  | (861) |  |  | 11,387 |  |  | 36,852 |  |  | (460) |  |  | 36,392 |
+
+---
+
+[NVIDIA | 10K | 2024Q1 | Filed: 2024-02-21]
+| Year Ended
+| Jan 28, 2024 |  | Jan 29, 2023 |  | Change
+| ($ in millions, except per share data)
+Revenue | $ | 60,922 |  |  | $ | 26,974 |  |  | Up 126%
+Gross margin | 72.7 | % |  | 56.9 | % |  | Up 15.8 pts
+Operating expenses | $ | 11,329 |  |  | $ | 11,132 |  |  | Up 2%
+Operating income | $ | 32,972 |  |  | $ | 4,224 |  |  | Up 681%
+Net income | $ | 29,760 |  |  | $ | 4,368 |  |  | Up 581%
+Net income per diluted share | $ | 11.93 |  |  | $ | 1.74 |  |  | Up 586%
+
+---
+
+[Tesla | 10K | 2023Q4 | Filed: 2024-01-29]
+Restructuring and other |  | $ | — |  |  | $ | 176 |  |  | $ | (27) |  |  | $ | (176) |  |  | (100)% |  | $ | 203 |  |  | Not meaningful
+During the year ended December 31, 2022, we recorded an impairment loss of $204 million as well as realized gains of $64 million in connection with converting our holdings of digital assets into fiat currency. We also recorded other expenses of $36 million during the second quarter of the year ended December 31, 2022, related to employee terminations.Interest Income
+|  | Year Ended December 31, |  | 2023 vs. 2022 Change |  | 2022 vs. 2021 Change
+(Dollars in millions) |  | 2023 |  | 2022 |  | 2021 |  | $ |  | % |  | $ |  | %
+Interest income |  | $ | 1,066 |  |  | $ | 297 |  |  | $ | 56 |  |  | $ | 769 |  |  | 259 | % |  | $ | 241 |  |  | 430 | %
+41Interest income increased $769 million, or 259%, in the year ended December 31, 2023 as compared to the year ended December 31, 2022. This increase was primarily due to higher interest earned on our cash and cash equivalents and short-term investments in the year ended December 31, 2023 as compared to the prior year due to rising interest rates and our increasing portfolio balance.Other Income (Expense), Net
+|  | Year Ended December 31, |  | 2023 vs. 2022 Change |  | 2022 vs. 2021 Change
+(Dollars in millions) |  | 2023 |  | 2022 |  | 2021 |  | $ |  | % |  | $ |  | %
+
+---
+
+[Alphabet/Google | 10K | 2023Q4 | Filed: 2024-01-31]
+| Year Ended December 31, 2022 |  | Year Ended December 31, 2023
+| Shares |  | Amount |  | Shares |  | Amount
+Class A share repurchases | 61 |  | $ | 6,719 |  |  | 78 |  | $ | 9,316 |
+Class C share repurchases | 469 |  | 52,577 |  |  | 450 |  | 52,868 |
+Total share repurchases(1) | 530 |  | $ | 59,296 |  |  | 528 |  | $ | 62,184 |
+
+---
+
+[Amazon | 10Q | 2023Q1 | Filed: 2023-04-28]
+of approximately $800 million as of December 31, 2021, which expired in Q1 2022.Required summarized financial information of Rivian as disclosed in its most recent SEC filings is as follows (in millions):
+
+---
+
+[Tesla | 10K | 2022Q4 | Filed: 2023-01-31]
+|  | 2022 |  |  | 2021 |
+Automotive |  | $ | 10,996 |  |  | $ | 4,978 |
+Energy generation and storage |  |  | 1,843 |  |  |  | 779 |
+Total |  | $ | 12,839 |  |  | $ | 5,757 |
+Note 19 – Restructuring and OtherDuring the years ended December 31, 2022 and 2021, we recorded $204 million and $101 million, respectively, of impairment losses on digital assets. During the years ended December 31, 2022 and 2021, we also realized gains of $64 million and $128 million, respectively, in connection with converting our holdings of digital assets into fiat currency. Additionally, we recorded other expenses of $36 million in the second quarter during the year ended December 31, 2022.
+89
+ITEM 9.	CHANGES IN AND DISAGREEMENTS WITH ACCOUNTANTS ON ACCOUNTING AND FINANCIAL DISCLOSURE
+None.
+ITEM 9A.	CONTROLS AND PROCEDURES
+Evaluation of Disclosure Controls and Procedures
+
+---
+
+[NVIDIA | 10K | 2023Q1 | Filed: 2023-02-24]
+| Year Ended
+| January 29,2023 |  | January 30,2022 |  | Change
+| ($ in millions, except per share data)
+Revenue | $ | 26,974 |  |  | $ | 26,914 |  |  | — | %
+Gross margin | 56.9 | % |  | 64.9 | % |  | Down 8.0 pts
+Operating expenses | $ | 11,132 |  |  | $ | 7,434 |  |  | Up 50%
+Income from operations | $ | 4,224 |  |  | $ | 10,041 |  |  | Down 58%
+Net income | $ | 4,368 |  |  | $ | 9,752 |  |  | Down 55%
+Net income per diluted share | $ | 1.74 |  |  | $ | 3.85 |  |  | Down 55%
+
+---
+
+[Amazon | 10K | 2022Q4 | Filed: 2023-02-03]
+| Year Ended December 31, 2021 |  | Year Ended December 31, 2022
+| AsReported |  | ExchangeRateEffect (1) |  | At PriorYearRates (2) |  | AsReported |  | ExchangeRateEffect (1) |  | At PriorYearRates (2)
+Net sales | $ | 469,822 |  |  | $ | (3,804) |  |  | $ | 466,018 |  |  | $ | 513,983 |  |  | $ | 15,495 |  |  | $ | 529,478 |
+Operating expenses | 444,943 |  |  | (3,653) |  |  | 441,290 |  |  | 501,735 |  |  | 16,356 |  |  | 518,091 |
+Operating income | 24,879 |  |  | (151) |  |  | 24,728 |  |  | 12,248 |  |  | (861) |  |  | 11,387 |
+
+---
+
+[Pfizer | 10K | 2022Q4 | Filed: 2023-02-23]
+Summarized financial information for our equity-method investee, ViiV, as of December 31, 2022 and 2021 and for the years ending December 31, 2022, 2021, and 2020 is as follows:
+|  |  |  | As of December 31,
+(MILLIONS) |  |  |  | 2022 |  | 2021
+Current assets |  |  |  | $ | 4,043 |  |  | $ | 3,608 |
+Noncurrent assets |  |  |  | 3,014 |  |  | 3,563 |
+Total assets |  |  |  | $ | 7,057 |  |  | $ | 7,171 |
+Current liabilities |  |  |  | $ | 3,780 |  |  | $ | 3,497 |
+Noncurrent liabilities |  |  |  | 5,996 |  |  | 6,536 |
+Total liabilities |  |  |  | $ | 9,777 |  |  | $ | 10,033 |
+Total net equity/(deficit) attributable to shareholders |  |  |  | $ | (2,720) |  |  | $ | (2,862) |
+Pfizer Inc. | 2022 Form 10-K | 63
+Notes to Consolidated Financial StatementsPfizer Inc. and Subsidiary Companies
+|  |  |  | Year Ended December 31,
+(MILLIONS) |  |  |  | 2022 |  | 2021 |  | 2020
+Net sales |  |  |  | $ | 6,955 |  |  | $ | 6,380 |  |  | $ | 6,224 |
+Cost of sales |  |  |  | (819) |  |  | (682) |  |  | (574) |
+Gross profit |  |  |  | $ | 6,135 |  |  | $ | 5,698 |  |  | $ | 5,650 |
+Income from continuing operations |  |  |  | 3,108 |  |  | 2,040 |  |  | 2,012 |
+Net income |  |  |  | 3,108 |  |  | 2,040 |  |  | 2,012 |
+Income attributable to shareholders |  |  |  | 3,108 |  |  | 2,040 |  |  | 2,012 |
+
+---
+
+[Tesla | 10K | 2022Q4 | Filed: 2023-01-31]
+Restructuring and Other Expense
+|  | Year Ended December 31, |  |  | 2022 vs. 2021 Change |  | 2021 vs. 2020 Change
+(Dollars in millions) |  | 2022 |  |  | 2021 |  |  | 2020 |  |  | $ |  |  | % |  | $ |  |  | %
+Restructuring and other |  | $ | 176 |  |  | $ | (27 | ) |  | $ | — |  |  | $ | 203 |  |  | Not meaningful |  | $ | (27 | ) |  | Not meaningful
+During the years ended December 31, 2022 and 2021, we recorded $204 million and $101 million, respectively, of impairment losses on digital assets, respectively. During the years ended December 31, 2022 and 2021, we also realized gains of $64 million and $128 million, respectively, in connection with converting our holdings of digital assets into fiat currency. See Note 3, Digital Assets, Net, to the consolidated financial statements included elsewhere in this Annual Report on Form 10-K for further details. Additionally, we recorded other expenses of $36 million during the second quarter of the year ended December 31, 2022, related to employee terminations.
+40
+Interest Income
+|  | Year Ended December 31, |  |  | 2022 vs. 2021 Change |  |  | 2021 vs. 2020 Change |
+(Dollars in millions) |  | 2022 |  |  | 2021 |  |  | 2020 |  |  | $ |  |  | % |  |  | $ |  |  | % |
+Interest income |  | $ | 297 |  |  | $ | 56 |  |  | $ | 30 |  |  | $ | 241 |  |  |  | 430 | % |  | $ | 26 |  |  |  | 87 | %
+--- END CONTEXT ---
+
+QUESTION: Tell me about Colgate Palmolive’s financials for last year?
+
+Provide a well-structured, detailed answer with specific numbers and citations.
+
+RESPONSE:
+The excerpts provided do not contain any financial information regarding Colgate-Palmolive. Therefore, I cannot provide details about Colgate-Palmolive's financials for last year.
